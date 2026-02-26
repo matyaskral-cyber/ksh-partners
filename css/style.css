@@ -177,7 +177,7 @@ body {
 }
 .hero-logo {
   width: 100%;
-  max-width: 380px;
+  max-width: 700px;
   height: auto;
   filter: drop-shadow(0 8px 40px rgba(0,0,0,.4));
 }
