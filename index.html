@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KSH Partners – Váš partner v businessu</title>
+  <meta name="description" content="KSH Partners provozuje kamenné obchody, výdejní automaty a vytváří weby a aplikace na míru.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Mobile nav open */
+    #nav-links.mobile-open {
+      display: flex !important;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      background: rgba(8,17,31,.98);
+      padding: 1rem;
+      gap: .25rem;
+    }
+    #nav-links.mobile-open a { padding: .7rem 1rem; width: 100%; }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGACE ──────────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">KSH</div>
+      <span class="nav-logo-text">KSH <span>Partners</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#sluzby">Co děláme</a></li>
+      <li><a href="#o-nas">O nás</a></li>
+      <li><a href="#tym">Tým</a></li>
+      <li><a href="#reference">Reference</a></li>
+      <li><a href="#aktuality">Aktuality</a></li>
+      <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────── -->
+<section class="hero" id="uvod">
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag">KSH Partners · Česká republika</div>
+      <h1>Váš partner pro <em>skutečný</em> růst.</h1>
+      <p class="hero-desc">
+        Provozujeme kamenné obchody, výdejní automaty a tvoříme digitální řešení.
+        Čtyři partneři. Jeden cíl: budovat byznys, který funguje.
+      </p>
+      <div class="hero-btns">
+        <a href="#sluzby" class="btn btn-gold">
+          Co děláme
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#kontakt" class="btn btn-outline">Kontaktujte nás</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">3<span>+</span></div>
+      <div class="hero-stat-lbl">Odvětví</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">4</div>
+      <div class="hero-stat-lbl">Partneři</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">24<span>/7</span></div>
+      <div class="hero-stat-lbl">Provoz</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">100<span>%</span></div>
+      <div class="hero-stat-lbl">Nasazení</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CO DĚLÁME ─────────────────────────────────────────────── -->
+<section id="sluzby">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Naše služby</span>
+      <h2 class="section-title">Tři oblasti.<br>Jeden partner.</h2>
+      <p class="section-sub">
+        Od fyzických prodejen přes automatizovaný prodej až po digitální svět —
+        pokrýváme celé spektrum moderního podnikání.
+      </p>
+    </div>
+    <div class="services-grid">
+
+      <!-- Kamenné obchody -->
+      <div class="service-card">
+        <div class="service-icon">🏪</div>
+        <h3>Kamenné obchody</h3>
+        <p>
+          Provozujeme a optimalizujeme maloobchodní prodejny s důrazem na zákaznickou
+          zkušenost, provozní efektivitu a ziskovost. Řešíme vše od sortimentu po každodenní chod.
+        </p>
+        <div class="service-tags">
+          <span class="service-tag">Maloobchod</span>
+          <span class="service-tag">Provoz prodejen</span>
+          <span class="service-tag">Optimalizace</span>
+        </div>
+      </div>
+
+      <!-- Výdejní automaty -->
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <h3>Výdejní automaty</h3>
+        <p>
+          Navrhujeme a provozujeme sítě výdejních automatů. Bezobslužný prodej 24/7
+          s minimálními náklady a maximálním pokrytím. Ideální pro firmy, školy
+          a veřejná místa.
+        </p>
+        <div class="service-tags">
+          <span class="service-tag">Vending</span>
+          <span class="service-tag">Bezobslužný prodej</span>
+          <span class="service-tag">24/7</span>
+        </div>
+      </div>
+
+      <!-- Weby a aplikace -->
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <h3>Weby a aplikace</h3>
+        <p>
+          Vyvíjíme moderní webové stránky a aplikace na míru. Od firemních prezentací
+          přes rezervační systémy až po komplexní business software.
+          Funkční, rychlé a hezké.
+        </p>
+        <div class="service-tags">
+          <span class="service-tag">Web development</span>
+          <span class="service-tag">Aplikace</span>
+          <span class="service-tag">Software na míru</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── O NÁS ──────────────────────────────────────────────────── -->
+<section id="o-nas">
+  <div class="container">
+    <div class="onas-layout">
+      <div>
+        <span class="section-tag">O nás</span>
+        <h2 class="section-title">Podnikáme naplno. Bez kompromisů.</h2>
+        <p style="color:var(--text-muted); line-height:1.75; margin-bottom:1rem;">
+          KSH Partners je česká podnikatelská skupina zaměřená na tři klíčové oblasti:
+          maloobchod, automatizovaný prodej a digitální technologie.
+        </p>
+        <p style="color:var(--text-muted); line-height:1.75;">
+          Stojíme na partnerství čtyř lidí, kteří sdílejí jediný cíl — budovat
+          fungující byznys s dlouhodobou hodnotou. Věříme v přímý přístup,
+          konkrétní výsledky a férové partnerství.
+        </p>
+        <div class="onas-values">
+          <div class="onas-value">
+            <h4>Výsledky</h4>
+            <p>Nezajímají nás plány bez čísel. Měříme, co funguje.</p>
+          </div>
+          <div class="onas-value">
+            <h4>Férovost</h4>
+            <p>Se zákazníky, partnery i navzájem.</p>
+          </div>
+          <div class="onas-value">
+            <h4>Rychlost</h4>
+            <p>Rozhodujeme rychle a neváháme jednat.</p>
+          </div>
+          <div class="onas-value">
+            <h4>Inovace</h4>
+            <p>Hledáme chytřejší způsob, jak dělat věci.</p>
+          </div>
+        </div>
+      </div>
+      <div class="onas-visual">
+        <div class="onas-stat-box">
+          <div class="onas-stat-num">3</div>
+          <div class="onas-stat-lbl">Obchodní oblasti</div>
+        </div>
+        <div class="onas-stat-box dark">
+          <div class="onas-stat-num">4</div>
+          <div class="onas-stat-lbl">Partneři</div>
+        </div>
+        <div class="onas-stat-box dark">
+          <div class="onas-stat-num">CZ</div>
+          <div class="onas-stat-lbl">Česká republika</div>
+        </div>
+        <div class="onas-stat-box">
+          <div class="onas-stat-num">∞</div>
+          <div class="onas-stat-lbl">Ambice</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TÝM ────────────────────────────────────────────────────── -->
+<section id="tym">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Tým</span>
+      <h2 class="section-title">Čtyři partneři.<br>Jeden tým.</h2>
+      <p class="section-sub">
+        Za KSH Partners stojí čtyři spoluzakladatelé, kteří přinášejí různé
+        zkušenosti a jeden společný přístup k podnikání.
+      </p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-photo">MK</div>
+        <div class="team-info">
+          <div class="team-name">Matyáš Král</div>
+          <div class="team-role">Co-founder & Partner</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">MH</div>
+        <div class="team-info">
+          <div class="team-name">Matyáš Haruda</div>
+          <div class="team-role">Co-founder & Partner</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">MS</div>
+        <div class="team-info">
+          <div class="team-name">Matyáš Starý</div>
+          <div class="team-role">Co-founder & Partner</div>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-photo">TS</div>
+        <div class="team-info">
+          <div class="team-name">Tomáš Skála</div>
+          <div class="team-role">Co-founder & Partner</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REFERENCE ──────────────────────────────────────────────── -->
+<section id="reference">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Reference</span>
+      <h2 class="section-title">Co jsme schopni dodat.</h2>
+      <p class="section-sub">
+        Naše projekty pokrývají tři hlavní oblasti. Rádi vám ukážeme konkrétní
+        výsledky na osobní schůzce.
+      </p>
+    </div>
+    <div class="ref-grid">
+      <div class="ref-card">
+        <div class="ref-icon">🏪</div>
+        <h3>Maloobchodní provoz</h3>
+        <p>Přímý provoz kamenných prodejen s důrazem na ziskovost a zákaznický servis.</p>
+        <div class="ref-items">
+          <div class="ref-item">Optimalizace prodejního sortimentu</div>
+          <div class="ref-item">Každodenní provoz a management</div>
+          <div class="ref-item">Analýza a zvyšování marže</div>
+          <div class="ref-item">Zákaznická zkušenost</div>
+        </div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-icon">🤖</div>
+        <h3>Vending & automaty</h3>
+        <p>Výdejní automaty jako byznys — od výběru lokace po každodenní zásobování.</p>
+        <div class="ref-items">
+          <div class="ref-item">Výběr a instalace automatů</div>
+          <div class="ref-item">Sortiment a cenotvorba</div>
+          <div class="ref-item">Pravidelné zásobování</div>
+          <div class="ref-item">Bezobslužný provoz 24/7</div>
+        </div>
+      </div>
+      <div class="ref-card">
+        <div class="ref-icon">💻</div>
+        <h3>Digitální projekty</h3>
+        <p>Weby, aplikace a business systémy na míru — od návrhu po spuštění a provoz.</p>
+        <div class="ref-items">
+          <div class="ref-item">Firemní webové stránky</div>
+          <div class="ref-item">Rezervační a CRM systémy</div>
+          <div class="ref-item">E-commerce řešení</div>
+          <div class="ref-item">Mobilní aplikace</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── AKTUALITY ──────────────────────────────────────────────── -->
+<section id="aktuality">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Aktuality</span>
+      <h2 class="section-title">Novinky z KSH.</h2>
+      <p class="section-sub">
+        Sledujte, co se u nás děje — nové projekty, postřehy z praxe
+        a zprávy ze tří světů, ve kterých podnikáme.
+      </p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-thumb t1">🏪</div>
+        <div class="blog-body">
+          <div class="blog-date">Únor 2026</div>
+          <h3>Jak vybrat správnou lokaci pro kamenný obchod</h3>
+          <p>Místo je základ úspěchu každé prodejny. Sdílíme naše zkušenosti s výběrem lokace a na co si dát pozor.</p>
+          <a href="#" class="blog-link">
+            Číst více
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb t2">🤖</div>
+        <div class="blog-body">
+          <div class="blog-date">Leden 2026</div>
+          <h3>Výdejní automaty v roce 2026: příležitost, které si málokdo všimne</h3>
+          <p>Vending trh v ČR roste. Proč je teď správný čas vstoupit a co potřebujete k startu?</p>
+          <a href="#" class="blog-link">
+            Číst více
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="blog-card">
+        <div class="blog-thumb t3">💻</div>
+        <div class="blog-body">
+          <div class="blog-date">Prosinec 2025</div>
+          <h3>Proč každý podnik potřebuje vlastní digitální systém</h3>
+          <p>Generické software nestačí. Ukážeme, jak vlastní aplikace změnila provoz jednoho z našich projektů.</p>
+          <a href="#" class="blog-link">
+            Číst více
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── KONTAKT ────────────────────────────────────────────────── -->
+<section id="kontakt">
+  <div class="container">
+    <div class="kontakt-layout">
+      <div>
+        <span class="section-tag">Kontakt</span>
+        <h2 class="section-title">Pojďme si o tom promluvit.</h2>
+        <p style="color:var(--text-muted); line-height:1.75; margin-bottom:.5rem;">
+          Máte projekt, nápad nebo chcete spolupracovat?
+          Ozvěte se — odpovídáme do 24 hodin.
+        </p>
+        <div class="kontakt-info-items">
+          <div class="kontakt-item">
+            <div class="kontakt-ico">✉️</div>
+            <div>
+              <div class="kontakt-item-label">Email</div>
+              <div class="kontakt-item-val">
+                <a href="mailto:info@ksh-partners.cz">info@ksh-partners.cz</a>
+              </div>
+            </div>
+          </div>
+          <div class="kontakt-item">
+            <div class="kontakt-ico">📞</div>
+            <div>
+              <div class="kontakt-item-label">Telefon</div>
+              <div class="kontakt-item-val">
+                <a href="tel:+420774982675">+420 774 982 675</a>
+              </div>
+            </div>
+          </div>
+          <div class="kontakt-item">
+            <div class="kontakt-ico">📍</div>
+            <div>
+              <div class="kontakt-item-label">Sídlo</div>
+              <div class="kontakt-item-val">Česká republika</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contact-form">
+        <div class="fld-row-2">
+          <div class="fld">
+            <label>Jméno *</label>
+            <input type="text" name="jmeno" placeholder="Jan Novák" required>
+          </div>
+          <div class="fld">
+            <label>Firma</label>
+            <input type="text" name="firma" placeholder="Vaše firma (volitelné)">
+          </div>
+        </div>
+        <div class="fld">
+          <label>E-mail *</label>
+          <input type="email" name="email" placeholder="jan@firma.cz" required>
+        </div>
+        <div class="fld">
+          <label>Zájem o</label>
+          <select name="oblast">
+            <option value="">— Vyberte oblast —</option>
+            <option>Kamenné obchody</option>
+            <option>Výdejní automaty</option>
+            <option>Web nebo aplikace</option>
+            <option>Spolupráce / jiné</option>
+          </select>
+        </div>
+        <div class="fld">
+          <label>Zpráva *</label>
+          <textarea name="zprava" placeholder="Řekněte nám o vašem projektu nebo dotazu..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+          Odeslat zprávu
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-mark">KSH</div>
+        <span class="nav-logo-text">KSH <span>Partners</span></span>
+      </a>
+      <ul class="footer-links">
+        <li><a href="#sluzby">Co děláme</a></li>
+        <li><a href="#o-nas">O nás</a></li>
+        <li><a href="#tym">Tým</a></li>
+        <li><a href="#reference">Reference</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+    <p class="footer-copy">© 2026 KSH Partners. Všechna práva vyhrazena.</p>
+  </div>
+</footer>
+
+<!-- Toast notifikace -->
+<div class="toast" id="toast">
+  ✅ Zpráva odeslána! Ozveme se do 24 hodin.
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
