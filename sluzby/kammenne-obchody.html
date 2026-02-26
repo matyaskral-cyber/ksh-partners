@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=13">
+  <link rel="stylesheet" href="../css/style.css?v=14">
   <style>
     #nav-links.mobile-open {
       display: flex !important; flex-direction: column;
@@ -34,7 +34,7 @@
       opacity: .8; transition: opacity .2s;
     }
     .sluzba-hero-back:hover { opacity: 1; }
-    .sluzba-hero-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .sluzba-hero-icon { margin-bottom: 1rem; color: var(--ksh-gold); display: flex; }
     .sluzba-hero h1 {
       font-size: clamp(2.2rem, 5vw, 3.5rem);
       font-weight: 900; color: #fff;
@@ -88,7 +88,7 @@
       transition: box-shadow var(--transition), transform var(--transition);
     }
     .projekt-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); transform: translateY(-2px); }
-    .projekt-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .projekt-icon { margin-bottom: 1rem; color: var(--ksh-gold); display: flex; }
     .projekt-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
     .projekt-card p { color: var(--text-muted); font-size: .9rem; line-height: 1.6; margin-bottom: 1rem; }
     .projekt-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
@@ -145,7 +145,6 @@
   <div class="container nav-inner">
     <a href="../index.html" class="nav-logo">
       <img src="../logo.png" alt="KSH Partners" class="nav-logo-img">
-      
     </a>
     <ul class="nav-links" id="nav-links">
       <li><a href="../index.html#sluzby">Co děláme</a></li>
@@ -164,7 +163,9 @@
 <section class="sluzba-hero">
   <div class="container">
     <a href="../index.html" class="sluzba-hero-back">← Zpět na hlavní stránku</a>
-    <div class="sluzba-hero-icon">🏪</div>
+    <div class="sluzba-hero-icon">
+      <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 9l1-5h16l1 5M3 9h18M3 9v11a1 1 0 001 1h4v-6h6v6h4a1 1 0 001-1V9"/></svg>
+    </div>
     <h1>Kamenné obchody<br><em>které fungují.</em></h1>
     <p>
       Provozujeme a optimalizujeme maloobchodní prodejny s důrazem na zákaznickou
@@ -184,7 +185,9 @@
     </p>
     <div class="projekty-grid">
       <div class="projekt-card">
-        <div class="projekt-icon">📦</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
         <h3>Správa sortimentu</h3>
         <p>Výběr produktů, cenotvorba, sledování skladových zásob a optimalizace marže.</p>
         <div class="projekt-tags">
@@ -194,7 +197,9 @@
         </div>
       </div>
       <div class="projekt-card">
-        <div class="projekt-icon">👥</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
         <h3>Zákaznická zkušenost</h3>
         <p>Trénink personálu, vizuální merchandising a zákaznický servis na úrovni.</p>
         <div class="projekt-tags">
@@ -204,7 +209,9 @@
         </div>
       </div>
       <div class="projekt-card">
-        <div class="projekt-icon">📊</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
+        </div>
         <h3>Analýza a reporting</h3>
         <p>Sledujeme tržby, průměrný košík a konverzní poměr. Data řídí naše rozhodnutí.</p>
         <div class="projekt-tags">
@@ -214,7 +221,9 @@
         </div>
       </div>
       <div class="projekt-card">
-        <div class="projekt-icon">📋</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg>
+        </div>
         <h3>Právní compliance</h3>
         <p>Zajistíme soulad s právními předpisy — povolení, označení, věkové limity.</p>
         <div class="projekt-tags">
@@ -281,7 +290,9 @@
     </p>
     <div class="projekty-grid">
       <div class="projekt-card">
-        <div class="projekt-icon">🌿</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M2 22c1.25-1.25 2.5-5 3-7.5M9.5 14C12 8 17 5 22 2c-3 5-4 11-9 14.5-1.5 1-4 2-5.5 2L2 22"/></svg>
+        </div>
         <h3>KraKrám — Tábor</h3>
         <p>Specializovaná prodejna psychomodulačních látek. Plná právní compliance dle vyhl. 448/2025 Sb. Provoz od roku 2025.</p>
         <div class="projekt-tags">
@@ -291,7 +302,9 @@
         </div>
       </div>
       <div class="projekt-card">
-        <div class="projekt-icon">🌿</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M2 22c1.25-1.25 2.5-5 3-7.5M9.5 14C12 8 17 5 22 2c-3 5-4 11-9 14.5-1.5 1-4 2-5.5 2L2 22"/></svg>
+        </div>
         <h3>KraKrám — Jindřichův Hradec</h3>
         <p>Druhá pobočka KraKrámu. Stejný koncept, nová lokace. Otevřeno 2025.</p>
         <div class="projekt-tags">
@@ -367,7 +380,6 @@
     <div class="footer-inner">
       <a href="../index.html" class="nav-logo">
         <img src="../logo.png" alt="KSH Partners" class="nav-logo-img">
-        
       </a>
       <ul class="footer-links">
         <li><a href="../index.html#sluzby">Co děláme</a></li>

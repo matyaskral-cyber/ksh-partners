@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=13">
+  <link rel="stylesheet" href="../css/style.css?v=14">
   <style>
     #nav-links.mobile-open {
       display: flex !important; flex-direction: column;
@@ -34,7 +34,7 @@
       opacity: .8; transition: opacity .2s;
     }
     .sluzba-hero-back:hover { opacity: 1; }
-    .sluzba-hero-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .sluzba-hero-icon { margin-bottom: 1rem; color: var(--ksh-gold); display: flex; }
     .sluzba-hero h1 {
       font-size: clamp(2.2rem, 5vw, 3.5rem);
       font-weight: 900; color: #fff;
@@ -88,7 +88,7 @@
       transition: box-shadow var(--transition), transform var(--transition);
     }
     .projekt-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); transform: translateY(-2px); }
-    .projekt-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .projekt-icon { margin-bottom: 1rem; color: var(--ksh-gold); display: flex; }
     .projekt-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
     .projekt-card p { color: var(--text-muted); font-size: .9rem; line-height: 1.6; margin-bottom: 1rem; }
     .projekt-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
@@ -127,7 +127,6 @@
   <div class="container nav-inner">
     <a href="../index.html" class="nav-logo">
       <img src="../logo.png" alt="KSH Partners" class="nav-logo-img">
-      
     </a>
     <ul class="nav-links" id="nav-links">
       <li><a href="../index.html#sluzby">Co děláme</a></li>
@@ -146,7 +145,9 @@
 <section class="sluzba-hero">
   <div class="container">
     <a href="../index.html" class="sluzba-hero-back">← Zpět na hlavní stránku</a>
-    <div class="sluzba-hero-icon">🛒</div>
+    <div class="sluzba-hero-icon">
+      <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+    </div>
     <h1>Výdejní automaty<br><em>24/7 bez obsluhy.</em></h1>
     <p>
       Navrhujeme a provozujeme sítě výdejních automatů. Bezobslužný prodej
@@ -166,7 +167,9 @@
     </p>
     <div class="projekty-grid">
       <div class="projekt-card">
-        <div class="projekt-icon">📍</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
         <h3>Výběr lokace</h3>
         <p>Analyzujeme průchodnost a cílový zákazník. Správná lokace = stálý příjem.</p>
         <div class="projekt-tags">
@@ -176,7 +179,9 @@
         </div>
       </div>
       <div class="projekt-card">
-        <div class="projekt-icon">⚙️</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </div>
         <h3>Instalace a servis</h3>
         <p>Dodáme, nainstalujeme a pravidelně servisujeme automat. Vy nemusíte nic řešit.</p>
         <div class="projekt-tags">
@@ -186,7 +191,9 @@
         </div>
       </div>
       <div class="projekt-card">
-        <div class="projekt-icon">🔄</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+        </div>
         <h3>Zásobování</h3>
         <p>Pravidelné doplňování zboží, sledování stavu skladu a rotace produktů.</p>
         <div class="projekt-tags">
@@ -196,7 +203,9 @@
         </div>
       </div>
       <div class="projekt-card">
-        <div class="projekt-icon">💳</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        </div>
         <h3>Platební řešení</h3>
         <p>Hotovost i bezkontaktní platba kartou nebo telefonem. Moderní zákazník platí jak chce.</p>
         <div class="projekt-tags">
@@ -262,7 +271,9 @@
     </p>
     <div class="projekty-grid">
       <div class="projekt-card">
-        <div class="projekt-icon">🏢</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 012-2h8a2 2 0 012 2v18zM2 22h20M10 7h.01M14 7h.01M10 11h.01M14 11h.01M10 15h.01M14 15h.01"/></svg>
+        </div>
         <h3>Firemní prostory</h3>
         <p>Automaty ve firemních kancelářích a výrobních halách. Denní přístup zaměstnanců bez nutnosti opustit pracoviště.</p>
         <div class="projekt-tags">
@@ -272,7 +283,9 @@
         </div>
       </div>
       <div class="projekt-card">
-        <div class="projekt-icon">🏫</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
         <h3>Vzdělávací instituce</h3>
         <p>Automaty ve školách a vzdělávacích centrech se sortimentem odpovídajícím danému prostředí.</p>
         <div class="projekt-tags">
@@ -281,7 +294,9 @@
         </div>
       </div>
       <div class="projekt-card">
-        <div class="projekt-icon">🛒</div>
+        <div class="projekt-icon">
+          <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+        </div>
         <h3>Veřejná místa</h3>
         <p>Automaty na místech s vysokou průchodností — nákupní centra, sportovní haly, čekárny.</p>
         <div class="projekt-tags">
@@ -310,7 +325,6 @@
     <div class="footer-inner">
       <a href="../index.html" class="nav-logo">
         <img src="../logo.png" alt="KSH Partners" class="nav-logo-img">
-        
       </a>
       <ul class="footer-links">
         <li><a href="../index.html#sluzby">Co děláme</a></li>
