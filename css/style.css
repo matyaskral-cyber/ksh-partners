@@ -2,9 +2,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --ksh-dark:  #2c1810;
-  --ksh-navy:  #5c3520;
-  --ksh-blue:  #8b5e3c;
+  --ksh-dark:  #6b3a22;
+  --ksh-navy:  #8b5535;
+  --ksh-blue:  #b8845a;
   --ksh-gold:  #bf6f5e;
   --ksh-gold2: #e8a898;
   --ksh-gray:  #fdf5f2;
@@ -40,7 +40,7 @@ body {
   transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
 }
 .nav.scrolled {
-  background: rgba(44, 26, 16, 0.97);
+  background: rgba(107, 58, 34, 0.97);
   backdrop-filter: blur(12px);
   box-shadow: 0 2px 20px rgba(0,0,0,.25);
   padding: .8rem 0;
@@ -143,7 +143,7 @@ body {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(135deg, rgba(44,26,16,.92) 0%, rgba(92,53,32,.82) 50%, rgba(139,94,60,.55) 100%);
+    linear-gradient(135deg, rgba(107,58,34,.92) 0%, rgba(139,85,53,.82) 50%, rgba(184,132,90,.55) 100%);
 }
 .hero-grid {
   position: absolute;
@@ -748,7 +748,7 @@ footer {
   section    { padding: 3.5rem 0; }
 
   /* Nav — vždy tmavé pozadí, aby hamburger byl vidět */
-  .nav { background: rgba(44,26,16,.97); padding: .9rem 0; }
+  .nav { background: rgba(107,58,34,.97); padding: .9rem 0; }
   .nav-links    { display: none; }
   .nav-hamburger { display: flex; }
 
