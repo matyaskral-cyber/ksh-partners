@@ -395,6 +395,12 @@ section { padding: 6rem 0; }
   background: var(--ksh-navy);
   color: #fff;
 }
+.onas-stat-box.pink {
+  background: var(--ksh-gold2);
+  color: var(--ksh-dark);
+}
+.onas-stat-box.pink .onas-stat-num { color: var(--ksh-dark); }
+.onas-stat-box.pink .onas-stat-lbl { color: var(--ksh-navy); }
 .onas-stat-num {
   font-size: 2.2rem;
   font-weight: 800;
