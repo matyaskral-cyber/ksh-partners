@@ -97,6 +97,24 @@
       font-size: .75rem; font-weight: 600; padding: .25rem .7rem; border-radius: 999px;
     }
 
+    .zahrnuje-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem; margin-top: 2rem;
+    }
+    .zahrnuje-item {
+      display: flex; align-items: flex-start; gap: .75rem;
+      background: #fff; border: 1px solid var(--ksh-mid);
+      border-radius: var(--radius); padding: 1.25rem;
+    }
+    .zahrnuje-check {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--ksh-gold); color: var(--ksh-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 900; flex-shrink: 0; margin-top: 1px;
+    }
+    .zahrnuje-item p { font-size: .9rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+
     .sluzba-cta {
       background: var(--ksh-dark); padding: 5rem 0; text-align: center;
     }
@@ -264,6 +282,52 @@
           <span class="projekt-tag">Compliance</span>
           <span class="projekt-tag">J. Hradec</span>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VYBAVENÍ POBOČKY -->
+<section class="sluzba-section">
+  <div class="container">
+    <span class="sluzba-section-tag">Vybavení pobočky</span>
+    <h2>Zařídíme vše ručně a na míru.</h2>
+    <p class="lead">
+      Každá naše pobočka je originál. Nábytek vyrábíme ručně přesně pro daný
+      prostor — žádné katalogové kusy. Od prodejního pultu po poslední regál.
+    </p>
+    <div class="zahrnuje-list">
+      <div class="zahrnuje-item">
+        <div class="zahrnuje-check">✓</div>
+        <p>Ručně vyráběný nábytek na míru</p>
+      </div>
+      <div class="zahrnuje-item">
+        <div class="zahrnuje-check">✓</div>
+        <p>Prodejní pulty a pokladní zóna</p>
+      </div>
+      <div class="zahrnuje-item">
+        <div class="zahrnuje-check">✓</div>
+        <p>Regály a vystavovací systémy</p>
+      </div>
+      <div class="zahrnuje-item">
+        <div class="zahrnuje-check">✓</div>
+        <p>Osvětlení a atmosféra prostoru</p>
+      </div>
+      <div class="zahrnuje-item">
+        <div class="zahrnuje-check">✓</div>
+        <p>Polepy, grafika a označení</p>
+      </div>
+      <div class="zahrnuje-item">
+        <div class="zahrnuje-check">✓</div>
+        <p>Skladová a zázemí zóna</p>
+      </div>
+      <div class="zahrnuje-item">
+        <div class="zahrnuje-check">✓</div>
+        <p>Pokladní systém a terminál</p>
+      </div>
+      <div class="zahrnuje-item">
+        <div class="zahrnuje-check">✓</div>
+        <p>Kompletní montáž a instalace</p>
       </div>
     </div>
   </div>
