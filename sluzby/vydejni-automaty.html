@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Výdejní automaty – KSH Partners</title>
+  <meta name="description" content="Navrhujeme a provozujeme sítě výdejních automatů. Bezobslužný prodej 24/7 s minimálními náklady a maximálním pokrytím.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #nav-links.mobile-open {
+      display: flex !important; flex-direction: column;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(8,17,31,.98); padding: 1rem; gap: .25rem;
+    }
+    #nav-links.mobile-open a { padding: .7rem 1rem; width: 100%; }
+
+    .sluzba-hero {
+      background: var(--ksh-dark);
+      padding: 9rem 0 5rem;
+      position: relative; overflow: hidden;
+    }
+    .sluzba-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(201,162,39,.08) 0%, transparent 70%);
+    }
+    .sluzba-hero-back {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: var(--ksh-gold); font-size: .9rem; font-weight: 600;
+      text-decoration: none; margin-bottom: 2rem;
+      opacity: .8; transition: opacity .2s;
+    }
+    .sluzba-hero-back:hover { opacity: 1; }
+    .sluzba-hero-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .sluzba-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 900; color: #fff;
+      line-height: 1.1; margin-bottom: 1.2rem;
+    }
+    .sluzba-hero h1 em { color: var(--ksh-gold); font-style: normal; }
+    .sluzba-hero p {
+      color: rgba(255,255,255,.65);
+      font-size: 1.15rem; line-height: 1.75; max-width: 580px;
+    }
+
+    .sluzba-section { padding: 5rem 0; }
+    .sluzba-section:nth-child(even) { background: var(--ksh-gray); }
+    .sluzba-section-tag {
+      display: inline-block;
+      font-size: .75rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ksh-gold); margin-bottom: .75rem;
+    }
+    .sluzba-section h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: 1rem; color: var(--ksh-dark);
+    }
+    .sluzba-section .lead {
+      color: var(--text-muted); font-size: 1.05rem;
+      line-height: 1.75; max-width: 640px; margin-bottom: 3rem;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .step-card {
+      background: #fff; border: 1px solid var(--ksh-mid);
+      border-radius: var(--radius); padding: 1.75rem;
+    }
+    .step-num { font-size: .8rem; font-weight: 800; color: var(--ksh-gold); letter-spacing: .1em; margin-bottom: .75rem; }
+    .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .step-card p { color: var(--text-muted); font-size: .9rem; line-height: 1.6; }
+
+    .projekty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .projekt-card {
+      background: #fff; border: 1px solid var(--ksh-mid);
+      border-radius: var(--radius); padding: 2rem;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .projekt-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); transform: translateY(-2px); }
+    .projekt-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .projekt-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
+    .projekt-card p { color: var(--text-muted); font-size: .9rem; line-height: 1.6; margin-bottom: 1rem; }
+    .projekt-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .projekt-tag {
+      background: var(--ksh-gray); color: var(--text-muted);
+      font-size: .75rem; font-weight: 600; padding: .25rem .7rem; border-radius: 999px;
+    }
+
+    .sluzba-cta {
+      background: var(--ksh-dark); padding: 5rem 0; text-align: center;
+    }
+    .sluzba-cta h2 { color: #fff; font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+    .sluzba-cta p { color: rgba(255,255,255,.55); margin-bottom: 2rem; font-size: 1.05rem; }
+  </style>
+</head>
+<body>
+
+<nav class="nav scrolled" id="nav">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-mark">KSH</div>
+      <span class="nav-logo-text">KSH <span>Partners</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../index.html#sluzby">Co děláme</a></li>
+      <li><a href="../index.html#o-nas">O nás</a></li>
+      <li><a href="../index.html#reference">Reference</a></li>
+      <li><a href="../index.html#aktuality">Aktuality</a></li>
+      <li><a href="../index.html#kontakt" class="nav-cta">Kontakt</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="sluzba-hero">
+  <div class="container">
+    <a href="../index.html" class="sluzba-hero-back">← Zpět na hlavní stránku</a>
+    <div class="sluzba-hero-icon">🛒</div>
+    <h1>Výdejní automaty<br><em>24/7 bez obsluhy.</em></h1>
+    <p>
+      Navrhujeme a provozujeme sítě výdejních automatů. Bezobslužný prodej
+      24 hodin denně, 7 dní v týdnu — s minimálními náklady a maximálním pokrytím.
+    </p>
+  </div>
+</section>
+
+<!-- CO DĚLÁME -->
+<section class="sluzba-section">
+  <div class="container">
+    <span class="sluzba-section-tag">Co děláme</span>
+    <h2>Vending jako plnohodnotný byznys.</h2>
+    <p class="lead">
+      Výdejní automat není jen stroj na kávu. Je to plnohodnotný prodejní kanál
+      s nízkými náklady, který funguje bez vás — celý den, každý den.
+    </p>
+    <div class="projekty-grid">
+      <div class="projekt-card">
+        <div class="projekt-icon">📍</div>
+        <h3>Výběr lokace</h3>
+        <p>Analyzujeme průchodnost a cílový zákazník. Správná lokace = stálý příjem.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">Analýza</span>
+          <span class="projekt-tag">Průchodnost</span>
+          <span class="projekt-tag">Pronájem</span>
+        </div>
+      </div>
+      <div class="projekt-card">
+        <div class="projekt-icon">⚙️</div>
+        <h3>Instalace a servis</h3>
+        <p>Dodáme, nainstalujeme a pravidelně servisujeme automat. Vy nemusíte nic řešit.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">Instalace</span>
+          <span class="projekt-tag">Údržba</span>
+          <span class="projekt-tag">Opravy</span>
+        </div>
+      </div>
+      <div class="projekt-card">
+        <div class="projekt-icon">🔄</div>
+        <h3>Zásobování</h3>
+        <p>Pravidelné doplňování zboží, sledování stavu skladu a rotace produktů.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">Logistika</span>
+          <span class="projekt-tag">Sklad</span>
+          <span class="projekt-tag">Rotace</span>
+        </div>
+      </div>
+      <div class="projekt-card">
+        <div class="projekt-icon">💳</div>
+        <h3>Platební řešení</h3>
+        <p>Hotovost i bezkontaktní platba kartou nebo telefonem. Moderní zákazník platí jak chce.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">Karta</span>
+          <span class="projekt-tag">NFC</span>
+          <span class="projekt-tag">Hotovost</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JAK TO DĚLÁME -->
+<section class="sluzba-section">
+  <div class="container">
+    <span class="sluzba-section-tag">Jak to děláme</span>
+    <h2>Od výběru místa po pasivní příjem.</h2>
+    <p class="lead">
+      Celý proces od prvního kontaktu po fungující automat zvládneme za týdny.
+    </p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Průzkum lokace</h3>
+        <p>Navštívíme místo, odhadneme průchodnost a potenciál tržeb.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Smlouva s provozovatelem</h3>
+        <p>Domluvíme podmínky pronájmu místa — provize nebo paušál.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Výběr a nákup automatu</h3>
+        <p>Vybereme správný typ automatu podle sortimentu a lokace.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h3>Instalace a nastavení</h3>
+        <p>Instalujeme, napojíme na platební systém a nastavíme ceny.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <h3>První zásobení</h3>
+        <p>Naplníme automat optimálním sortimentem pro danou lokaci.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">06</div>
+        <h3>Průběžný provoz</h3>
+        <p>Pravidelné zásobování, servis, sledování tržeb a optimalizace sortimentu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CO JSME UŽ DĚLALI -->
+<section class="sluzba-section">
+  <div class="container">
+    <span class="sluzba-section-tag">Co jsme už dělali</span>
+    <h2>Naše automaty v provozu.</h2>
+    <p class="lead">
+      Provozujeme výdejní automaty na různých lokacích — firmy, veřejná místa, školy.
+    </p>
+    <div class="projekty-grid">
+      <div class="projekt-card">
+        <div class="projekt-icon">🏢</div>
+        <h3>Firemní prostory</h3>
+        <p>Automaty ve firemních kancelářích a výrobních halách. Denní přístup zaměstnanců bez nutnosti opustit pracoviště.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">B2B</span>
+          <span class="projekt-tag">Kanceláře</span>
+          <span class="projekt-tag">24/7</span>
+        </div>
+      </div>
+      <div class="projekt-card">
+        <div class="projekt-icon">🏫</div>
+        <h3>Vzdělávací instituce</h3>
+        <p>Automaty ve školách a vzdělávacích centrech se sortimentem odpovídajícím danému prostředí.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">Školy</span>
+          <span class="projekt-tag">Veřejný prostor</span>
+        </div>
+      </div>
+      <div class="projekt-card">
+        <div class="projekt-icon">🛒</div>
+        <h3>Veřejná místa</h3>
+        <p>Automaty na místech s vysokou průchodností — nákupní centra, sportovní haly, čekárny.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">Průchodnost</span>
+          <span class="projekt-tag">Maloobchod</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sluzba-cta">
+  <div class="container">
+    <h2>Máte vhodné místo pro automat?</h2>
+    <p>Ozvěte se — posoudíme lokaci a navrhneme řešení zdarma.</p>
+    <a href="../index.html#kontakt" class="btn btn-gold">
+      Napište nám
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-mark">KSH</div>
+        <span class="nav-logo-text">KSH <span>Partners</span></span>
+      </a>
+      <ul class="footer-links">
+        <li><a href="../index.html#sluzby">Co děláme</a></li>
+        <li><a href="../index.html#o-nas">O nás</a></li>
+        <li><a href="../index.html#reference">Reference</a></li>
+        <li><a href="../index.html#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+    <p class="footer-copy">© 2026 KSH Partners. Všechna práva vyhrazena.</p>
+  </div>
+</footer>
+
+<script src="../js/script.js"></script>
+</body>
+</html>

@@ -337,6 +337,19 @@ section { padding: 6rem 0; }
   color: var(--text-muted);
 }
 
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: 1.25rem;
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--ksh-gold);
+  text-decoration: none;
+  transition: gap var(--transition);
+}
+.service-link:hover { gap: .7rem; }
+
 /* ── O NÁS ────────────────────────────────────────────────────── */
 #o-nas { background: var(--ksh-gray); }
 .onas-layout {

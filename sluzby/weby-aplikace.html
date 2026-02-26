@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weby a aplikace – KSH Partners</title>
+  <meta name="description" content="Vyvíjíme moderní webové stránky a aplikace na míru. Od firemních prezentací přes rezervační systémy až po komplexní business software.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    #nav-links.mobile-open {
+      display: flex !important; flex-direction: column;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(8,17,31,.98); padding: 1rem; gap: .25rem;
+    }
+    #nav-links.mobile-open a { padding: .7rem 1rem; width: 100%; }
+
+    .sluzba-hero {
+      background: var(--ksh-dark);
+      padding: 9rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .sluzba-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(201,162,39,.08) 0%, transparent 70%);
+    }
+    .sluzba-hero-back {
+      display: inline-flex; align-items: center; gap: .5rem;
+      color: var(--ksh-gold); font-size: .9rem; font-weight: 600;
+      text-decoration: none; margin-bottom: 2rem;
+      opacity: .8; transition: opacity .2s;
+    }
+    .sluzba-hero-back:hover { opacity: 1; }
+    .sluzba-hero-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .sluzba-hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 900; color: #fff;
+      line-height: 1.1; margin-bottom: 1.2rem;
+    }
+    .sluzba-hero h1 em { color: var(--ksh-gold); font-style: normal; }
+    .sluzba-hero p {
+      color: rgba(255,255,255,.65);
+      font-size: 1.15rem; line-height: 1.75;
+      max-width: 580px;
+    }
+
+    .sluzba-section { padding: 5rem 0; }
+    .sluzba-section:nth-child(even) { background: var(--ksh-gray); }
+
+    .sluzba-section-tag {
+      display: inline-block;
+      font-size: .75rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ksh-gold); margin-bottom: .75rem;
+    }
+    .sluzba-section h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800; line-height: 1.2;
+      margin-bottom: 1rem; color: var(--ksh-dark);
+    }
+    .sluzba-section .lead {
+      color: var(--text-muted); font-size: 1.05rem;
+      line-height: 1.75; max-width: 640px; margin-bottom: 3rem;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .step-card {
+      background: #fff;
+      border: 1px solid var(--ksh-mid);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+    }
+    .step-num {
+      font-size: .8rem; font-weight: 800;
+      color: var(--ksh-gold); letter-spacing: .1em;
+      margin-bottom: .75rem;
+    }
+    .step-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .step-card p { color: var(--text-muted); font-size: .9rem; line-height: 1.6; }
+
+    .tech-list {
+      display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 2rem;
+    }
+    .tech-pill {
+      background: var(--ksh-dark); color: #fff;
+      font-size: .8rem; font-weight: 600;
+      padding: .4rem 1rem; border-radius: 999px;
+    }
+
+    .projekty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .projekt-card {
+      background: #fff;
+      border: 1px solid var(--ksh-mid);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: box-shadow var(--transition), transform var(--transition);
+    }
+    .projekt-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); transform: translateY(-2px); }
+    .projekt-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .projekt-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: .5rem; }
+    .projekt-card p { color: var(--text-muted); font-size: .9rem; line-height: 1.6; margin-bottom: 1rem; }
+    .projekt-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .projekt-tag {
+      background: var(--ksh-gray); color: var(--text-muted);
+      font-size: .75rem; font-weight: 600;
+      padding: .25rem .7rem; border-radius: 999px;
+    }
+
+    .sluzba-cta {
+      background: var(--ksh-dark);
+      padding: 5rem 0; text-align: center;
+    }
+    .sluzba-cta h2 { color: #fff; font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+    .sluzba-cta p { color: rgba(255,255,255,.55); margin-bottom: 2rem; font-size: 1.05rem; }
+  </style>
+</head>
+<body>
+
+<nav class="nav scrolled" id="nav">
+  <div class="container nav-inner">
+    <a href="../index.html" class="nav-logo">
+      <div class="nav-logo-mark">KSH</div>
+      <span class="nav-logo-text">KSH <span>Partners</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="../index.html#sluzby">Co děláme</a></li>
+      <li><a href="../index.html#o-nas">O nás</a></li>
+      <li><a href="../index.html#reference">Reference</a></li>
+      <li><a href="../index.html#aktuality">Aktuality</a></li>
+      <li><a href="../index.html#kontakt" class="nav-cta">Kontakt</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="sluzba-hero">
+  <div class="container">
+    <a href="../index.html" class="sluzba-hero-back">
+      ← Zpět na hlavní stránku
+    </a>
+    <div class="sluzba-hero-icon">💻</div>
+    <h1>Weby a aplikace<br><em>na míru.</em></h1>
+    <p>
+      Navrhujeme a vyvíjíme moderní webové stránky a aplikace přesně podle
+      vašich potřeb. Od jednoduchých firemních prezentací po komplexní
+      business systémy — funkční, rychlé a hezké.
+    </p>
+  </div>
+</section>
+
+<!-- CO DĚLÁME -->
+<section class="sluzba-section">
+  <div class="container">
+    <span class="sluzba-section-tag">Co děláme</span>
+    <h2>Digitální řešení pro každý byznys.</h2>
+    <p class="lead">
+      Každý projekt je jiný. Proto nepracujeme se šablonami — každé řešení
+      stavíme od základu podle toho, co váš byznys skutečně potřebuje.
+    </p>
+    <div class="projekty-grid">
+      <div class="projekt-card">
+        <div class="projekt-icon">🌐</div>
+        <h3>Firemní weby</h3>
+        <p>Profesionální prezentace vaší firmy online. Rychlé, moderní, optimalizované pro vyhledávače.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">Next.js</span>
+          <span class="projekt-tag">React</span>
+          <span class="projekt-tag">SEO</span>
+        </div>
+      </div>
+      <div class="projekt-card">
+        <div class="projekt-icon">📅</div>
+        <h3>Rezervační systémy</h3>
+        <p>Automatizujte přijímání rezervací a správu zákazníků. Šetří čas vám i klientům.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">Python / Flask</span>
+          <span class="projekt-tag">Databáze</span>
+          <span class="projekt-tag">Admin panel</span>
+        </div>
+      </div>
+      <div class="projekt-card">
+        <div class="projekt-icon">🛍️</div>
+        <h3>E-commerce</h3>
+        <p>Online prodej s platební bránou, správou skladu a automatickým zpracováním objednávek.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">E-shop</span>
+          <span class="projekt-tag">Platební brána</span>
+          <span class="projekt-tag">Sklad</span>
+        </div>
+      </div>
+      <div class="projekt-card">
+        <div class="projekt-icon">⚙️</div>
+        <h3>Business software</h3>
+        <p>Interní nástroje a systémy přesně pro vaše procesy — CRM, ERP, reportingové dashboardy.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">CRM</span>
+          <span class="projekt-tag">Dashboard</span>
+          <span class="projekt-tag">Automatizace</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tech-list">
+      <span class="tech-pill">Next.js</span>
+      <span class="tech-pill">React</span>
+      <span class="tech-pill">Python / Flask</span>
+      <span class="tech-pill">TypeScript</span>
+      <span class="tech-pill">Tailwind CSS</span>
+      <span class="tech-pill">PostgreSQL</span>
+      <span class="tech-pill">Vercel</span>
+      <span class="tech-pill">Docker</span>
+    </div>
+  </div>
+</section>
+
+<!-- JAK TO DĚLÁME -->
+<section class="sluzba-section">
+  <div class="container">
+    <span class="sluzba-section-tag">Jak to děláme</span>
+    <h2>Od nápadu po spuštění.</h2>
+    <p class="lead">
+      Každý projekt prochází jasným procesem — žádná překvapení, žádné zdržení.
+      Vždy víte, v jaké fázi se projekt nachází.
+    </p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <h3>Analýza a návrh</h3>
+        <p>Pochopíme váš byznys, potřeby a cíle. Navrhneme strukturu a vizuální styl.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <h3>Design</h3>
+        <p>Vytvoříme vizuální návrh webu nebo aplikace. Schválíte design před vývojem.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <h3>Vývoj</h3>
+        <p>Naprogramujeme funkční řešení s důrazem na rychlost, bezpečnost a spolehlivost.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <h3>Testování</h3>
+        <p>Důkladně otestujeme na všech zařízeních a prohlížečích před spuštěním.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <h3>Spuštění</h3>
+        <p>Nasadíme na server, propojíme s doménou, zajistíme SSL a monitoring.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">06</div>
+        <h3>Provoz a podpora</h3>
+        <p>Jsme k dispozici i po spuštění — aktualizace, opravy, nové funkce.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CO JSME UŽ DĚLALI -->
+<section class="sluzba-section">
+  <div class="container">
+    <span class="sluzba-section-tag">Co jsme už dělali</span>
+    <h2>Naše projekty v praxi.</h2>
+    <p class="lead">
+      Každý projekt je pro nás příležitost dodat něco, co skutečně funguje.
+    </p>
+    <div class="projekty-grid">
+      <div class="projekt-card">
+        <div class="projekt-icon">🌿</div>
+        <h3>krakram.com</h3>
+        <p>Firemní web pro specializovanou prodejnu psychomodulačních látek. Next.js, plná právní compliance, cookie consent, nasazení na vlastní doméně.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">Next.js</span>
+          <span class="projekt-tag">Tailwind</span>
+          <span class="projekt-tag">Vercel</span>
+        </div>
+      </div>
+      <div class="projekt-card">
+        <div class="projekt-icon">⛷️</div>
+        <h3>AZ SKI School</h3>
+        <p>Rezervační systém pro lyžařskou školu — výběr termínu, instruktora a dotazník zákazníka. Automatická správa kapacit.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">Python / Flask</span>
+          <span class="projekt-tag">SQLite</span>
+          <span class="projekt-tag">Railway</span>
+        </div>
+      </div>
+      <div class="projekt-card">
+        <div class="projekt-icon">🏢</div>
+        <h3>KSH Partners web</h3>
+        <p>Tento web. Firemní prezentace se sekcemi služeb, referencí a kontaktním formulářem. Čistý HTML/CSS/JS bez závislostí.</p>
+        <div class="projekt-tags">
+          <span class="projekt-tag">HTML / CSS</span>
+          <span class="projekt-tag">JavaScript</span>
+          <span class="projekt-tag">GitHub Pages</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sluzba-cta">
+  <div class="container">
+    <h2>Máte projekt? Pojďme si promluvit.</h2>
+    <p>Bezplatná konzultace. Odpovídáme do 24 hodin.</p>
+    <a href="../index.html#kontakt" class="btn btn-gold">
+      Napište nám
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="../index.html" class="nav-logo">
+        <div class="nav-logo-mark">KSH</div>
+        <span class="nav-logo-text">KSH <span>Partners</span></span>
+      </a>
+      <ul class="footer-links">
+        <li><a href="../index.html#sluzby">Co děláme</a></li>
+        <li><a href="../index.html#o-nas">O nás</a></li>
+        <li><a href="../index.html#reference">Reference</a></li>
+        <li><a href="../index.html#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+    <p class="footer-copy">© 2026 KSH Partners. Všechna práva vyhrazena.</p>
+  </div>
+</footer>
+
+<script src="../js/script.js"></script>
+</body>
+</html>
