@@ -544,7 +544,7 @@ section { padding: 6rem 0; }
   font-size: 3rem;
 }
 .blog-thumb.t1 { background: linear-gradient(135deg, var(--ksh-dark), var(--ksh-navy)); }
-.blog-thumb.t2 { background: linear-gradient(135deg, #c4956a, #a87850); }
+.blog-thumb.t2 { background: linear-gradient(135deg, #9a6840, #7a5030); }
 .blog-thumb.t3 { background: linear-gradient(135deg, var(--ksh-navy), var(--ksh-dark)); }
 .blog-body {
   padding: 1.5rem;
