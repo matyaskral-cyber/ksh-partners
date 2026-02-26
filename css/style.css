@@ -2,15 +2,15 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --ksh-dark:  #08111f;
-  --ksh-navy:  #0f2540;
-  --ksh-blue:  #1e3a5f;
-  --ksh-gold:  #c9a227;
-  --ksh-gold2: #e8c54a;
-  --ksh-gray:  #f4f6f9;
-  --ksh-mid:   #e8ecf1;
-  --text:      #1a2332;
-  --text-muted:#6b7a8d;
+  --ksh-dark:  #2c1810;
+  --ksh-navy:  #5c3520;
+  --ksh-blue:  #8b5e3c;
+  --ksh-gold:  #bf6f5e;
+  --ksh-gold2: #e8a898;
+  --ksh-gray:  #fdf5f2;
+  --ksh-mid:   #edddd8;
+  --text:      #2c1810;
+  --text-muted:#9b7060;
   --radius:    12px;
   --transition:.25s ease;
 }
@@ -40,7 +40,7 @@ body {
   transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
 }
 .nav.scrolled {
-  background: rgba(8, 17, 31, 0.97);
+  background: rgba(44, 26, 16, 0.97);
   backdrop-filter: blur(12px);
   box-shadow: 0 2px 20px rgba(0,0,0,.25);
   padding: .8rem 0;
@@ -143,7 +143,7 @@ body {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(135deg, rgba(8,17,31,.92) 0%, rgba(15,37,64,.82) 50%, rgba(30,58,95,.55) 100%);
+    linear-gradient(135deg, rgba(44,26,16,.92) 0%, rgba(92,53,32,.82) 50%, rgba(139,94,60,.55) 100%);
 }
 .hero-grid {
   position: absolute;
@@ -538,9 +538,9 @@ section { padding: 6rem 0; }
   justify-content: center;
   font-size: 3rem;
 }
-.blog-thumb.t1 { background: linear-gradient(135deg, #1e3a5f, #0f2540); }
-.blog-thumb.t2 { background: linear-gradient(135deg, #2d5016, #3d6b1f); }
-.blog-thumb.t3 { background: linear-gradient(135deg, #5c1a1a, #8b2c2c); }
+.blog-thumb.t1 { background: linear-gradient(135deg, #5c3520, #3d2010); }
+.blog-thumb.t2 { background: linear-gradient(135deg, #a06070, #c07885); }
+.blog-thumb.t3 { background: linear-gradient(135deg, #8b5040, #bf6f5e); }
 .blog-body {
   padding: 1.5rem;
   flex: 1;
@@ -748,7 +748,7 @@ footer {
   section    { padding: 3.5rem 0; }
 
   /* Nav — vždy tmavé pozadí, aby hamburger byl vidět */
-  .nav { background: rgba(8,17,31,.97); padding: .9rem 0; }
+  .nav { background: rgba(44,26,16,.97); padding: .9rem 0; }
   .nav-links    { display: none; }
   .nav-hamburger { display: flex; }
 
