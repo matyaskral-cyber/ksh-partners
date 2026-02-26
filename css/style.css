@@ -179,7 +179,7 @@ body {
   width: 100%;
   max-width: 380px;
   height: auto;
-  border-radius: 24px;
+  filter: drop-shadow(0 8px 40px rgba(0,0,0,.4));
 }
 .hero-tag {
   display: inline-flex;
