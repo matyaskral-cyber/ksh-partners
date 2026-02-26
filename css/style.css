@@ -121,31 +121,42 @@ body {
 /* ── HERO ─────────────────────────────────────────────────────── */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--ksh-dark) 0%, var(--ksh-navy) 60%, var(--ksh-blue) 100%);
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
+  background: var(--ksh-dark);
 }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.04);
+  transition: transform 8s ease;
+}
+.hero-bg.loaded { transform: scale(1); }
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 1;
   background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(201,162,39,.08) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 80% at 10% 80%, rgba(30,58,95,.6) 0%, transparent 50%);
+    linear-gradient(135deg, rgba(8,17,31,.92) 0%, rgba(15,37,64,.82) 50%, rgba(30,58,95,.55) 100%);
 }
 .hero-grid {
   position: absolute;
   inset: 0;
+  z-index: 2;
   background-image:
-    linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   max-width: 700px;
   padding: 10rem 2rem 6rem;
 }
@@ -221,6 +232,7 @@ body {
 
 .hero-stats {
   position: absolute;
+  z-index: 3;
   bottom: 3rem;
   left: 0; right: 0;
   display: flex;

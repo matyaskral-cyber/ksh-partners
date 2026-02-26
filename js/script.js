@@ -1,3 +1,15 @@
+// ── HERO BG PARALLAX ───────────────────────────────────────────
+const heroBg = document.getElementById('hero-bg');
+if (heroBg) {
+  const img = new Image();
+  img.onload = () => heroBg.classList.add('loaded');
+  img.src = 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80';
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    heroBg.style.transform = `scale(1) translateY(${y * 0.3}px)`;
+  });
+}
+
 // ── NAV SCROLL ─────────────────────────────────────────────────
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
