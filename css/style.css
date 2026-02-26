@@ -730,27 +730,71 @@ footer {
 }
 
 /* ── RESPONSIVE ───────────────────────────────────────────────── */
+
+/* Tablet landscape (max 1024px) */
 @media (max-width: 1024px) {
   .services-grid { grid-template-columns: 1fr 1fr; }
-  .team-grid { grid-template-columns: repeat(2, 1fr); }
-  .onas-layout { grid-template-columns: 1fr; gap: 3rem; }
-  .onas-visual { display: none; }
+  .team-grid     { grid-template-columns: repeat(2, 1fr); }
+  .ref-grid      { grid-template-columns: 1fr 1fr; }
+  .blog-grid     { grid-template-columns: 1fr 1fr; }
+  .onas-layout   { grid-template-columns: 1fr; gap: 3rem; }
+  .onas-visual   { display: none; }
+  .kontakt-layout { gap: 3rem; }
 }
+
+/* Tablet portrait + mobile (max 768px) */
 @media (max-width: 768px) {
-  section { padding: 4rem 0; }
-  .nav-links { display: none; }
+  .container { padding: 0 1.25rem; }
+  section    { padding: 3.5rem 0; }
+
+  /* Nav — vždy tmavé pozadí, aby hamburger byl vidět */
+  .nav { background: rgba(8,17,31,.97); padding: .9rem 0; }
+  .nav-links    { display: none; }
   .nav-hamburger { display: flex; }
-  .hero-content { padding: 8rem 2rem 5rem; }
-  .hero-stats { gap: 1.5rem; }
-  .hero-stat-num { font-size: 1.4rem; }
+
+  /* Hero */
+  .hero-content { padding: 6.5rem 1.25rem 5.5rem; }
+  .hero-desc    { font-size: 1rem; }
+  .hero-btns    { flex-direction: column; }
+  .hero-btns .btn { width: 100%; justify-content: center; }
+  .hero-stats   { gap: 1.25rem; padding: 0 1.25rem; bottom: 1.5rem; }
+  .hero-stat-num { font-size: 1.35rem; }
+
+  /* Grids */
   .services-grid { grid-template-columns: 1fr; }
-  .ref-grid { grid-template-columns: 1fr; }
-  .blog-grid { grid-template-columns: 1fr; }
-  .kontakt-layout { grid-template-columns: 1fr; gap: 3rem; }
-  .footer-inner { flex-direction: column; gap: 1.5rem; text-align: center; }
-  .fld-row-2 { grid-template-columns: 1fr; }
+  .ref-grid      { grid-template-columns: 1fr; }
+  .blog-grid     { grid-template-columns: 1fr; }
+  .onas-values   { grid-template-columns: 1fr; }
+
+  /* O nás */
+  .onas-layout   { gap: 2rem; }
+
+  /* Section header */
+  .section-header { margin-bottom: 2.5rem; }
+
+  /* Kontakt */
+  .kontakt-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .fld-row-2      { grid-template-columns: 1fr; }
+
+  /* Footer */
+  .footer-inner   { flex-direction: column; gap: 1.5rem; text-align: center; }
+  .footer-links   { flex-wrap: wrap; justify-content: center; gap: 1rem; }
+
+  /* Toast */
+  .toast { bottom: 1rem; right: 1rem; left: 1rem; text-align: center; }
 }
+
+/* Malý telefon (max 480px) */
 @media (max-width: 480px) {
-  .hero-stats { flex-wrap: wrap; justify-content: space-around; }
-  .onas-values { grid-template-columns: 1fr; }
+  .container { padding: 0 1rem; }
+  section    { padding: 3rem 0; }
+
+  .hero-content { padding: 6rem 1rem 6rem; }
+  .hero-stats   { flex-wrap: wrap; justify-content: space-around; gap: 1.5rem 2rem; bottom: 1rem; }
+  .hero-stat-num { font-size: 1.25rem; }
+
+  .service-card { padding: 1.75rem 1.25rem; }
+  .blog-thumb   { height: 140px; font-size: 2.2rem; }
+
+  .kontakt-ico  { width: 38px; height: 38px; font-size: 1rem; }
 }
