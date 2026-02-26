@@ -2,15 +2,15 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --ksh-dark:  #4a3728;
-  --ksh-navy:  #6b5040;
-  --ksh-blue:  #9a7a62;
-  --ksh-gold:  #bf6f5e;
-  --ksh-gold2: #e8a898;
-  --ksh-gray:  #fdf5f2;
-  --ksh-mid:   #edddd8;
-  --text:      #2c1810;
-  --text-muted:#9b7060;
+  --ksh-dark:  #2d1a0e;
+  --ksh-navy:  #7a4a2a;
+  --ksh-blue:  #a87858;
+  --ksh-gold:  #c49078;
+  --ksh-gold2: #dbb09a;
+  --ksh-gray:  #f5ede3;
+  --ksh-mid:   #e8d5c2;
+  --text:      #2d1a0e;
+  --text-muted:#8b6855;
   --radius:    12px;
   --transition:.25s ease;
 }
@@ -40,7 +40,7 @@ body {
   transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
 }
 .nav.scrolled {
-  background: rgba(74, 55, 40, 0.97);
+  background: rgba(45, 26, 14, 0.97);
   backdrop-filter: blur(12px);
   box-shadow: 0 2px 20px rgba(0,0,0,.25);
   padding: .8rem 0;
@@ -754,7 +754,7 @@ footer {
   section    { padding: 3.5rem 0; }
 
   /* Nav — vždy tmavé pozadí, aby hamburger byl vidět */
-  .nav { background: rgba(74,55,40,.97); padding: .9rem 0; }
+  .nav { background: rgba(45,26,14,.97); padding: .9rem 0; }
   .nav-links    { display: none; }
   .nav-hamburger { display: flex; }
 
