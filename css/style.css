@@ -75,7 +75,7 @@ body {
 }
 .nav-logo-text span { color: var(--ksh-gold); }
 .nav-logo-img {
-  height: 44px;
+  height: 80px;
   width: auto;
   object-fit: contain;
 }
