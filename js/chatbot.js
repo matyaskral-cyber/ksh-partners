@@ -47,7 +47,7 @@
   /* ── Stav konverzace ────────────────────────────────────────── */
   // idle → need → name → email → sending → done
   let state = 'idle';
-  let lead  = { need: '', name: '', email: '' };
+  let lead  = { need: '', detail: '', name: '', email: '' };
 
   /* ── CSS ────────────────────────────────────────────────────── */
   const css = `
@@ -250,9 +250,9 @@
       const keywords = /chci|potřebuji|potřebuju|hledám|zajímá mě|mám zájem|chtěl bych|chtěla bych|poptávk/i;
       if (keywords.test(text)) {
         lead.need = text;
-        state = 'name';
-        await botSay('Skvělé, rád pomohu! 👋 Jak se jmenujete?', 500);
-        input.placeholder = 'Vaše jméno…';
+        state = 'detail';
+        await botSay('Skvělé, rád pomohu! 👋 Řekněte mi ještě něco o webu nebo aplikaci, o kterou máte zájem — co by měl umět, pro koho je, případně máte nějakou inspiraci?', 500);
+        input.placeholder = 'Popište projekt blíže…';
         return;
       }
 
@@ -264,8 +264,16 @@
 
     if (state === 'need') {
       lead.need = text;
+      state = 'detail';
+      await botSay('Rozumím. Řekněte mi ještě něco o webu nebo aplikaci, o kterou máte zájem — co by měl umět, pro koho je, případně máte nějakou inspiraci?', 500);
+      input.placeholder = 'Popište projekt blíže…';
+      return;
+    }
+
+    if (state === 'detail') {
+      lead.detail = text;
       state = 'name';
-      await botSay('Díky za popis! Jak se jmenujete?', 500);
+      await botSay('Skvělé, to mi hodně pomůže! Jak se jmenujete?', 500);
       input.placeholder = 'Vaše jméno…';
       return;
     }
