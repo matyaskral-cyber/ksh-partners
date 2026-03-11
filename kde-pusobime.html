@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kde působíme | KSH Partners — Tvorba webů Tábor, České Budějovice, Jižní Čechy</title>
-  <meta name="description" content="KSH Partners tvoří weby a aplikace na míru pro firmy v celých jižních Čechách — Tábor, České Budějovice, Písek, Jindřichův Hradec, Strakonice, Třeboň a okolí. Nezávazná konzultace zdarma.">
-  <meta name="keywords" content="tvorba webů Tábor, webdesign České Budějovice, weby na míru Písek, tvorba webu Jindřichův Hradec, webdesign Strakonice, weby Třeboň, tvorba webů jižní Čechy, KSH Partners, webové aplikace jihočeský kraj, webdesign jihočeský kraj">
+  <title>Kde působíme | KSH Partners — Tvorba webů na míru po celé ČR</title>
+  <meta name="description" content="KSH Partners tvoří weby a aplikace na míru pro firmy po celé České republice. Sídlíme v jižních Čechách, pracujeme online kdekoliv. Praha, Brno, Ostrava i menší města. Nezávazná konzultace zdarma.">
+  <meta name="keywords" content="tvorba webů na míru, webdesign Česká republika, weby pro firmy, tvorba webu Praha, webdesign Brno, weby na míru Ostrava, KSH Partners, webové aplikace na míru, tvorba webu jižní Čechy, webdesign celá ČR, aplikace na míru, software na míru">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://ksh-partners.cz/kde-pusobime.html">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Kde působíme | KSH Partners — Tvorba webů Jižní Čechy">
-  <meta property="og:description" content="Tvoříme weby a aplikace na míru pro firmy v jižních Čechách. Tábor, České Budějovice, Písek a celý jihočeský kraj.">
+  <meta property="og:title" content="Kde působíme | KSH Partners — Tvorba webů po celé ČR">
+  <meta property="og:description" content="Tvoříme weby a aplikace na míru pro firmy po celé České republice. Sídlíme v jižních Čechách, pracujeme online odkudkoliv.">
   <meta property="og:url" content="https://ksh-partners.cz/kde-pusobime.html">
   <meta property="og:locale" content="cs_CZ">
 
@@ -23,7 +23,7 @@
     "@type": "WebPage",
     "name": "Kde působíme — KSH Partners",
     "url": "https://ksh-partners.cz/kde-pusobime.html",
-    "description": "KSH Partners tvoří weby a aplikace na míru pro firmy v celých jižních Čechách.",
+    "description": "KSH Partners tvoří weby a aplikace na míru pro firmy po celé České republice.",
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
@@ -37,17 +37,15 @@
       "url": "https://ksh-partners.cz",
       "telephone": "+420774982675",
       "email": "info@ksh-partners.cz",
-      "areaServed": [
-        {"@type": "City", "name": "Tábor"},
-        {"@type": "City", "name": "České Budějovice"},
-        {"@type": "City", "name": "Písek"},
-        {"@type": "City", "name": "Jindřichův Hradec"},
-        {"@type": "City", "name": "Strakonice"},
-        {"@type": "City", "name": "Třeboň"},
-        {"@type": "City", "name": "Prachatice"},
-        {"@type": "City", "name": "Český Krumlov"},
-        {"@type": "AdministrativeArea", "name": "Jihočeský kraj"}
-      ]
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "Jihočeský kraj",
+        "addressCountry": "CZ"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Česká republika"
+      }
     }
   }
   </script>
@@ -90,9 +88,7 @@
       margin: 0 auto;
     }
 
-    .lokality {
-      padding: 5rem 0;
-    }
+    .lokality { padding: 5rem 0; }
     .lokality-intro {
       max-width: 680px;
       margin: 0 auto 3.5rem;
@@ -118,28 +114,16 @@
       align-items: flex-start;
       transition: box-shadow var(--transition);
     }
-    .lokalita-item:hover {
-      box-shadow: 0 4px 20px rgba(45,26,14,.08);
-    }
+    .lokalita-item:hover { box-shadow: 0 4px 20px rgba(45,26,14,.08); }
     .lokalita-pin {
-      width: 40px; height: 40px;
-      min-width: 40px;
+      width: 40px; height: 40px; min-width: 40px;
       background: var(--ksh-gray);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       color: var(--ksh-navy);
     }
-    .lokalita-pin svg { display: block; }
-    .lokalita-item h3 {
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: .3rem;
-    }
-    .lokalita-item p {
-      font-size: .875rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
+    .lokalita-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: .3rem; }
+    .lokalita-item p { font-size: .875rem; color: var(--text-muted); line-height: 1.6; }
 
     .cta-strip {
       background: var(--ksh-gray);
@@ -151,11 +135,7 @@
       font-weight: 800;
       margin-bottom: .75rem;
     }
-    .cta-strip p {
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-      font-size: 1.05rem;
-    }
+    .cta-strip p { color: var(--text-muted); margin-bottom: 2rem; font-size: 1.05rem; }
   </style>
 </head>
 <body>
@@ -175,23 +155,21 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="page-hero">
   <div class="container">
     <span class="section-tag" style="margin-bottom:1rem;display:inline-block;">Oblast působení</span>
-    <h1>Tvoříme weby<br>pro <em>jižní Čechy</em>.</h1>
-    <p>Pracujeme s firmami z celého jihočeského kraje — i na dálku, bez zbytečných schůzek.</p>
+    <h1>Pracujeme<br>po celé <em>České republice</em>.</h1>
+    <p>Sídlíme v jižních Čechách, projekty děláme online — kdekoliv v ČR bez příplatku.</p>
   </div>
 </section>
 
-<!-- LOKALITY -->
 <section class="lokality">
   <div class="container">
     <div class="lokality-intro">
       <p>
-        Sídlíme v Praze, ale naši zákazníci jsou zejména z jižních Čech. Díky tomu dobře chápeme
-        místní trh — co funguje v Táboře, nebude nutně fungovat v Praze. Konzultace probíhají online
-        nebo osobně kdekoli v kraji.
+        Jsme z jižních Čech a dobře chápeme, co potřebují firmy mimo velká města — rychlost,
+        férové ceny a web, se kterým si poradí i majitel sám. Komunikujeme online,
+        takže vzdálenost nehraje roli.
       </p>
     </div>
 
@@ -202,8 +180,8 @@
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <div>
-          <h3>Tábor</h3>
-          <p>Tvorba webů na míru pro firmy a živnostníky. Weby se správou obsahu, e-shopy, rezervační systémy.</p>
+          <h3>Jižní Čechy</h3>
+          <p>Naše domovská oblast — Tábor, České Budějovice, Písek, Jindřichův Hradec, Strakonice a okolí. Osobní konzultace možná.</p>
         </div>
       </div>
 
@@ -212,8 +190,8 @@
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <div>
-          <h3>České Budějovice</h3>
-          <p>Moderní firemní weby, aplikace na míru a digitální prezentace pro největší jihočeské město.</p>
+          <h3>Praha a Středočeský kraj</h3>
+          <p>Weby a aplikace pro pražské firmy. Moderní design, rychlé dodání, bez zbytečné byrokracie.</p>
         </div>
       </div>
 
@@ -222,8 +200,8 @@
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <div>
-          <h3>Písek</h3>
-          <p>Weby a e-shopy pro místní podnikatele. Rychlé dodání, přehledný správce obsahu.</p>
+          <h3>Brno a Jihomoravský kraj</h3>
+          <p>Aplikace na míru a firemní weby pro jihomoravské firmy a startupy.</p>
         </div>
       </div>
 
@@ -232,8 +210,8 @@
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <div>
-          <h3>Jindřichův Hradec</h3>
-          <p>Webové aplikace a prezentace pro firmy na Jindřichohradecku. Zkušenosti přímo z regionu.</p>
+          <h3>Ostrava a Moravskoslezský kraj</h3>
+          <p>Weby a e-shopy pro firmy na severu Moravy. Online spolupráce bez kompromisů.</p>
         </div>
       </div>
 
@@ -242,8 +220,8 @@
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <div>
-          <h3>Strakonice</h3>
-          <p>Tvorba webů pro místní živnostníky a firmy — od landing page po komplexní firemní prezentaci.</p>
+          <h3>Plzeň a západní Čechy</h3>
+          <p>Firemní prezentace, rezervační systémy a software na míru pro západočeské firmy.</p>
         </div>
       </div>
 
@@ -252,8 +230,8 @@
           <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <div>
-          <h3>Třeboň, Prachatice & okolí</h3>
-          <p>Celý jihočeský kraj — venkovské firmy, ubytování, zemědělství, turistické provozovny.</p>
+          <h3>Celá Česká republika</h3>
+          <p>Pracujeme plně online — videohovor, sdílení obrazovky, dokumenty. Vzdálenost nehraje žádnou roli.</p>
         </div>
       </div>
 
@@ -261,19 +239,17 @@
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-strip">
   <div class="container">
-    <h2>Nejste z jižních Čech?</h2>
-    <p>Nevadí — pracujeme online pro firmy z celé České republiky.</p>
+    <h2>Odkud jste vy?</h2>
+    <p>Napište nám — konzultace je zdarma a nezávazná.</p>
     <a href="index.html#kontakt" class="btn btn-gold">
-      Nezávazná konzultace zdarma
+      Kontaktovat KSH Partners
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-inner">
