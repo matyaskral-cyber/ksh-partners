@@ -1,68 +1,55 @@
-/* ── KSH Partners Chatbot ─────────────────────────────────────── */
+/* ── Záviš — KSH Partners chatbot ────────────────────────────── */
 (function () {
 
-  const RESPONSES = [
+  // ⬇ Sem dosadit Formspree endpoint po registraci na formspree.io
+  const FORMSPREE_URL = 'https://formspree.io/f/VASE_ID';
+
+  /* ── FAQ odpovědi ───────────────────────────────────────────── */
+  const FAQ = [
     {
-      patterns: [/^(ahoj|hej|čau|dobrý den|dobrý|zdravím|hi|hello)/i],
-      answer: 'Ahoj! 👋 Jsem asistent KSH Partners. Mohu vám pomoci s dotazy o našich službách, cenách nebo kontaktu. Na co se chcete zeptat?'
+      patterns: [/kolik stoj|cena|cen(í|i)k|kolik to vyjde|co to stoj/i],
+      answer: 'Ceny jsou vždy na míru. Základní firemní web začíná orientačně od <b>15 000 Kč</b>, složitější aplikace výše.\n\nChcete nezávaznou nabídku? Pomůžu vám ji sestavit — stačí pár otázek.'
     },
     {
-      patterns: [/co d(ě|e)l(á|a)te|jaké (jsou )?služby|co nab(í|i)z(í|i)te|čím se zabýv(á|a)te|o co jde/i],
-      answer: 'Děláme tři věci:\n\n• <b>Weby a aplikace</b> — na míru, s online editorem obsahu\n• <b>Kamenné obchody</b> — provoz a optimalizace prodejen\n• <b>Výdejní automaty</b> — sítě vendingových automatů\n\nChcete vědět více o některé oblasti?'
+      patterns: [/jak dlouho|za jak dlouho|termín|do(d|t)ání|kdy bude/i],
+      answer: 'Standardní web dodáváme <b>do 3 týdnů</b> od schválení podkladů. Složitější projekty trvají déle — domluvíme se předem.'
     },
     {
-      patterns: [/kolik stoj(í|i)|cena|cen(í|i)k|kolik to vyjde|kolik to stoj|co to stoj/i],
-      answer: 'Ceny jsou vždy na míru podle rozsahu projektu. Základní firemní web začíná orientačně od <b>15 000 Kč</b>, složitější aplikace se pohybují výše.\n\nNejlepší je napsat nám — do 24 hodin pošleme konkrétní nabídku. <a href="#kontakt" onclick="closeChatbot()">Kontaktovat nás →</a>'
+      patterns: [/online editor|sám upravit|editovat obsah|cms|edit/i],
+      answer: 'Ano! Každý web stavíme tak, aby ho klient <b>mohl sám upravovat</b> — texty, obrázky, ceny — bez znalosti kódu a bez volání webmastera.'
     },
     {
-      patterns: [/jak dlouho|za jak dlouho|doba|do(d|t)ání|termín|kdy bude hotov/i],
-      answer: 'Standardní firemní web dodáváme <b>do 3 týdnů</b> od schválení podkladů. Složitější aplikace nebo e-shopy trvají déle — domluvíme se na termínu předem.'
+      patterns: [/e.?shop|online obchod|prodej online/i],
+      answer: 'Ano, e-shopy děláme. Platební brána (Stripe, GoPay, Comgate), správa objednávek i sklad. Chcete nezávaznou poptávku?'
     },
     {
-      patterns: [/online editor|sám (si )?(upravit|m(ě|e)nit)|editovat obsah|cms|správa obsahu|edit/i],
-      answer: 'Ano! Každý web stavíme tak, aby ho klient <b>mohl sám upravovat</b> — texty, obrázky, ceny — bez znalosti kódu, bez volání webmastera.\n\nFunguje to přes jednoduchý webový editor, podobný Google Docs.'
+      patterns: [/aplikac|software|systém na míru|rezerva/i],
+      answer: 'Aplikace na míru jsou naše silná stránka — rezervační systémy, pokladní systémy, interní nástroje nebo zákaznické portály.'
     },
     {
-      patterns: [/e.?shop|eshop|online obchod|prodej online|woocommerce|shopify/i],
-      answer: 'Ano, e-shopy děláme. Napojíme platební bránu (Stripe, GoPay, Comgate), správu objednávek i sklad. Mohou fungovat samostatně nebo propojené s kamennou prodejnou.'
+      patterns: [/kde síd|kde jste|odkud jste|jižní čechy/i],
+      answer: 'Sídlíme v jižních Čechách, pracujeme online — vzdálenost nehraje roli. Projekty děláme pro firmy z celé ČR.'
     },
     {
-      patterns: [/aplikac|software|syst(é|e)m na míru|rezerva(ční|ce)|erp|crm/i],
-      answer: 'Aplikace na míru jsou naše silná stránka — rezervační systémy, pokladní systémy, interní firemní nástroje nebo zákaznické portály.\n\nVše stavíme na Pythonu (Flask) nebo moderních JS frameworcích.'
+      patterns: [/kontakt|email|telefon|napsat|zavolat/i],
+      answer: '📧 <a href="mailto:info@ksh-partners.cz">info@ksh-partners.cz</a>\n📞 <a href="tel:+420774982675">+420 774 982 675</a>\n\nNebo mi řekněte co potřebujete a poptávku odešlu za vás.'
     },
     {
-      patterns: [/kontakt|ozvat|napsat|zavolat|e.?mail|telefon|schůzka|konzultace/i],
-      answer: 'Nejrychleji nás dostihnete na:\n\n📧 <a href="mailto:info@ksh-partners.cz">info@ksh-partners.cz</a>\n📞 <a href="tel:+420774982675">+420 774 982 675</a>\n\nNebo rovnou přes <a href="#kontakt" onclick="closeChatbot()">kontaktní formulář →</a>'
+      patterns: [/reference|ukázka|portfolio|projekty|co jste dělali/i],
+      answer: '• <b>KraKrám</b> — 2 kamenné prodejny (Tábor + J. Hradec)\n• <b>Rezervační systém</b> pro lyžařskou školu\n• <b>Rezervační systém</b> pro autocamp\n• Firemní weby pro specializované prodejny\n\nDetaily najdete v <a href="#reference" onclick="closeChatbot()">sekci Reference →</a>'
     },
     {
-      patterns: [/kde síd(l|)íte|kde jste|odkud jste|kancelář|adresa|jižní čechy|tábor|české budějovice/i],
-      answer: 'Sídlíme v jižních Čechách, ale pracujeme online — takže vzdálenost nehraje roli. Projekty děláme pro firmy z celé České republiky.'
-    },
-    {
-      patterns: [/reference|ukázka|portfolio|co jste dělali|projekty/i],
-      answer: 'Z referencí mohu zmínit:\n\n• <b>KraKrám</b> — dvě kamenné prodejny (Tábor + J. Hradec)\n• <b>Rezervační systém</b> pro lyžařskou školu\n• <b>Rezervační systém</b> pro autocamp\n• Webové prezentace pro specializované prodejny\n\nDetaily najdete v <a href="#reference" onclick="closeChatbot()">sekci Reference →</a>'
-    },
-    {
-      patterns: [/technologi|programov|python|flask|react|next|wordpress|php|jak d(ě|e)l(á|a)te/i],
-      answer: 'Pracujeme s moderními technologiemi:\n\n• <b>Python / Flask</b> — backend a aplikace na míru\n• <b>Next.js / React</b> — moderní weby\n• <b>Tailwind CSS</b> — rychlý a čistý design\n\nWordPress nepoužíváme — stavíme vždy na míru.'
-    },
-    {
-      patterns: [/díky|děkuji|děkuju|super|ok|dobře|perfekt/i],
-      answer: 'Rádo se stalo! Pokud budete mít další otázky, jsem tu. Nebo nás rovnou <a href="#kontakt" onclick="closeChatbot()">kontaktujte →</a> 😊'
+      patterns: [/díky|děkuji|děkuju|super|perfekt/i],
+      answer: 'Rádo se stalo! Pokud budete mít další otázky, jsem tu. 😊'
     }
   ];
 
-  const DEFAULT = 'Tuhle otázku nedokážu spolehlivě zodpovědět. Nejlepší bude se obrátit přímo na nás — odpovídáme do 24 hodin.\n\n📧 <a href="mailto:info@ksh-partners.cz">info@ksh-partners.cz</a>\n📞 <a href="tel:+420774982675">+420 774 982 675</a>';
+  /* ── Stav konverzace ────────────────────────────────────────── */
+  // idle → need → name → email → sending → done
+  let state = 'idle';
+  let lead  = { need: '', name: '', email: '' };
 
-  function getResponse(text) {
-    const t = text.trim();
-    for (const r of RESPONSES) {
-      if (r.patterns.some(p => p.test(t))) return r.answer;
-    }
-    return DEFAULT;
-  }
-
-  /* ── DOM ─────────────────────────────────────────────────────── */
+  /* ── CSS ────────────────────────────────────────────────────── */
   const css = `
     #ksh-chat-btn {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 9000;
@@ -73,7 +60,6 @@
       transition: transform .2s, box-shadow .2s;
     }
     #ksh-chat-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0,0,0,.32); }
-    #ksh-chat-btn svg { color: #fff; }
 
     #ksh-chat-box {
       position: fixed; bottom: 5.5rem; right: 2rem; z-index: 9000;
@@ -83,8 +69,8 @@
       display: none; flex-direction: column; overflow: hidden;
       font-family: 'Inter', system-ui, sans-serif;
     }
-    #ksh-chat-box.open { display: flex; animation: chatSlideIn .22s ease; }
-    @keyframes chatSlideIn {
+    #ksh-chat-box.open { display: flex; animation: chatIn .22s ease; }
+    @keyframes chatIn {
       from { opacity: 0; transform: translateY(12px) scale(.97); }
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
@@ -94,18 +80,18 @@
       padding: 1rem 1.2rem;
       display: flex; align-items: center; gap: .75rem;
     }
-    #ksh-chat-head .avatar {
+    .ksh-avatar {
       width: 36px; height: 36px; border-radius: 50%;
       background: rgba(255,255,255,.15);
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      font-size: 1rem;
     }
-    #ksh-chat-head .info { flex: 1; }
-    #ksh-chat-head .name { color: #fff; font-weight: 700; font-size: .9rem; }
-    #ksh-chat-head .status { color: rgba(255,255,255,.6); font-size: .75rem; }
+    .ksh-head-info { flex: 1; }
+    .ksh-head-info .name { color: #fff; font-weight: 700; font-size: .9rem; }
+    .ksh-head-info .status { color: rgba(255,255,255,.55); font-size: .75rem; }
     #ksh-chat-close {
-      background: none; border: none; cursor: pointer; color: rgba(255,255,255,.6);
-      padding: .2rem; line-height: 1; font-size: 1.2rem;
-      transition: color .15s;
+      background: none; border: none; cursor: pointer; color: rgba(255,255,255,.55);
+      padding: .2rem; font-size: 1.1rem; line-height: 1; transition: color .15s;
     }
     #ksh-chat-close:hover { color: #fff; }
 
@@ -113,9 +99,11 @@
       flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column;
       gap: .75rem; max-height: 320px; scroll-behavior: smooth;
     }
-    .msg { max-width: 85%; line-height: 1.55; font-size: .875rem; }
+    .msg { max-width: 86%; line-height: 1.55; font-size: .875rem; animation: msgIn .18s ease; }
+    @keyframes msgIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
     .msg.bot {
-      background: #f5ede3; color: #2d1a0e; border-radius: 4px 12px 12px 12px;
+      background: #f5ede3; color: #2d1a0e;
+      border-radius: 4px 12px 12px 12px;
       padding: .65rem .9rem; align-self: flex-start;
     }
     .msg.bot a { color: #8b5a3c; font-weight: 600; }
@@ -124,11 +112,18 @@
       color: #fff; border-radius: 12px 4px 12px 12px;
       padding: .65rem .9rem; align-self: flex-end;
     }
-    .msg.typing { opacity: .6; }
-    .msg.typing span { display: inline-block; animation: blink 1s infinite; }
-    .msg.typing span:nth-child(2) { animation-delay: .2s; }
-    .msg.typing span:nth-child(3) { animation-delay: .4s; }
-    @keyframes blink { 0%,80%,100%{opacity:.2} 40%{opacity:1} }
+    .msg.typing { opacity: .55; font-size: 1.1rem; letter-spacing: .1em; }
+
+    .ksh-chips {
+      display: flex; flex-wrap: wrap; gap: .4rem;
+      padding: 0 1rem .75rem;
+    }
+    .ksh-chip {
+      background: #f5ede3; border: 1px solid #e0cfc2; border-radius: 20px;
+      padding: .32rem .8rem; font-size: .78rem; color: #6b4030;
+      cursor: pointer; font-family: inherit; transition: background .15s;
+    }
+    .ksh-chip:hover { background: #e8d5c2; }
 
     #ksh-chat-footer {
       padding: .75rem 1rem; border-top: 1px solid #f0e4d8;
@@ -144,50 +139,35 @@
       background: linear-gradient(135deg, #c49078, #8b5a3c);
       border: none; border-radius: 8px; cursor: pointer;
       width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
-      transition: opacity .15s; flex-shrink: 0;
+      flex-shrink: 0; transition: opacity .15s;
     }
     #ksh-chat-send:hover { opacity: .85; }
-
-    .chat-suggestions {
-      display: flex; flex-wrap: wrap; gap: .4rem; padding: 0 1rem .75rem;
-    }
-    .chat-sugg-btn {
-      background: #f5ede3; border: 1px solid #e0cfc2; border-radius: 20px;
-      padding: .3rem .75rem; font-size: .78rem; color: #6b4030; cursor: pointer;
-      font-family: inherit; transition: background .15s;
-    }
-    .chat-sugg-btn:hover { background: #e8d5c2; }
+    #ksh-chat-send svg { color: #fff; }
   `;
-
-  const SUGGESTIONS = ['Kolik stojí web?', 'Jak rychle dodáte?', 'Online editor?', 'Kontakt'];
 
   const styleEl = document.createElement('style');
   styleEl.textContent = css;
   document.head.appendChild(styleEl);
 
   document.body.insertAdjacentHTML('beforeend', `
-    <button id="ksh-chat-btn" aria-label="Chat s KSH Partners">
-      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <button id="ksh-chat-btn" aria-label="Chat se Závišem">
+      <svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24">
         <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
       </svg>
     </button>
-    <div id="ksh-chat-box" role="dialog" aria-label="Chat asistent KSH Partners">
+    <div id="ksh-chat-box" role="dialog" aria-label="Chat se Závišem">
       <div id="ksh-chat-head">
-        <div class="avatar">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
-          </svg>
-        </div>
-        <div class="info">
+        <div class="ksh-avatar">🤵</div>
+        <div class="ksh-head-info">
           <div class="name">Záviš</div>
-          <div class="status">Asistent KSH Partners · odpovídá ihned</div>
+          <div class="status">Asistent KSH Partners · online</div>
         </div>
-        <button id="ksh-chat-close" aria-label="Zavřít chat">✕</button>
+        <button id="ksh-chat-close" aria-label="Zavřít">✕</button>
       </div>
       <div id="ksh-chat-msgs"></div>
-      <div class="chat-suggestions" id="ksh-suggestions"></div>
+      <div class="ksh-chips" id="ksh-chips"></div>
       <div id="ksh-chat-footer">
-        <input id="ksh-chat-input" type="text" placeholder="Napište dotaz…" autocomplete="off" maxlength="200">
+        <input id="ksh-chat-input" type="text" placeholder="Napište zprávu…" autocomplete="off" maxlength="300">
         <button id="ksh-chat-send" aria-label="Odeslat">
           <svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24">
             <path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/>
@@ -201,51 +181,163 @@
   const box   = document.getElementById('ksh-chat-box');
   const msgs  = document.getElementById('ksh-chat-msgs');
   const input = document.getElementById('ksh-chat-input');
-  const send  = document.getElementById('ksh-chat-send');
-  const suggs = document.getElementById('ksh-suggestions');
+  const chips = document.getElementById('ksh-chips');
   let opened  = false;
 
-  function addMsg(text, role) {
+  /* ── Helpers ─────────────────────────────────────────────────── */
+  function addMsg(html, role) {
     const d = document.createElement('div');
     d.className = 'msg ' + role;
-    d.innerHTML = text.replace(/\n/g, '<br>');
+    d.innerHTML = html.replace(/\n/g, '<br>');
     msgs.appendChild(d);
     msgs.scrollTop = msgs.scrollHeight;
     return d;
   }
 
-  function showSuggestions() {
-    suggs.innerHTML = '';
-    SUGGESTIONS.forEach(s => {
+  function botSay(html, delay = 700) {
+    const t = addMsg('●  ●  ●', 'bot typing');
+    return new Promise(res => setTimeout(() => {
+      t.remove();
+      addMsg(html, 'bot');
+      res();
+    }, delay));
+  }
+
+  function setChips(labels, onClick) {
+    chips.innerHTML = '';
+    labels.forEach(lbl => {
       const b = document.createElement('button');
-      b.className = 'chat-sugg-btn';
-      b.textContent = s;
-      b.onclick = () => { suggs.innerHTML = ''; sendMsg(s); };
-      suggs.appendChild(b);
+      b.className = 'ksh-chip';
+      b.textContent = lbl;
+      b.onclick = () => { chips.innerHTML = ''; onClick(lbl); };
+      chips.appendChild(b);
     });
   }
 
-  function sendMsg(text) {
-    if (!text.trim()) return;
-    addMsg(text, 'user');
-    input.value = '';
-    suggs.innerHTML = '';
+  function clearChips() { chips.innerHTML = ''; }
 
-    const typing = addMsg('● <span>●</span> <span>●</span>', 'bot typing');
-    setTimeout(() => {
-      msgs.removeChild(typing);
-      addMsg(getResponse(text), 'bot');
-    }, 600 + Math.random() * 400);
+  /* ── FAQ lookup ─────────────────────────────────────────────── */
+  function faqMatch(text) {
+    for (const r of FAQ) {
+      if (r.patterns.some(p => p.test(text))) return r.answer;
+    }
+    return null;
   }
 
+  /* ── Konverzační flow ───────────────────────────────────────── */
+  async function handleInput(text) {
+    if (!text.trim()) return;
+    addMsg(text, 'user');
+    clearChips();
+    input.value = '';
+    input.placeholder = 'Napište zprávu…';
+
+    if (state === 'idle') {
+      const faq = faqMatch(text);
+      if (faq) {
+        await botSay(faq);
+        setChips(['Mám zájem o poptávku', 'Další dotaz'], (c) => {
+          if (c === 'Mám zájem o poptávku') startLead();
+          else {
+            clearChips();
+            setChips(['Kolik stojí web?', 'Jak rychle dodáte?', 'Online editor?', 'Kontakt'], (c2) => handleInput(c2));
+          }
+        });
+        return;
+      }
+
+      // Uživatel napsal volně — interpretujeme jako zájem o poptávku
+      const keywords = /chci|potřebuji|potřebuju|hledám|zajímá mě|mám zájem|chtěl bych|chtěla bych|poptávk/i;
+      if (keywords.test(text)) {
+        lead.need = text;
+        state = 'name';
+        await botSay('Skvělé, rád pomohu! 👋 Jak se jmenujete?', 500);
+        input.placeholder = 'Vaše jméno…';
+        return;
+      }
+
+      // Jiné — zkusíme FAQ nebo vyzveme k upřesnění
+      await botSay('Rozumím. Abych vám mohl pomoct, řekněte mi více — nebo vyberte níže:');
+      setChips(['Mám zájem o web', 'Chci aplikaci', 'Kolik stojí web?', 'Kontakt'], (c) => handleInput(c));
+      return;
+    }
+
+    if (state === 'need') {
+      lead.need = text;
+      state = 'name';
+      await botSay('Díky za popis! Jak se jmenujete?', 500);
+      input.placeholder = 'Vaše jméno…';
+      return;
+    }
+
+    if (state === 'name') {
+      lead.name = text;
+      state = 'email';
+      await botSay(`Příjemné jméno, ${text.split(' ')[0]}! 😊 Na jaký email vám máme odpovědět?`, 500);
+      input.placeholder = 'váš@email.cz';
+      return;
+    }
+
+    if (state === 'email') {
+      if (!/\S+@\S+\.\S+/.test(text)) {
+        await botSay('Hmm, tohle nevypadá jako platný email. Zkuste to prosím znovu.', 400);
+        return;
+      }
+      lead.email = text;
+      state = 'sending';
+      input.placeholder = 'Odesílám…';
+      await botSay('Výborně! Odesílám poptávku…', 400);
+      await sendLead();
+      return;
+    }
+  }
+
+  async function startLead() {
+    state = 'need';
+    await botSay('Co přesně potřebujete? Popište nám to klidně volně — web, aplikaci, e-shop nebo cokoliv jiného.');
+    input.placeholder = 'Popište váš projekt…';
+    input.focus();
+  }
+
+  async function sendLead() {
+    const body = {
+      jmeno: lead.name,
+      email: lead.email,
+      zprava: lead.need,
+      zdroj: 'Záviš chatbot'
+    };
+
+    try {
+      const res = await fetch(FORMSPREE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      if (res.ok) {
+        state = 'done';
+        await botSay(`✅ Odesláno! Poptávka od <b>${lead.name}</b> dorazila do KSH Partners. Ozveme se na <b>${lead.email}</b> do 24 hodin.`, 300);
+        clearChips();
+      } else {
+        throw new Error('err');
+      }
+    } catch {
+      state = 'done';
+      await botSay(`Poptávku se nepodařilo odeslat automaticky. Prosím napište nám přímo:\n📧 <a href="mailto:info@ksh-partners.cz">info@ksh-partners.cz</a>`, 300);
+    }
+  }
+
+  /* ── Otevření ────────────────────────────────────────────────── */
   function openChat() {
     box.classList.add('open');
-    btn.innerHTML = `<svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>`;
+    btn.innerHTML = `<svg width="22" height="22" fill="none" stroke="#fff" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>`;
     if (!opened) {
       opened = true;
-      setTimeout(() => {
-        addMsg('Dobrý den! Jmenuji se Záviš a jsem asistent KSH Partners. Mohu vám pomoci s dotazy o webech, aplikacích nebo naší práci.', 'bot');
-        showSuggestions();
+      setTimeout(async () => {
+        await botSay('Dobrý den! Jmenuji se <b>Záviš</b> a jsem asistent KSH Partners. 👋', 400);
+        await botSay('Mohu vám poradit se službami, nebo rovnou zpracuji vaši poptávku. Co by se vám hodilo?', 600);
+        setChips(['Mám zájem o web', 'Chci aplikaci', 'Kolik stojí web?', 'Jak rychle dodáte?', 'Kontakt'],
+          (c) => handleInput(c));
       }, 200);
     }
     setTimeout(() => input.focus(), 300);
@@ -253,14 +345,14 @@
 
   function closeChat() {
     box.classList.remove('open');
-    btn.innerHTML = `<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>`;
+    btn.innerHTML = `<svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>`;
   }
 
   window.closeChatbot = closeChat;
 
   btn.addEventListener('click', () => box.classList.contains('open') ? closeChat() : openChat());
   document.getElementById('ksh-chat-close').addEventListener('click', closeChat);
-  send.addEventListener('click', () => sendMsg(input.value));
-  input.addEventListener('keydown', e => { if (e.key === 'Enter') sendMsg(input.value); });
+  document.getElementById('ksh-chat-send').addEventListener('click', () => handleInput(input.value));
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') handleInput(input.value); });
 
 })();
