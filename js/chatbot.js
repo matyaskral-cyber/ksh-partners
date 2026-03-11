@@ -179,8 +179,8 @@
           </svg>
         </div>
         <div class="info">
-          <div class="name">KSH Partners</div>
-          <div class="status">Asistent · odpovídá ihned</div>
+          <div class="name">Záviš</div>
+          <div class="status">Asistent KSH Partners · odpovídá ihned</div>
         </div>
         <button id="ksh-chat-close" aria-label="Zavřít chat">✕</button>
       </div>
@@ -244,7 +244,7 @@
     if (!opened) {
       opened = true;
       setTimeout(() => {
-        addMsg('Dobrý den! Jsem asistent KSH Partners. Mohu vám pomoci s dotazy o webech, aplikacích nebo naší práci.', 'bot');
+        addMsg('Dobrý den! Jmenuji se Záviš a jsem asistent KSH Partners. Mohu vám pomoci s dotazy o webech, aplikacích nebo naší práci.', 'bot');
         showSuggestions();
       }, 200);
     }
