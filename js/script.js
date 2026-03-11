@@ -70,3 +70,15 @@ document.querySelectorAll('.service-card, .team-card, .ref-card, .blog-card, .on
   }, { threshold: 0.1 });
   io.observe(el);
 });
+
+// Scroll reveal
+const revealEls = document.querySelectorAll('.service-card, .ref-card, .blog-card, .onas-value, .section-header');
+revealEls.forEach((el, i) => {
+  el.classList.add('reveal');
+  if (i % 3 === 1) el.classList.add('delay-1');
+  if (i % 3 === 2) el.classList.add('delay-2');
+});
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
