@@ -376,9 +376,10 @@ section { padding: 6rem 0; }
 #o-nas { background: #fff; }
 .onas-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  grid-template-columns: 1fr;
+  gap: 3rem;
   align-items: center;
+  max-width: 720px;
 }
 .onas-values {
   display: grid;
