@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KSH Partners — Váš partner pro skutečný růst</title>
+  <meta name="description" content="KSH Partners provozuje kamenné obchody, výdejní automaty a tvoří digitální řešení. Čtyři partneři. Jeden cíl.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #C8965A;
+      --accent-dim: rgba(200,150,90,0.15);
+      --accent-glow: rgba(200,150,90,0.35);
+      --bg: #060606;
+      --bg2: #0d0d0d;
+      --surface: rgba(255,255,255,0.03);
+      --surface-hover: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.07);
+      --border-accent: rgba(200,150,90,0.25);
+      --text: #f0ede8;
+      --text-muted: rgba(240,237,232,0.45);
+      --text-sub: rgba(240,237,232,0.65);
+      --nav-h: 76px;
+      --radius: 20px;
+      --radius-lg: 28px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      /* subtle noise texture */
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ─── SCROLL REVEAL ─────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.75s cubic-bezier(.16,1,.3,1), transform 0.75s cubic-bezier(.16,1,.3,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.75s cubic-bezier(.16,1,.3,1), transform 0.75s cubic-bezier(.16,1,.3,1); }
+    .reveal-left.visible { opacity: 1; transform: none; }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.75s cubic-bezier(.16,1,.3,1), transform 0.75s cubic-bezier(.16,1,.3,1); }
+    .reveal-right.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+
+    /* ─── NAV ───────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      height: var(--nav-h);
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(6,6,6,0.82);
+      backdrop-filter: blur(20px) saturate(1.4);
+      -webkit-backdrop-filter: blur(20px) saturate(1.4);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: var(--nav-h);
+    }
+    .nav-logo img {
+      height: 114px;
+      width: auto;
+      object-fit: contain;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-sub);
+      padding: 8px 16px;
+      border-radius: 100px;
+      transition: color 0.2s, background 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .nav-links a:hover { color: var(--text); background: var(--surface-hover); }
+    .nav-links .nav-cta {
+      background: var(--accent);
+      color: #060606;
+      font-weight: 700;
+      padding: 9px 20px;
+    }
+    .nav-links .nav-cta:hover { background: #d9a86a; color: #060606; }
+
+    /* hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* mobile nav */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: var(--nav-h) 0 0 0;
+      background: rgba(6,6,6,0.97);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      z-index: 800;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-sub);
+      transition: color 0.2s;
+      padding: 8px;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+    .mobile-menu .nav-cta {
+      margin-top: 12px;
+      background: var(--accent);
+      color: #060606 !important;
+      font-size: 18px !important;
+      padding: 14px 36px;
+      border-radius: 100px;
+    }
+
+    /* ─── HERO ──────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: var(--nav-h);
+    }
+
+
+    /* grid lines bg */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-dim);
+      border: 1px solid var(--border-accent);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 36px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-h1 {
+      font-size: clamp(54px, 8vw, 112px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin-bottom: 32px;
+    }
+    .hero-h1 .line-plain { display: block; color: var(--text); }
+    .hero-h1 .line-gradient {
+      display: block;
+      background: linear-gradient(110deg, #C8965A 0%, #f0c87a 40%, #C8965A 65%, #8a5c2e 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: clamp(16px, 2vw, 20px);
+      color: var(--text-sub);
+      font-weight: 400;
+      max-width: 520px;
+      margin-bottom: 48px;
+      line-height: 1.65;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--accent);
+      color: #060606;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 100px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary:hover {
+      background: #d9a86a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(200,150,90,0.35);
+    }
+    .btn-primary svg { transition: transform 0.2s; }
+    .btn-primary:hover svg { transform: translateX(4px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 15px 28px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: var(--surface-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ─── SECTION COMMON ────────────────────────────────────── */
+    .section { padding: 120px 0; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-size: clamp(36px, 4.5vw, 62px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+    .section-desc {
+      font-size: 18px;
+      color: var(--text-sub);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    /* ─── BENTO / SERVICES ──────────────────────────────────── */
+    .services { padding: 80px 0 120px; }
+
+    .bento-header {
+      margin-bottom: 64px;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: auto auto;
+      gap: 16px;
+    }
+
+    .bento-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, background 0.3s, transform 0.3s;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .bento-card:hover {
+      border-color: var(--border-accent);
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-4px);
+    }
+
+    /* accent glow on hover */
+    .bento-card::after {
+      content: '';
+      position: absolute;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      top: -60px; right: -60px;
+      opacity: 0;
+      transition: opacity 0.4s;
+      pointer-events: none;
+    }
+    .bento-card:hover::after { opacity: 1; }
+
+    .bento-card-1 { grid-column: 1 / 8; }
+    .bento-card-2 { grid-column: 8 / 13; }
+    .bento-card-3 { grid-column: 1 / 6; }
+    .bento-card-4 { grid-column: 6 / 13; }
+
+    .bento-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--accent-dim);
+      border: 1px solid var(--border-accent);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+      font-size: 28px;
+    }
+
+    .bento-title {
+      font-size: clamp(22px, 2.5vw, 30px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+    .bento-desc {
+      font-size: 15px;
+      color: var(--text-sub);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .bento-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .bento-tag {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* big accent number on tall card */
+    .bento-card-1 .bento-num {
+      position: absolute;
+      bottom: -24px;
+      right: 32px;
+      font-size: 180px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.06em;
+      color: rgba(200,150,90,0.06);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* ─── O NÁS ─────────────────────────────────────────────── */
+    .about {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-text .section-desc { max-width: 100%; margin-bottom: 36px; }
+
+    .about-stat {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+    }
+    .about-stat:last-child { border-bottom: 1px solid var(--border); }
+    .about-stat-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .about-stat-text { font-size: 15px; color: var(--text-sub); }
+
+    .about-pills {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .pill:hover {
+      border-color: var(--border-accent);
+      background: rgba(200,150,90,0.04);
+    }
+    .pill-icon { font-size: 28px; margin-bottom: 16px; }
+    .pill-title {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .pill-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ─── REFERENCE ─────────────────────────────────────────── */
+    .reference-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 64px;
+    }
+    .ref-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      transition: border-color 0.3s, transform 0.3s, background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .ref-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .ref-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.04);
+    }
+    .ref-card:hover::before { opacity: 1; }
+
+    .ref-category {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .ref-name {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .ref-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .ref-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 20px;
+    }
+    .ref-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    /* ─── KONTAKT ───────────────────────────────────────────── */
+    .contact { background: var(--bg2); border-top: 1px solid var(--border); }
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-info-items { margin-top: 40px; display: flex; flex-direction: column; gap: 24px; }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .contact-item-icon {
+      width: 44px; height: 44px;
+      background: var(--accent-dim);
+      border: 1px solid var(--border-accent);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .contact-item-label { font-size: 12px; color: var(--text-muted); font-weight: 500; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .contact-item-value { font-size: 16px; font-weight: 600; color: var(--text); }
+    .contact-item-value a { color: inherit; transition: color 0.2s; }
+    .contact-item-value a:hover { color: var(--accent); }
+
+    /* form */
+    .contact-form {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .form-title {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+    .form-label { font-size: 12px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .form-input, .form-select, .form-textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 15px;
+      color: var(--text);
+      font-family: inherit;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--accent);
+      background: rgba(200,150,90,0.05);
+    }
+    .form-select {
+      -webkit-appearance: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(240,237,232,0.4)' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 44px;
+    }
+    .form-select option { background: #111; color: var(--text); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+    .form-submit {
+      width: 100%;
+      margin-top: 8px;
+      background: var(--accent);
+      color: #060606;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 16px;
+      border-radius: 12px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.01em;
+    }
+    .form-submit:hover {
+      background: #d9a86a;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(200,150,90,0.3);
+    }
+
+    /* toast */
+    .toast {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: #1a1a1a;
+      border: 1px solid var(--accent);
+      border-radius: 14px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      z-index: 9999;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(.16,1,.3,1), opacity 0.4s;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+    .toast.show { transform: none; opacity: 1; }
+    .toast-icon { font-size: 20px; }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .footer-logo img { height: 28px; width: auto; opacity: 0.6; }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+    .footer-legal {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    /* divider line */
+    .divider-line {
+      width: 48px;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .bento-card-1 { grid-column: 1 / 13; }
+      .bento-card-2 { grid-column: 1 / 7; }
+      .bento-card-3 { grid-column: 7 / 13; }
+      .bento-card-4 { grid-column: 1 / 13; }
+      .reference-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-h: 64px; }
+      .container { padding: 0 20px; }
+      .section { padding: 80px 0; }
+
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .bento-card-1,
+      .bento-card-2,
+      .bento-card-3,
+      .bento-card-4 { grid-column: 1 / 13; }
+      .bento-card { padding: 32px 28px; }
+      .bento-card-1 .bento-num { font-size: 100px; }
+
+      .about-inner { grid-template-columns: 1fr; gap: 48px; }
+      .about-pills { grid-template-columns: 1fr 1fr; }
+
+      .reference-grid { grid-template-columns: 1fr; }
+
+      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+      .contact-form { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-legal { text-align: left; }
+
+      .hero-badge { margin-bottom: 24px; }
+      .hero-ctas { flex-direction: column; }
+      .btn-primary, .btn-ghost { justify-content: center; }
+    }
+
+    @media (max-width: 480px) {
+      .about-pills { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ──────────────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="logo.png" alt="KSH Partners" width="140" height="40">
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#sluzby">Co děláme</a></li>
+      <li><a href="#o-nas">O nás</a></li>
+      <li><a href="#reference">Reference</a></li>
+      <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Otevřít menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#sluzby" class="mobile-link">Co děláme</a>
+  <a href="#o-nas" class="mobile-link">O nás</a>
+  <a href="#reference" class="mobile-link">Reference</a>
+  <a href="#kontakt" class="nav-cta mobile-link">Kontakt</a>
+</div>
+
+<!-- ── HERO ──────────────────────────────────────────────────── -->
+<section class="hero" id="uvod">
+  <canvas id="aurora-canvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge reveal">KSH Partners s.r.o.</div>
+
+      <h1 class="hero-h1 reveal delay-1">
+        <span class="line-plain">Váš partner</span>
+        <span class="line-gradient">pro skutečný</span>
+        <span class="line-plain">růst.</span>
+      </h1>
+
+      <p class="hero-sub reveal delay-2">
+        Provozujeme kamenné obchody, výdejní automaty a tvoříme digitální řešení. Čtyři partneři. Jeden cíl.
+      </p>
+
+      <div class="hero-ctas reveal delay-3">
+        <a href="#sluzby" class="btn-primary">
+          Co děláme
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#kontakt" class="btn-ghost">
+          Napište nám
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES / BENTO ───────────────────────────────────────── -->
+<section class="services" id="sluzby">
+  <div class="container">
+    <div class="bento-header">
+      <div class="section-label reveal">Co děláme</div>
+      <h2 class="section-title reveal delay-1">Tři pilíře.<br>Jeden tým.</h2>
+      <p class="section-desc reveal delay-2">Každý pilíř je plnohodnotná byznysová disciplína. Dohromady tvoříme celek, který umí víc.</p>
+    </div>
+
+    <div class="bento-grid">
+      <!-- Card 1 — wide -->
+      <div class="bento-card bento-card-1 reveal delay-1">
+        <div class="bento-icon">🏪</div>
+        <h3 class="bento-title">Kamenné obchody</h3>
+        <p class="bento-desc">Navrhujeme, vybavujeme a provozujeme fyzické prodejny od konceptu po každodenní operativu. Staráme se o merchandising, zásoby i zákaznický zážitek — vy se soustředíte na byznys.</p>
+        <div class="bento-tags">
+          <span class="bento-tag">Koncept & design</span>
+          <span class="bento-tag">Provoz</span>
+          <span class="bento-tag">Zásobování</span>
+          <span class="bento-tag">Zákaznický servis</span>
+        </div>
+        <div class="bento-num">01</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bento-card bento-card-2 reveal delay-2">
+        <div class="bento-icon">🤖</div>
+        <h3 class="bento-title">Výdejní automaty</h3>
+        <p class="bento-desc">Moderní vending řešení pro firmy, veřejná místa i specifické regulované komodity. Plná správa sítě, replenishment i vzdálený monitoring.</p>
+        <div class="bento-tags">
+          <span class="bento-tag">Smart vending</span>
+          <span class="bento-tag">Monitoring</span>
+          <span class="bento-tag">Doplňování</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bento-card bento-card-3 reveal delay-3">
+        <div class="bento-icon">💻</div>
+        <h3 class="bento-title">Weby a aplikace</h3>
+        <p class="bento-desc">Děláme weby tak, aby si je klient dokázal sám upravit — bez programátora, bez čekání. Stačí napsat co chcete změnit. Doba se posunula a web by měl být váš nástroj, ne cizí černá skříňka.</p>
+        <div class="bento-tags">
+          <span class="bento-tag">Vlastní správa obsahu</span>
+          <span class="bento-tag">UI/UX design</span>
+          <span class="bento-tag">E-commerce</span>
+          <span class="bento-tag">Aplikace na míru</span>
+        </div>
+      </div>
+
+      <!-- Card 4 — CTA card -->
+      <div class="bento-card bento-card-4 reveal delay-4" style="background: linear-gradient(135deg, rgba(200,150,90,0.08) 0%, rgba(200,150,90,0.03) 100%); border-color: var(--border-accent); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 20px;">
+        <div style="font-size: 40px;">✦</div>
+        <p style="font-size: clamp(18px, 2vw, 24px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.25;">Máte projekt?<br>Pojďme si promluvit.</p>
+        <p style="font-size: 14px; color: var(--text-sub);">Nezávazná konzultace zdarma.</p>
+        <a href="#kontakt" class="btn-primary" style="margin-top: 4px;">
+          Kontaktujte nás
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── O NÁS ──────────────────────────────────────────────────── -->
+<section class="section about" id="o-nas">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-text reveal-left">
+        <div class="section-label">O nás</div>
+        <h2 class="section-title">Čtyři partneři.<br>Jeden cíl.</h2>
+        <div class="divider-line"></div>
+        <p class="section-desc">
+          KSH Partners je tým čtyř partnerů s komplementárními zkušenostmi — fyzický retail, automatizace, technologie a obchod. Nevytváříme jen produkty a služby. Vytváříme systémy, které samy rostou.
+        </p>
+        <div style="margin-top: 36px;">
+          <div class="about-stat">
+            <div class="about-stat-dot"></div>
+            <span class="about-stat-text">Přímá zodpovědnost — žádné alibi, žádná zprostředkovatel</span>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-dot"></div>
+            <span class="about-stat-text">Kombinujeme fyzický i digitální svět v jednom portfoliu</span>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-dot"></div>
+            <span class="about-stat-text">Vlastní provoz — víme, co funguje v praxi, ne jen v teorii</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-pills reveal-right">
+        <div class="pill delay-1">
+          <div class="pill-icon">⚡</div>
+          <div class="pill-title">Rychlost</div>
+          <div class="pill-desc">Rozhodujeme se rychle. Od nápadu k realizaci bez zbytečných vrstev.</div>
+        </div>
+        <div class="pill delay-2">
+          <div class="pill-icon">🎯</div>
+          <div class="pill-title">Přesnost</div>
+          <div class="pill-desc">Každý projekt je šitý na míru. Generická řešení nenabízíme.</div>
+        </div>
+        <div class="pill delay-3">
+          <div class="pill-icon">🔒</div>
+          <div class="pill-title">Spolehlivost</div>
+          <div class="pill-desc">Stojíme za tím, co dodáme. Dlouhodobé partnerství je pro nás norma.</div>
+        </div>
+        <div class="pill delay-4">
+          <div class="pill-icon">📈</div>
+          <div class="pill-title">Růst</div>
+          <div class="pill-desc">Navrhujeme s výhledem do budoucna. Dnes i za tři roky.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── REFERENCE ───────────────────────────────────────────────── -->
+<section class="section" id="reference">
+  <div class="container">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 24px;">
+      <div>
+        <div class="section-label reveal">Reference</div>
+        <h2 class="section-title reveal delay-1">Co jsme<br>postavili.</h2>
+      </div>
+      <p class="section-desc reveal delay-2" style="max-width: 360px; margin-bottom: 0;">
+        Projekty z různých oblastí — každý se svými specifiky, každý funkční v praxi.
+      </p>
+    </div>
+
+    <div class="reference-grid">
+      <div class="ref-card reveal delay-1">
+        <div class="ref-category">Kamenná prodejna</div>
+        <div class="ref-name">KraKrám</div>
+        <p class="ref-desc">Konceptuální kamenný obchod s vlastním provozem, zásobováním a zákaznickým servisem. Plný lifecycle od otevření.</p>
+        <div class="ref-tags">
+          <span class="ref-tag">Retail</span>
+          <span class="ref-tag">Provoz</span>
+          <span class="ref-tag">Zásobování</span>
+        </div>
+      </div>
+
+      <div class="ref-card reveal delay-2">
+        <div class="ref-category">Webová aplikace</div>
+        <div class="ref-name">PML Systém</div>
+        <p class="ref-desc">Specializovaná webová aplikace pro správu a evidenci psychomodulačních látek v kamenných pobočkách. Flask, Python, vlastní architektura.</p>
+        <div class="ref-tags">
+          <span class="ref-tag">Flask</span>
+          <span class="ref-tag">Python</span>
+          <span class="ref-tag">Compliance</span>
+        </div>
+      </div>
+
+      <div class="ref-card reveal delay-3">
+        <div class="ref-category">Lyžařská škola</div>
+        <div class="ref-name">AZ Ski School</div>
+        <p class="ref-desc">Moderní web pro lyžařskou školu — rezervační systém, galerie, vícejazyčný obsah a mobilní optimalizace pro sezónní provoz.</p>
+        <div class="ref-tags">
+          <span class="ref-tag">Web</span>
+          <span class="ref-tag">Rezervace</span>
+          <span class="ref-tag">Multijazyčný</span>
+        </div>
+      </div>
+
+      <div class="ref-card reveal delay-1">
+        <div class="ref-category">Autocamp</div>
+        <div class="ref-name">Autocamp Zvůle</div>
+        <p class="ref-desc">Kompletní webová prezentace a rezervační systém pro autocamp. Interaktivní mapa míst, online booking a správa kapacity.</p>
+        <div class="ref-tags">
+          <span class="ref-tag">Flask</span>
+          <span class="ref-tag">Booking</span>
+          <span class="ref-tag">Admin panel</span>
+        </div>
+      </div>
+
+      <div class="ref-card reveal delay-2">
+        <div class="ref-category">E-shop</div>
+        <div class="ref-name">E-commerce projekt</div>
+        <p class="ref-desc">Vlastní e-shopové řešení se správou produktů, objednávek a platební bránou. Navrženo pro rychlý provoz bez závislosti na platformách.</p>
+        <div class="ref-tags">
+          <span class="ref-tag">E-shop</span>
+          <span class="ref-tag">Platební brána</span>
+          <span class="ref-tag">Custom</span>
+        </div>
+      </div>
+
+      <div class="ref-card reveal delay-3" style="border-color: var(--border-accent); background: rgba(200,150,90,0.03);">
+        <div class="ref-category" style="color: var(--text-muted);">Nový projekt</div>
+        <div class="ref-name" style="color: var(--text-muted);">Váš projekt zde</div>
+        <p class="ref-desc">Pracujeme na dalších projektech — a rádi přidáme i ten váš.</p>
+        <div style="margin-top: 24px;">
+          <a href="#kontakt" style="font-size: 14px; font-weight: 600; color: var(--accent); display: inline-flex; align-items: center; gap: 6px;">
+            Pojďme mluvit
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── KONTAKT ─────────────────────────────────────────────────── -->
+<section class="section contact" id="kontakt">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="reveal-left">
+        <div class="section-label">Kontakt</div>
+        <h2 class="section-title">Napište nám.</h2>
+        <div class="divider-line"></div>
+        <p class="section-desc">Rádi si vyslechneme váš projekt a navrhneme, jak vám můžeme pomoci.</p>
+
+        <div class="contact-info-items">
+          <div class="contact-item">
+            <div class="contact-item-icon">✉️</div>
+            <div>
+              <div class="contact-item-label">E-mail</div>
+              <div class="contact-item-value"><a href="mailto:info@ksh-partners.cz">info@ksh-partners.cz</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            <div>
+              <div class="contact-item-label">Telefon</div>
+              <div class="contact-item-value"><a href="tel:+420774982675">+420 774 982 675</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🏢</div>
+            <div>
+              <div class="contact-item-label">Společnost</div>
+              <div class="contact-item-value">KSH Partners s.r.o.<br><span style="font-weight:400; font-size:14px; color: var(--text-muted);">IČO: 19985681</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal-right">
+        <div class="form-title">Pošlete zprávu</div>
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="name">Jméno</label>
+              <input class="form-input" type="text" id="name" name="name" placeholder="Jan Novák" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">E-mail</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="jan@firma.cz" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="oblast">Oblast zájmu</label>
+            <select class="form-select" id="oblast" name="oblast">
+              <option value="">Vyberte oblast...</option>
+              <option value="kamenna">Kamenné obchody</option>
+              <option value="automaty">Výdejní automaty</option>
+              <option value="web">Weby a aplikace</option>
+              <option value="jine">Jiné</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="message">Zpráva</label>
+            <textarea class="form-textarea" id="message" name="message" placeholder="Stručně popište váš projekt nebo dotaz..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Odeslat zprávu</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#" class="footer-logo">
+        <img src="logo.png" alt="KSH Partners" width="120" height="34">
+      </a>
+      <div class="footer-links">
+        <a href="#sluzby">Co děláme</a>
+        <a href="#o-nas">O nás</a>
+        <a href="#reference">Reference</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="mailto:info@ksh-partners.cz">info@ksh-partners.cz</a>
+      </div>
+      <div class="footer-legal">
+        <div>&copy; 2025 KSH Partners s.r.o.</div>
+        <div style="margin-top: 4px;">IČO: 19985681</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- toast -->
+<div class="toast" id="toast">
+  <span class="toast-icon">✓</span>
+  Zpráva odeslána — ozveme se brzy!
+</div>
+
+<script>
+  // ── NAV scroll effect
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ── Hamburger / mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // ── Smooth scroll for all anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const id = link.getAttribute('href');
+      if (id === '#') return;
+      const target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ── IntersectionObserver for .reveal, .reveal-left, .reveal-right
+  const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  // ── Contact form
+  const form = document.getElementById('contact-form');
+  const toast = document.getElementById('toast');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    toast.classList.add('show');
+    form.reset();
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  });
+
+  // ── AURORA CANVAS ────────────────────────────────────────────────
+  (function() {
+    const canvas = document.getElementById('aurora-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    function resize() {
+      canvas.width  = canvas.offsetWidth  * window.devicePixelRatio;
+      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const W = () => canvas.offsetWidth;
+    const H = () => canvas.offsetHeight;
+
+    // Blobs — each moves on its own Lissajous-like path
+    const blobs = [
+      { x: 0.3, y: 0.35, r: 0.55, color: [200, 130, 60],  a: 0.18, vx: 0.00018, vy: 0.00012, px: 0, py: 0 },
+      { x: 0.72, y: 0.25, r: 0.45, color: [160, 80,  200], a: 0.10, vx:-0.00014, vy: 0.00016, px: 0, py: 0 },
+      { x: 0.5,  y: 0.7,  r: 0.5,  color: [220, 160, 40],  a: 0.09, vx: 0.00022, vy:-0.00010, px: 0, py: 0 },
+      { x: 0.15, y: 0.65, r: 0.4,  color: [100, 50,  180], a: 0.08, vx:-0.00016, vy:-0.00014, px: 0, py: 0 },
+      { x: 0.85, y: 0.6,  r: 0.42, color: [230, 140, 50],  a: 0.10, vx: 0.00012, vy: 0.00018, px: 0, py: 0 },
+    ];
+
+    let t = 0;
+    function draw() {
+      t += 1;
+      const w = W(), h = H();
+      ctx.clearRect(0, 0, w, h);
+
+      // Dark base
+      ctx.fillStyle = '#060606';
+      ctx.fillRect(0, 0, w, h);
+
+      // Draw each blob
+      blobs.forEach(b => {
+        // Slow organic drift
+        b.px += b.vx * w;
+        b.py += b.vy * h;
+
+        const cx = (b.x * w) + Math.sin(t * b.vx * 800 + b.py * 0.003) * w * 0.12 + b.px % (w * 0.3);
+        const cy = (b.y * h) + Math.cos(t * b.vy * 800 + b.px * 0.003) * h * 0.1  + b.py % (h * 0.3);
+        const r  = b.r * Math.max(w, h);
+
+        const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+        grad.addColorStop(0,   `rgba(${b.color[0]},${b.color[1]},${b.color[2]},${b.a})`);
+        grad.addColorStop(0.5, `rgba(${b.color[0]},${b.color[1]},${b.color[2]},${b.a * 0.4})`);
+        grad.addColorStop(1,   `rgba(${b.color[0]},${b.color[1]},${b.color[2]},0)`);
+
+        ctx.globalCompositeOperation = 'screen';
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // Subtle vignette overlay
+      ctx.globalCompositeOperation = 'source-over';
+      const vig = ctx.createRadialGradient(w/2, h/2, h * 0.1, w/2, h/2, h * 0.9);
+      vig.addColorStop(0, 'rgba(0,0,0,0)');
+      vig.addColorStop(1, 'rgba(0,0,0,0.7)');
+      ctx.fillStyle = vig;
+      ctx.fillRect(0, 0, w, h);
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+</script>
+</body>
+</html>
