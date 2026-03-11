@@ -75,7 +75,7 @@ body {
 }
 .nav-logo-text span { color: var(--ksh-gold); }
 .nav-logo-img {
-  height: 120px;
+  height: 160px;
   width: auto;
   object-fit: contain;
 }
@@ -403,9 +403,73 @@ section { padding: 6rem 0; }
   line-height: 1.6;
 }
 .onas-visual {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.onas-card {
+  background: var(--ksh-navy);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 340px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.07);
+}
+.onas-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.8rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.onas-card-since {
+  font-size: .8rem;
+  color: var(--ksh-gold);
+  background: rgba(212,175,55,.12);
+  border: 1px solid rgba(212,175,55,.25);
+  padding: .3rem .7rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.onas-card-areas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: 1.8rem;
+}
+.onas-area {
+  display: flex;
+  align-items: center;
   gap: 1rem;
+}
+.onas-area-icon {
+  width: 42px; height: 42px;
+  background: rgba(212,175,55,.1);
+  border: 1px solid rgba(212,175,55,.2);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: var(--ksh-gold);
+}
+.onas-area-title {
+  font-weight: 600;
+  font-size: .95rem;
+  color: #fff;
+}
+.onas-area-sub {
+  font-size: .8rem;
+  color: rgba(255,255,255,.45);
+  margin-top: 1px;
+}
+.onas-card-footer {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1.2rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+  font-size: .82rem;
+  color: rgba(255,255,255,.4);
 }
 .onas-stat-box {
   background: #fff;
