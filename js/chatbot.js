@@ -2,7 +2,7 @@
 (function () {
 
   // ⬇ Sem dosadit Formspree endpoint po registraci na formspree.io
-  const FORMSPREE_URL = 'https://formspree.io/f/VASE_ID';
+  const FORMSPREE_URL = 'https://formspree.io/f/mnjgdwal';
 
   /* ── FAQ odpovědi ───────────────────────────────────────────── */
   const FAQ = [

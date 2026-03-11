@@ -30,12 +30,36 @@ document.querySelectorAll('#nav-links a').forEach(a => {
 const form  = document.getElementById('contact-form');
 const toast = document.getElementById('toast');
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  // V produkci zde nahradit odesláním na backend / Formspree / EmailJS
-  toast.classList.add('show');
-  form.reset();
-  setTimeout(() => toast.classList.remove('show'), 4000);
+  const btn = form.querySelector('.btn-submit');
+  btn.disabled = true;
+  btn.textContent = 'Odesílám…';
+  try {
+    const res = await fetch('https://formspree.io/f/mnjgdwal', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        jmeno:  form.jmeno.value,
+        email:  form.email.value,
+        firma:  form.firma.value,
+        oblast: form.oblast.value,
+        zprava: form.zprava.value,
+        zdroj:  'Kontaktní formulář'
+      })
+    });
+    if (res.ok) {
+      toast.classList.add('show');
+      form.reset();
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    } else {
+      alert('Odeslání se nezdařilo. Napište nám přímo na info@ksh-partners.cz');
+    }
+  } catch {
+    alert('Odeslání se nezdařilo. Napište nám přímo na info@ksh-partners.cz');
+  }
+  btn.disabled = false;
+  btn.innerHTML = `<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg> Odeslat zprávu`;
 });
 
 // ── ANIMATE ON SCROLL ──────────────────────────────────────────
