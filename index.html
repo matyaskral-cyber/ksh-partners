@@ -487,7 +487,7 @@
       </ul>
     </div>
     <p class="footer-copy" style="margin-bottom:.5rem;">Provozovatel: KSH Partners s.r.o. &nbsp;·&nbsp; IČO: 19985681 &nbsp;·&nbsp; Chudenická 1059/30, 102 00 Praha 10 – Hostivař</p>
-    <p class="footer-copy">© 2026 KSH Partners. Všechna práva vyhrazena. &nbsp;·&nbsp; <a href="kde-pusobime.html" style="color:inherit;opacity:.5;">Kde působíme</a></p>
+    <p class="footer-copy">© 2026 KSH Partners. Všechna práva vyhrazena. &nbsp;·&nbsp; <a href="gdpr.html" style="color:inherit;opacity:.6;">Ochrana osobních údajů</a> &nbsp;·&nbsp; <a href="kde-pusobime.html" style="color:inherit;opacity:.4;">Kde působíme</a></p>
   </div>
 </footer>
 
@@ -498,5 +498,22 @@
 
 <script src="js/script.js" defer></script>
 <script src="js/chatbot.js" defer></script>
+
+<!-- Cookie consent -->
+<div id="cookie-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:8000;background:rgba(30,16,6,.97);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.08);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-family:'Inter',sans-serif;">
+  <p style="margin:0;color:rgba(255,255,255,.75);font-size:.85rem;max-width:680px;">
+    Tento web používá pouze technicky nezbytné cookies. Nepoužíváme analytické ani reklamní cookies.
+    <a href="gdpr.html" style="color:#c49078;text-decoration:underline;margin-left:.3rem;">Více informací</a>
+  </p>
+  <button onclick="document.getElementById('cookie-bar').style.display='none';localStorage.setItem('cookies_ok','1')"
+    style="background:linear-gradient(135deg,#c49078,#8b5a3c);border:none;border-radius:8px;color:#fff;padding:.55rem 1.4rem;font-size:.85rem;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;">
+    Rozumím
+  </button>
+</div>
+<script>
+  if (!localStorage.getItem('cookies_ok')) {
+    document.getElementById('cookie-bar').style.display = 'flex';
+  }
+</script>
 </body>
 </html>
