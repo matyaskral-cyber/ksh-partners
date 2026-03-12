@@ -433,6 +433,8 @@
       </div>
 
       <form class="contact-form" id="contact-form" action="https://formspree.io/f/mnjgdwal" method="POST">
+        <!-- Honeypot — skryté pole, boti ho vyplní, lidi ne -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
         <div class="fld-row-2">
           <div class="fld">
             <label>Jméno *</label>
