@@ -1222,5 +1222,17 @@ function saveEdits() {
 </script>
 
 <script src="chatbot.js" defer></script>
+
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:8000;background:#0a0a0a;border-top:1px solid rgba(255,255,255,.08);padding:1rem clamp(1.5rem,5vw,4rem);font-family:'Inter',sans-serif">
+  <div style="max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap">
+    <p style="color:rgba(255,255,255,.6);font-size:.85rem;line-height:1.6;margin:0;flex:1;min-width:200px">
+      Tento web používá pouze technicky nezbytné cookies pro správné fungování. Žádné analytické ani marketingové cookies nepoužíváme.
+      <a href="gdpr.html" style="color:#F07070;text-decoration:none">Více informací</a>
+    </p>
+    <button onclick="document.getElementById('cookieBanner').style.display='none';localStorage.setItem('cookieOk','1')" style="background:#F07070;color:#fff;border:none;border-radius:8px;padding:.6rem 1.5rem;font-size:.85rem;font-weight:600;font-family:'Space Grotesk',sans-serif;cursor:pointer;white-space:nowrap;transition:background .2s">Rozumím</button>
+  </div>
+</div>
+<script>if(!localStorage.getItem('cookieOk'))document.getElementById('cookieBanner').style.display='block';</script>
 </body>
 </html>
