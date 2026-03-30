@@ -1,7 +1,6 @@
-/* ── Záviš — KSH Partners chatbot ────────────────────────────── */
+/* ── Jarda — KSH Partners chatbot ────────────────────────────── */
 (function () {
 
-  // ⬇ Sem dosadit Formspree endpoint po registraci na formspree.io
   const FORMSPREE_URL = 'https://formspree.io/f/mnjgdwal';
 
   /* ── FAQ odpovědi ───────────────────────────────────────────── */
@@ -45,7 +44,6 @@
   ];
 
   /* ── Stav konverzace ────────────────────────────────────────── */
-  // idle → need → name → email → sending → done
   let state = 'idle';
   let lead  = { need: '', detail: '', name: '', email: '' };
 
@@ -54,7 +52,7 @@
     #ksh-chat-btn {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 9000;
       width: 56px; height: 56px; border-radius: 50%;
-      background: linear-gradient(135deg, #c49078, #8b5a3c);
+      background: linear-gradient(135deg, #F07070, #d44d4d);
       box-shadow: 0 4px 20px rgba(0,0,0,.25);
       border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
       transition: transform .2s, box-shadow .2s;
@@ -76,7 +74,7 @@
     }
 
     #ksh-chat-head {
-      background: linear-gradient(135deg, #2d1a0e, #5a3020);
+      background: linear-gradient(135deg, #1a1a1a, #333);
       padding: 1rem 1.2rem;
       display: flex; align-items: center; gap: .75rem;
     }
@@ -102,13 +100,13 @@
     .msg { max-width: 86%; line-height: 1.55; font-size: .875rem; animation: msgIn .18s ease; }
     @keyframes msgIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
     .msg.bot {
-      background: #f5ede3; color: #2d1a0e;
+      background: #fef0f0; color: #1a1a1a;
       border-radius: 4px 12px 12px 12px;
       padding: .65rem .9rem; align-self: flex-start;
     }
-    .msg.bot a { color: #8b5a3c; font-weight: 600; }
+    .msg.bot a { color: #F07070; font-weight: 600; }
     .msg.user {
-      background: linear-gradient(135deg, #c49078, #8b5a3c);
+      background: linear-gradient(135deg, #F07070, #d44d4d);
       color: #fff; border-radius: 12px 4px 12px 12px;
       padding: .65rem .9rem; align-self: flex-end;
     }
@@ -119,24 +117,24 @@
       padding: 0 1rem .75rem;
     }
     .ksh-chip {
-      background: #f5ede3; border: 1px solid #e0cfc2; border-radius: 20px;
-      padding: .32rem .8rem; font-size: .78rem; color: #6b4030;
+      background: #fef0f0; border: 1px solid #f5d0d0; border-radius: 20px;
+      padding: .32rem .8rem; font-size: .78rem; color: #c44040;
       cursor: pointer; font-family: inherit; transition: background .15s;
     }
-    .ksh-chip:hover { background: #e8d5c2; }
+    .ksh-chip:hover { background: #fcd8d8; }
 
     #ksh-chat-footer {
-      padding: .75rem 1rem; border-top: 1px solid #f0e4d8;
+      padding: .75rem 1rem; border-top: 1px solid #f0e4e4;
       display: flex; gap: .5rem;
     }
     #ksh-chat-input {
-      flex: 1; border: 1.5px solid #e0cfc2; border-radius: 8px;
+      flex: 1; border: 1.5px solid #f0d0d0; border-radius: 8px;
       padding: .55rem .8rem; font-size: .875rem; outline: none;
       font-family: inherit; transition: border-color .15s;
     }
-    #ksh-chat-input:focus { border-color: #c49078; }
+    #ksh-chat-input:focus { border-color: #F07070; }
     #ksh-chat-send {
-      background: linear-gradient(135deg, #c49078, #8b5a3c);
+      background: linear-gradient(135deg, #F07070, #d44d4d);
       border: none; border-radius: 8px; cursor: pointer;
       width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; transition: opacity .15s;
@@ -150,16 +148,16 @@
   document.head.appendChild(styleEl);
 
   document.body.insertAdjacentHTML('beforeend', `
-    <button id="ksh-chat-btn" aria-label="Chat se Závišem">
+    <button id="ksh-chat-btn" aria-label="Chat s Jardou">
       <svg width="24" height="24" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24">
         <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
       </svg>
     </button>
-    <div id="ksh-chat-box" role="dialog" aria-label="Chat se Závišem">
+    <div id="ksh-chat-box" role="dialog" aria-label="Chat s Jardou">
       <div id="ksh-chat-head">
         <div class="ksh-avatar">🤵</div>
         <div class="ksh-head-info">
-          <div class="name">Záviš</div>
+          <div class="name">Jarda</div>
           <div class="status">Asistent KSH Partners · online</div>
         </div>
         <button id="ksh-chat-close" aria-label="Zavřít">✕</button>
@@ -246,7 +244,6 @@
         return;
       }
 
-      // Uživatel napsal volně — interpretujeme jako zájem o poptávku
       const keywords = /chci|potřebuji|potřebuju|hledám|zajímá mě|mám zájem|chtěl bych|chtěla bych|poptávk/i;
       if (keywords.test(text)) {
         lead.need = text;
@@ -256,7 +253,6 @@
         return;
       }
 
-      // Jiné — zkusíme FAQ nebo vyzveme k upřesnění
       await botSay('Rozumím. Abych vám mohl pomoct, řekněte mi více — nebo vyberte níže:');
       setChips(['Mám zájem o web', 'Chci aplikaci', 'Kolik stojí web?', 'Kontakt'], (c) => handleInput(c));
       return;
@@ -312,7 +308,7 @@
       jmeno: lead.name,
       email: lead.email,
       zprava: lead.need,
-      zdroj: 'Záviš chatbot'
+      zdroj: 'Jarda chatbot'
     };
 
     try {
@@ -342,7 +338,7 @@
     if (!opened) {
       opened = true;
       setTimeout(async () => {
-        await botSay('Dobrý den! Jmenuji se <b>Záviš</b> a jsem asistent KSH Partners. 👋', 400);
+        await botSay('Dobrý den! Jmenuji se <b>Jarda</b> a jsem asistent KSH Partners. 👋', 400);
         await botSay('Mohu vám poradit se službami, nebo rovnou zpracuji vaši poptávku. Co by se vám hodilo?', 600);
         setChips(['Mám zájem o web', 'Chci aplikaci', 'Kolik stojí web?', 'Jak rychle dodáte?', 'Kontakt'],
           (c) => handleInput(c));

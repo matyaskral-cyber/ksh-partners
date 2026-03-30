@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://ksh-partners.cz/sitemap.xml

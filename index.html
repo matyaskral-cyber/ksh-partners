@@ -1,519 +1,1226 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tvorba webů a aplikací na míru | KSH Partners</title>
-  <meta name="description" content="Tvoříme weby a aplikace na míru pro firmy po celé České republice. Sídlíme v jižních Čechách, pracujeme online kdekoliv. Web dostanete do 3 týdnů a budete si ho spravovat sami. Nezávazná konzultace zdarma.">
-  <meta name="keywords" content="tvorba webů na míru, webdesign, weby pro firmy, aplikace na míru, software na míru, tvorba webu Praha, webdesign Brno, weby na míru Ostrava, tvorba webů jižní Čechy, KSH Partners, webové aplikace, e-shop na míru, rezervační systém, firemní web">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="KSH Partners">
-  <link rel="canonical" href="https://ksh-partners.cz">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KSH Partners — Retail. Vending. Digital.</title>
+<meta name="description" content="KSH Partners s.r.o. — Kamenné obchody, výdejní automaty a digitální řešení pro skutečný růst vašeho podnikání.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ─── Reset & Base ─────────────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+::selection{background:#F07070;color:#0a0a0a}
+html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="KSH Partners">
-  <meta property="og:title" content="Tvorba webů a aplikací na míru | KSH Partners">
-  <meta property="og:description" content="Tvoříme weby a aplikace na míru pro firmy po celé České republice. Sídlíme v jižních Čechách, pracujeme online kdekoliv. Nezávazná konzultace zdarma.">
-  <meta property="og:url" content="https://ksh-partners.cz">
-  <meta property="og:locale" content="cs_CZ">
-  <meta property="og:image" content="https://ksh-partners.cz/logo.png">
+:root{
+  --bg:#e8e4df;
+  --surface:#f2efeb;
+  --coral:#F07070;
+  --coral-dim:rgba(240,112,112,.12);
+  --text:#1a1a1a;
+  --muted:#7a7570;
+  --border:rgba(0,0,0,.08);
+  --font-display:'Space Grotesk',sans-serif;
+  --font-body:'Inter',sans-serif;
+}
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Tvorba webů a aplikací na míru | KSH Partners">
-  <meta name="twitter:description" content="Weby a aplikace na míru pro firmy po celé ČR. Sídlíme v jižních Čechách, pracujeme online kdekoliv. Konzultace zdarma.">
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--font-body);font-weight:300;
+  line-height:1.6;overflow-x:hidden;
+  cursor:auto;
+}
 
-  <!-- JSON-LD strukturovaná data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "KSH Partners",
-    "url": "https://ksh-partners.cz",
-    "logo": "https://ksh-partners.cz/logo.png",
-    "description": "Tvoříme weby a aplikace na míru pro firmy po celé České republice. Sídlíme v jižních Čechách, pracujeme online kdekoliv.",
-    "telephone": "+420774982675",
-    "email": "info@ksh-partners.cz",
-    "address": {
-      "@type": "PostalAddress",
-      "addressRegion": "Jihočeský kraj",
-      "addressCountry": "CZ"
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Česká republika"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+420774982675",
-      "email": "info@ksh-partners.cz",
-      "contactType": "customer service",
-      "availableLanguage": "cs"
-    },
-    "sameAs": ["https://pml-system.cz"],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Služby",
-      "itemListElement": [
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Tvorba webů na míru — jižní Čechy", "areaServed": "Jihočeský kraj"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Webové aplikace a software na míru"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Provoz kamenných prodejen"}},
-        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Výdejní automaty — vending"}}
-      ]
-    }
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ─── Custom Cursor ────────────────────────────────────────────── */
+.cursor-dot{
+  position:fixed;width:8px;height:8px;border-radius:50%;
+  background:var(--coral);pointer-events:none;z-index:9999;
+  transition:transform .1s;mix-blend-mode:difference;
+}
+.cursor-ring{
+  position:fixed;width:36px;height:36px;border-radius:50%;
+  border:1.5px solid var(--coral);pointer-events:none;z-index:9998;
+  transition:width .3s cubic-bezier(.25,.46,.45,.94),height .3s cubic-bezier(.25,.46,.45,.94),border-color .3s;
+}
+.cursor-ring.hover{width:56px;height:56px;border-color:var(--text)}
+@media(max-width:768px){.cursor-dot,.cursor-ring{display:none}body{cursor:auto}}
+
+/* ─── Navigation ───────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:clamp(1rem,3vw,2rem) clamp(1.5rem,5vw,4rem);
+  display:flex;align-items:center;justify-content:space-between;
+  /* mix-blend-mode:difference; */
+}
+.nav-logo{font-family:var(--font-display);font-weight:700;font-size:1.2rem;letter-spacing:-.02em;color:var(--coral)}
+.nav-links{display:flex;gap:clamp(1.5rem,3vw,3rem);align-items:center}
+.nav-links a{
+  font-size:.8rem;font-weight:400;letter-spacing:.05em;text-transform:uppercase;
+  color:var(--muted);transition:color .3s;
+}
+.nav-links a:hover{color:var(--coral)}
+.nav-cta{
+  font-size:.75rem;padding:.6rem 1.4rem;border:1px solid var(--text);
+  border-radius:100px;transition:all .3s cubic-bezier(.25,.46,.45,.94);
+  color:var(--text);
+}
+.nav-cta:hover{background:transparent;color:var(--coral);border-color:var(--coral)}
+
+.menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:101}
+.menu-toggle span{width:24px;height:1.5px;background:#fff;transition:all .3s}
+
+@media(max-width:768px){
+  .nav-links{
+    position:fixed;inset:0;background:rgba(232,228,223,.98);
+    flex-direction:column;justify-content:center;align-items:center;gap:2rem;
+    opacity:0;pointer-events:none;transition:opacity .4s;
   }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"></noscript>
-  <link rel="stylesheet" href="css/style.css?v=14">
-  <style>
-    /* Mobile nav open */
-    #nav-links.mobile-open {
-      display: flex !important;
-      flex-direction: column;
-      position: absolute;
-      top: 100%;
-      left: 0; right: 0;
-      background: rgba(45,26,14,.98);
-      padding: 1rem;
-      gap: .25rem;
-    }
-    #nav-links.mobile-open a { padding: .7rem 1rem; width: 100%; }
-  </style>
+  .nav-links.open{opacity:1;pointer-events:all}
+  .nav-links a{font-size:1.2rem;color:var(--muted)}
+  .menu-toggle{display:flex}
+  .menu-toggle span{background:var(--text)}
+}
+
+/* ─── Hero ─────────────────────────────────────────────────────── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  align-items:stretch;
+  padding:clamp(2rem,5vw,6rem) clamp(1.5rem,5vw,4rem);
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,#1a1816 0%,#0a0a0a 40%,#12100e 100%);color:#e8e8e8;
+}
+.hero-label{
+  font-size:clamp(.65rem,1vw,.8rem);text-transform:uppercase;letter-spacing:.15em;
+  color:var(--coral);font-weight:500;margin-bottom:1.5rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.hero-label::before{content:'';width:40px;height:1px;background:var(--coral)}
+.hero h1{
+  font-family:var(--font-display);font-weight:700;
+  font-size:clamp(2.8rem,8vw,8rem);line-height:.92;
+  letter-spacing:-.04em;max-width:14ch;margin-bottom:2rem;
+}
+.hero h1 em{font-style:normal;color:var(--coral)}
+.hero-sub{
+  font-size:clamp(.95rem,1.5vw,1.15rem);color:var(--muted);
+  max-width:50ch;line-height:1.7;margin-bottom:3rem;
+}
+.hero-scroll{
+  position:absolute;right:clamp(1.5rem,5vw,4rem);bottom:clamp(2rem,5vw,4rem);
+  writing-mode:vertical-rl;font-size:.7rem;letter-spacing:.15em;
+  text-transform:uppercase;color:rgba(255,255,255,.4);z-index:2;
+  display:flex;align-items:center;gap:1rem;
+}
+.hero-scroll::after{content:'';width:1px;height:60px;background:var(--muted);animation:scrollDown 2s ease infinite}
+@keyframes scrollDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ─── Hero Layout ──────────────────────────────────────────────── */
+.hero-layout{
+  position:relative;z-index:2;
+  display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);
+  align-items:center;width:100%;max-width:1400px;margin:0 auto;
+}
+@media(max-width:768px){.hero-layout{grid-template-columns:1fr;text-align:center}}
+.hero-text-col{text-align:left}
+@media(max-width:768px){.hero-text-col{text-align:center;order:2}}
+.hero-logo-col{display:flex;justify-content:center;align-items:center}
+@media(max-width:768px){.hero-logo-col{order:1}}
+
+/* ─── Sticker on "Partner" text ─────────────────────────────────── */
+.sticker-wrap{
+  position:relative;display:inline-block;overflow:visible;
+  perspective:800px;
+}
+.sticker-under-text{
+  position:absolute;left:0;top:0;
+  font-family:var(--font-display);font-weight:700;
+  font-size:inherit;line-height:inherit;letter-spacing:inherit;
+  color:var(--coral);
+  opacity:0;pointer-events:none;
+  transition:opacity .4s .15s;
+}
+.sticker-wrap:hover .sticker-under-text{opacity:1}
+.sticker-label{
+  display:inline-block;position:relative;
+  transition:transform .4s ease, opacity .4s ease;
+  transform-origin:left center;
+  backface-visibility:hidden;
+}
+.sticker-wrap:hover .sticker-label{
+  transform:rotateX(-90deg);
+  opacity:0;
+}
+.sticker-logo{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%) rotateY(90deg);
+  width:100px;height:100px;max-width:120px;max-height:120px;
+  pointer-events:none;z-index:100;
+  transition:transform .4s ease .1s;
+  transform-origin:left center;
+}
+.sticker-wrap:hover .sticker-logo{
+  transform:translate(-50%,-50%) rotateY(0deg);
+}
+/* ─── Metallic Canvas (large, right) ───────────────────────────── */
+.hero-metallic-canvas{
+  width:clamp(400px,55vw,900px);height:clamp(400px,55vw,900px);
+  border-radius:32px;display:block;object-fit:contain;
+}
+
+/* ─── Hero Scroll Zoom ─────────────────────────────────────────── */
+.hero-logo-col{will-change:transform}
+
+/* ─── Nav Hidden ───────────────────────────────────────────────── */
+nav.nav-hidden{opacity:0;pointer-events:none;transition:opacity .3s ease}
+
+/* ─── Pillars Horizontal Scroll ────────────────────────────────── */
+.pillars-scroll-container{position:relative}
+.pillars-sticky{
+  height:100vh;overflow:hidden;
+  background:var(--coral);
+  padding:0;
+}
+.pillars-track{
+  display:flex;height:100vh;will-change:transform;flex-wrap:nowrap;
+}
+.pillar-card{
+  position:relative;min-width:100vw;width:100vw;height:100vh;
+  border-radius:0;border:none;padding:0;cursor:default;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  background:transparent;transition:background .4s ease;
+}
+.pillar-card:hover{background:#fff}
+.card-inner{text-align:center;max-width:600px;padding:0 40px}
+.card-title{
+  font-family:var(--font-display);font-size:clamp(48px,8vw,96px);
+  font-weight:700;color:#fff;transition:color .4s ease;margin:0 0 24px 0;
+}
+.pillar-card:hover .card-title{color:#1a1a1a}
+.card-desc{
+  opacity:0;transform:translateY(16px);
+  transition:opacity .4s ease .1s,transform .4s ease .1s;
+  font-size:18px;line-height:1.7;color:#444;margin:0;
+}
+.pillar-card:hover .card-desc{opacity:1;transform:translateY(0)}
+.card-tag{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);transition:color .4s ease;
+}
+.pillar-card:hover .card-tag{color:#bbb}
+.card-number{
+  position:absolute;bottom:32px;right:48px;
+  font-family:var(--font-display);font-size:120px;font-weight:700;
+  line-height:1;color:rgba(255,255,255,.08);transition:color .4s ease;
+}
+.pillar-card:hover .card-number{color:rgba(0,0,0,.05)}
+@media(max-width:768px){
+  .pillars-scroll-container{height:auto}
+  .pillars-sticky{position:relative;height:auto;padding:clamp(3rem,6vw,5rem) 5vw}
+  .pillars-track{flex-direction:column;gap:1rem}
+  .pillar-card{min-width:100%;height:auto;min-height:300px}
+}
+
+/* ─── Section Shared ───────────────────────────────────────────── */
+.section{padding:clamp(4rem,10vw,10rem) clamp(1.5rem,5vw,4rem)}
+.section-label{
+  font-size:clamp(.6rem,.9vw,.75rem);text-transform:uppercase;letter-spacing:.15em;
+  color:var(--coral);font-weight:500;margin-bottom:2rem;
+  display:flex;align-items:center;gap:.75rem;
+}
+.section-label::before{content:'';width:30px;height:1px;background:var(--coral)}
+.section-title{
+  font-family:var(--font-display);font-weight:600;
+  font-size:clamp(2rem,5vw,4.5rem);line-height:1;
+  letter-spacing:-.03em;margin-bottom:clamp(2rem,5vw,4rem);
+  max-width:20ch;
+}
+
+/* ─── Mobile Optimization ──────────────────────────────────────── */
+@media(max-width:768px){
+  /* Hero */
+  .hero{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;min-height:100vh}
+  .hero h1{font-size:clamp(48px,14vw,72px);text-align:center;max-width:100%}
+  .hero-metallic-canvas{width:320px!important;height:320px!important;margin:0 auto 24px}
+  /* Pillar cards mobile text */
+  .card-title{font-size:clamp(36px,10vw,56px)!important}
+  .card-inner{padding:0 24px!important}
+  .card-number{font-size:80px!important;right:24px!important;bottom:24px!important}
+  .card-tag{bottom:24px!important}
+  /* Notes */
+  .notes-grid{max-width:100%!important;gap:16px;padding:0 16px}
+  .note{width:clamp(90px,40vw,130px)!important;height:clamp(90px,40vw,130px)!important}
+  /* Contact */
+  .contact-section{padding:60px 24px}
+  .contact-inner{grid-template-columns:1fr!important;gap:40px;padding:0}
+  /* Hero logo sizing */
+  .hero img, .hero-logo, .hero [src*="logo"]{width:280px!important;height:280px!important}
+}
+
+/* ─── Reveal Animation ─────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(50px);transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+
+/* ─── Services (Pilíře) ────────────────────────────────────────── */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+@media(max-width:900px){.services-grid{grid-template-columns:1fr}}
+
+.service-card{
+  background:var(--surface);padding:clamp(2rem,4vw,3.5rem);
+  position:relative;overflow:hidden;
+  transition:background .4s;min-height:420px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+}
+.service-card:hover{background:#eae6e1}
+.service-card::before{
+  content:attr(data-num);position:absolute;top:clamp(1.5rem,3vw,2.5rem);right:clamp(1.5rem,3vw,2.5rem);
+  font-family:var(--font-display);font-size:clamp(4rem,8vw,7rem);font-weight:700;
+  color:rgba(0,0,0,.04);line-height:1;
+}
+.service-card h3{
+  font-family:var(--font-display);font-size:clamp(1.5rem,2.5vw,2rem);
+  font-weight:600;letter-spacing:-.02em;margin-bottom:1rem;
+}
+.service-card p{
+  color:var(--muted);font-size:.9rem;line-height:1.7;max-width:35ch;
+}
+.service-tag{
+  display:inline-block;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;
+  padding:.35rem .8rem;border:1px solid var(--border);border-radius:100px;
+  color:var(--muted);margin-top:1.5rem;transition:all .3s;
+}
+.service-card:hover .service-tag{border-color:var(--coral);color:var(--coral)}
+
+/* ─── Refs Horizontal Scroll ───────────────────────────────────── */
+.refs-scroll-container{height:500vh;position:relative}
+.refs-sticky{
+  position:sticky;top:0;height:100vh;overflow:hidden;
+  background:#0a0a0a;display:flex;align-items:center;
+}
+.refs-track{display:flex;height:100vh;will-change:transform}
+.ref-card{
+  position:relative;min-width:100vw;width:100vw;height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  background:transparent;transition:background .4s ease;cursor:default;
+}
+.ref-card:hover{background:rgba(240,112,112,.08)}
+.ref-card .card-inner{text-align:center;max-width:640px;padding:0 40px}
+.ref-card .card-title{
+  font-size:clamp(42px,7vw,86px);font-weight:700;
+  color:rgba(255,255,255,.15);transition:color .4s ease;margin:0 0 24px 0;
+}
+.ref-card:hover .card-title{color:var(--coral)}
+.ref-card .card-desc{
+  opacity:0;transform:translateY(16px);
+  transition:opacity .4s ease .1s,transform .4s ease .1s;
+  font-size:17px;line-height:1.7;color:rgba(255,255,255,.6);margin:0;
+}
+.ref-card:hover .card-desc{opacity:1;transform:translateY(0)}
+.ref-card .card-tag{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  font-size:11px;letter-spacing:.15em;
+  color:rgba(255,255,255,.2);transition:color .4s ease;white-space:nowrap;
+}
+.ref-card:hover .card-tag{color:rgba(240,112,112,.7)}
+.ref-card .card-number{
+  position:absolute;bottom:32px;right:48px;
+  font-family:var(--font-display);font-size:120px;font-weight:700;
+  line-height:1;color:rgba(255,255,255,.03);transition:color .4s ease;
+}
+.ref-card:hover .card-number{color:rgba(240,112,112,.08)}
+
+/* ─── About Reveal ─────────────────────────────────────────────── */
+.about-reveal{
+  min-height:100vh;background:#0a0a0a;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;cursor:default;
+}
+.about-reveal::before{
+  content:'';position:absolute;inset:0;background:var(--coral);
+  transform:translateY(100%);transition:transform .6s cubic-bezier(.16,1,.3,1);z-index:0;
+}
+.about-reveal:hover::before{transform:translateY(0)}
+.about-inner{position:relative;z-index:1;max-width:960px;width:100%;padding:80px 60px;text-align:center}
+.about-title{
+  font-family:var(--font-display);font-size:clamp(52px,9vw,110px);
+  font-weight:700;color:rgba(255,255,255,.12);margin:0 0 48px 0;
+  transition:color .4s ease;line-height:1.05;letter-spacing:-.03em;
+}
+.about-reveal:hover .about-title{color:#fff}
+.about-content{
+  opacity:0;transform:translateY(20px);
+  transition:opacity .5s ease .2s,transform .5s ease .2s;
+}
+.about-reveal:hover .about-content{opacity:1;transform:translateY(0)}
+.about-content>p{font-size:18px;line-height:1.8;color:#fff;margin:0 0 20px 0}
+.about-content strong{font-weight:700;color:#fff}
+.about-values{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;text-align:left;
+}
+@media(max-width:768px){.about-values{grid-template-columns:1fr}}
+.about-value{background:rgba(255,255,255,.1);border-radius:12px;padding:28px}
+.about-value strong{display:block;font-size:16px;font-weight:700;color:#fff;margin-bottom:8px}
+.about-value p{font-size:14px;line-height:1.6;color:rgba(255,255,255,.7);margin:0}
+
+/* ─── References ───────────────────────────────────────────────── */
+.ref-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px}
+@media(max-width:768px){.ref-grid{grid-template-columns:1fr}}
+.ref-card{
+  background:var(--surface);padding:clamp(2rem,3vw,3rem);
+  position:relative;overflow:hidden;transition:background .4s;
+}
+.ref-card:hover{background:#eae6e1}
+.ref-card .ref-year{
+  font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--coral);margin-bottom:1rem;
+}
+.ref-card h3{
+  font-family:var(--font-display);font-size:clamp(1.2rem,2vw,1.6rem);
+  font-weight:600;letter-spacing:-.02em;margin-bottom:.75rem;
+}
+.ref-card p{font-size:.85rem;color:var(--muted);line-height:1.6;max-width:45ch}
+.ref-card .ref-tech{
+  margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.4rem;
+}
+.ref-card .ref-tech span{
+  font-size:.6rem;text-transform:uppercase;letter-spacing:.05em;
+  padding:.3rem .7rem;border:1px solid var(--border);border-radius:100px;
+  color:var(--muted);
+}
+
+/* ─── Post-it Notes Wall ──────────────────────────────────────── */
+.notes-section{
+  min-height:100vh;background:#0a0a0a;
+  display:flex;align-items:center;justify-content:center;padding:80px 40px;
+}
+.notes-grid{
+  display:flex;flex-wrap:wrap;gap:18px;
+  max-width:1100px;width:100%;justify-content:center;align-items:center;
+}
+.note{
+  width:clamp(110px,13vw,150px);height:clamp(110px,13vw,150px);
+  background:var(--coral);border-radius:1px;padding:18px 16px 20px;
+  transform:rotate(var(--r)) translateY(var(--y));cursor:pointer;
+  transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s ease;
+  display:flex;flex-direction:column;justify-content:space-between;
+  /* Realistic paper shadow — heavier on bottom-right corner */
+  box-shadow:
+    2px 3px 6px rgba(0,0,0,.3),
+    6px 10px 20px rgba(0,0,0,.35),
+    inset 0 0 40px rgba(0,0,0,.03);
+  /* Paper texture via gradient noise */
+  background-image:
+    linear-gradient(135deg,rgba(255,255,255,.08) 0%,transparent 50%,rgba(0,0,0,.04) 100%);
+  background-blend-mode:overlay;
+  background-color:var(--coral);
+}
+/* Curled corner effect */
+.note::after{
+  content:'';position:absolute;bottom:0;right:0;
+  width:28px;height:28px;
+  background:linear-gradient(135deg,transparent 50%,rgba(0,0,0,.06) 50%,rgba(0,0,0,.12));
+  border-radius:0 0 1px 0;
+}
+.note:hover{
+  transform:rotate(0deg) scale(1.08) translateY(-6px);
+  box-shadow:8px 20px 40px rgba(0,0,0,.55),2px 4px 8px rgba(0,0,0,.3);
+  z-index:10;
+}
+.note:nth-child(odd){background-color:#F07070}
+.note:nth-child(even){background-color:#ee6e6e}
+.note:nth-child(3n){background-color:#f17a7a}
+.note:nth-child(4n){background-color:#ec6565}
+.note:nth-child(5n){background-color:#f48585}
+.note-label{
+  font-size:7px;letter-spacing:.14em;font-weight:700;
+  color:rgba(255,255,255,.45);
+}
+.note-title{
+  font-family:var(--font-display);font-size:clamp(11px,1.3vw,15px);
+  font-weight:700;color:rgba(255,255,255,.9);line-height:1.25;
+}
+.note-wip{font-size:10px;color:rgba(255,255,255,.45);letter-spacing:.08em;margin-top:6px}
+
+/* ─── Contact ──────────────────────────────────────────────────── */
+.contact-section{
+  min-height:100vh;background:#0a0a0a;display:flex;align-items:center;padding:80px 60px;
+}
+@media(max-width:768px){.contact-section{padding:60px 24px}}
+.contact-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;
+  max-width:1100px;width:100%;margin:0 auto;
+}
+@media(max-width:768px){.contact-inner{grid-template-columns:1fr;gap:48px}}
+.contact-label{font-size:11px;letter-spacing:.15em;color:var(--coral);font-weight:600;display:block;margin-bottom:20px}
+.contact-title{
+  font-family:var(--font-display);font-size:clamp(36px,5vw,60px);
+  font-weight:700;color:#fff;line-height:1.1;margin:0 0 24px 0;letter-spacing:-.02em;
+}
+.contact-desc{font-size:15px;line-height:1.8;color:rgba(255,255,255,.45);margin:0 0 40px 0}
+.contact-info{display:flex;flex-direction:column;gap:20px}
+.contact-info-item{display:flex;flex-direction:column;gap:4px}
+.ci-label{font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.3);font-weight:600}
+.ci-value{font-size:16px;color:#fff;font-weight:500;text-decoration:none;transition:color .3s}
+.ci-value:hover{color:var(--coral)}
+.contact-right input,.contact-right textarea,.contact-right select{
+  width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:8px;padding:14px 16px;color:#fff;font-size:15px;font-family:var(--font-body);
+  margin-bottom:12px;outline:none;transition:border-color .2s ease;box-sizing:border-box;
+}
+.contact-right input:focus,.contact-right textarea:focus,.contact-right select:focus{border-color:var(--coral)}
+.contact-right input::placeholder,.contact-right textarea::placeholder{color:rgba(255,255,255,.25)}
+.contact-right textarea{min-height:140px;resize:vertical}
+.contact-right select{appearance:none;cursor:pointer;color:rgba(255,255,255,.25)}
+.contact-right select option{background:#0a0a0a;color:#fff}
+.contact-right button[type="submit"]{
+  width:100%;background:var(--coral);color:#fff;border:none;border-radius:8px;
+  padding:16px;font-size:15px;font-weight:600;font-family:var(--font-display);
+  cursor:pointer;transition:background .2s ease,transform .2s ease;margin-top:4px;
+}
+.contact-right button[type="submit"]:hover{background:#d44d31;transform:translateY(-1px)}
+
+/* ─── Footer ───────────────────────────────────────────────────── */
+footer{
+  padding:clamp(2rem,4vw,3.5rem) clamp(1.5rem,5vw,4rem);
+  border-top:1px solid rgba(255,255,255,.06);
+  background:#0a0a0a;
+  display:flex;flex-direction:column;align-items:center;gap:1rem;text-align:center;
+}
+.footer-center{font-size:.75rem;color:rgba(255,255,255,.35);line-height:1.7}
+.footer-center a{color:rgba(255,255,255,.35);transition:color .3s;text-decoration:none}
+.footer-center a:hover{color:var(--coral)}
+
+/* ─── Divider ──────────────────────────────────────────────────── */
+.divider{width:100%;height:1px;background:var(--border)}
+
+
+/* ─── Admin Panel ──────────────────────────────────────────────── */
+.admin-toggle{
+  position:fixed;bottom:1.5rem;right:1.5rem;z-index:200;
+  width:44px;height:44px;border-radius:50%;background:var(--surface);
+  border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .3s;opacity:.3;
+}
+.admin-toggle:hover{opacity:1;border-color:var(--coral)}
+.admin-toggle svg{width:18px;height:18px;stroke:var(--muted)}
+
+.admin-panel{
+  position:fixed;top:0;right:-480px;bottom:0;width:480px;max-width:90vw;z-index:300;
+  background:var(--surface);border-left:1px solid var(--border);
+  transition:right .4s cubic-bezier(.25,.46,.45,.94);
+  overflow-y:auto;padding:2rem;
+}
+.admin-panel.open{right:0}
+.admin-panel h2{
+  font-family:var(--font-display);font-size:1.3rem;font-weight:600;
+  margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;
+}
+.admin-panel h2 button{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.5rem}
+.admin-group{margin-bottom:2rem}
+.admin-group label{
+  display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;
+  color:var(--coral);margin-bottom:.4rem;font-weight:500;
+}
+.admin-group input,.admin-group textarea{
+  width:100%;background:var(--surface);border:1px solid var(--border);
+  color:var(--text);padding:.7rem 1rem;font-family:var(--font-body);
+  font-size:.85rem;border-radius:6px;outline:none;
+}
+.admin-group textarea{min-height:80px;resize:vertical}
+.admin-save{
+  padding:.7rem 2rem;background:var(--coral);color:var(--bg);border:none;
+  font-family:var(--font-display);font-size:.8rem;font-weight:600;
+  border-radius:100px;cursor:pointer;transition:transform .2s;
+}
+.admin-save:hover{transform:scale(1.03)}
+.admin-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:299;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.admin-overlay.open{opacity:1;pointer-events:all}
+
+/* ─── Mobile Pillars Reset (must be last to win specificity) ───── */
+@media(max-width:768px){
+  .pillars-scroll-container,
+  .pin-spacer{height:auto!important;padding:0!important;margin:0!important;overflow:visible!important;background:var(--coral)!important}
+  .pillars-scroll-container{min-height:300svh!important;background:var(--coral)!important}
+  .pillars-sticky{position:relative!important;height:auto!important;overflow:visible!important;background:var(--coral)!important}
+  .pillars-track{display:flex!important;flex-direction:column!important;transform:none!important;width:100%!important;gap:0!important;background:var(--coral)!important}
+  .pillar-card{min-width:0!important;width:100%!important;max-width:100%!important;height:100svh!important;flex-shrink:0!important;background:var(--coral)!important}
+}
+</style>
 </head>
 <body>
 
-<!-- ── NAVIGACE ──────────────────────────────────────────────── -->
-<nav class="nav" id="nav">
-  <div class="container nav-inner">
-    <a href="#" class="nav-logo" style="font-size:1.1rem;font-weight:800;color:#fff;letter-spacing:-.02em;text-decoration:none;">KSH Partners</a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#sluzby">Co děláme</a></li>
-      <li><a href="#o-nas">O nás</a></li>
-      <li><a href="#reference">Reference</a></li>
-      <li><a href="#aktuality">Aktuality</a></li>
-      <li><a href="#kontakt" class="nav-cta">Kontakt</a></li>
-    </ul>
-    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+
+<!-- Navigation -->
+<nav>
+  <a href="#" class="nav-logo">KSH</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#sluzby">Služby</a>
+    <a href="#o-nas">O nás</a>
+    <a href="#reference">Reference</a>
+    <a href="#kontakt" class="nav-cta">Kontakt</a>
+  </div>
+  <div class="menu-toggle" id="menuToggle" onclick="document.getElementById('navLinks').classList.toggle('open')">
+    <span></span><span></span><span></span>
   </div>
 </nav>
 
-<!-- ── HERO ─────────────────────────────────────────────────── -->
-<section class="hero" id="uvod">
-  <div class="hero-bg" id="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="container">
-    <div class="hero-layout">
-      <div class="hero-content">
-        <div class="hero-tag">KSH Partners · Česká republika</div>
-        <h1>Váš partner pro <em>skutečný</em> růst.</h1>
-        <p class="hero-desc">
-          Provozujeme kamenné obchody, výdejní automaty a tvoříme digitální řešení.
-          Čtyři partneři. Jeden cíl: budovat byznys, který funguje.
-        </p>
-        <div class="hero-btns">
-          <a href="#sluzby" class="btn btn-gold">
-            Co děláme
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
-          <a href="#kontakt" class="btn btn-outline">Kontaktujte nás</a>
+<!-- SVG Filters for sticker peel -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <filter id="pointLight"><feGaussianBlur stdDeviation="1" result="blur"/><feSpecularLighting result="spec" in="blur" specularExponent="100" specularConstant="0.21" lightingColor="white"><fePointLight id="pl" x="100" y="100" z="300"/></feSpecularLighting><feComposite in="spec" in2="SourceGraphic" result="lit"/><feComposite in="lit" in2="SourceAlpha" operator="in"/></filter>
+    <filter id="pointLightFlipped"><feGaussianBlur stdDeviation="10" result="blur"/><feSpecularLighting result="spec" in="blur" specularExponent="100" specularConstant="1.47" lightingColor="white"><fePointLight id="plFlipped" x="100" y="100" z="300"/></feSpecularLighting><feComposite in="spec" in2="SourceGraphic" result="lit"/><feComposite in="lit" in2="SourceAlpha" operator="in"/></filter>
+    <filter id="dropShadow"><feDropShadow dx="2" dy="4" stdDeviation="1.11" flood-color="black" flood-opacity="0.37"/></filter>
+    <filter id="expandAndFill"><feOffset dx="0" dy="0" in="SourceAlpha" result="shape"/><feFlood flood-color="rgb(179,179,179)" result="flood"/><feComposite operator="in" in="flood" in2="shape"/></filter>
+  </defs>
+</svg>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-layout">
+    <!-- Left: text with sticker peel on "Partner" -->
+    <div class="hero-text-col" style="align-self:end;padding-bottom:clamp(2rem,5vw,5rem)">
+      <h1 class="reveal reveal-delay-1" id="heroTitle">
+        <span class="sticker-wrap">
+          <span class="sticker-under-text">KSH</span>
+          <span class="sticker-label">Partner</span>
+          <img src="logo-small.png" alt="KSH" class="sticker-logo">
+        </span>
+        pro<br><em>skutečný</em> růst
+      </h1>
+    </div>
+    <!-- Right: large metallic logo -->
+    <div class="hero-logo-col reveal reveal-delay-1">
+      <canvas id="metallicCanvas" class="hero-metallic-canvas"></canvas>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll<span></span></div>
+</section>
+
+
+<!-- Pillars (horizontal sticky scroll) -->
+<div class="pillars-scroll-container" id="sluzby">
+  <div class="pillars-sticky">
+    <div class="pillars-track" id="pillarsTrack">
+      <div class="pillar-card">
+        <div class="card-inner">
+          <h3 class="card-title" id="svc3Title">Weby & Aplikace</h3>
+          <p class="card-desc" id="svc3Desc">Navrhujeme a vyvíjíme weby, e-shopy a mobilní aplikace na míru. Od vizuálně výjimečných prezentací po komplexní systémy s platební bránou a vlastním backoffice.</p>
         </div>
+        <span class="card-tag">Digital</span>
+        <span class="card-number">01</span>
       </div>
-      <div class="hero-logo-wrap">
-        <img src="logo.png" alt="KSH Partners" class="hero-logo" width="300" height="300">
+      <div class="pillar-card">
+        <div class="card-inner">
+          <h3 class="card-title" id="svc2Title">Výdejní automaty</h3>
+          <p class="card-desc" id="svc2Desc">Bezobslužný prodej 24/7 prostřednictvím moderních výdejních automatů. Strategické umístění, průběžný servis a telemetrický monitoring v reálném čase.</p>
+        </div>
+        <span class="card-tag">Vending</span>
+        <span class="card-number">02</span>
+      </div>
+      <div class="pillar-card">
+        <div class="card-inner">
+          <h3 class="card-title" id="svc1Title">Kamenné obchody</h3>
+          <p class="card-desc" id="svc1Desc">Zakládáme a provozujeme vlastní maloobchodní prodejny. Od výběru lokace, přes vybavení až po optimalizaci zákaznické zkušenosti. Kompletní řešení pod jednou střechou.</p>
+        </div>
+        <span class="card-tag">Maloobchod</span>
+        <span class="card-number">03</span>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- ── CO DĚLÁME ─────────────────────────────────────────────── -->
-<section id="sluzby">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Naše služby</span>
-      <h2 class="section-title">Tři oblasti.<br>Jeden partner.</h2>
-      <p class="section-sub">
-        Od fyzických prodejen přes automatizovaný prodej až po digitální svět —
-        pokrýváme celé spektrum moderního podnikání.
-      </p>
-    </div>
-    <div class="services-grid">
-
-      <!-- Kamenné obchody -->
-      <div class="service-card">
-        <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
-        <h3>Kamenné obchody</h3>
-        <p>
-          Provozujeme a optimalizujeme maloobchodní prodejny s důrazem na zákaznickou
-          zkušenost, provozní efektivitu a ziskovost. Řešíme vše od sortimentu po každodenní chod.
-        </p>
-        <div class="service-tags">
-          <span class="service-tag">Maloobchod</span>
-          <span class="service-tag">Provoz prodejen</span>
-          <span class="service-tag">Optimalizace</span>
+<!-- About Reveal -->
+<div class="about-reveal" id="o-nas">
+  <div class="about-inner">
+    <h2 class="about-title">Děláme věci jinak</h2>
+    <div class="about-content">
+      <p>Jsme čtyři partneři, kteří spojili zkušenosti z retailu, technologií a podnikání. <strong>Neděláme kompromisy</strong> — každý projekt bereme jako vlastní. Působíme z jižních Čech, pracujeme po celé ČR.</p>
+      <p>Věříme, že budoucnost obchodu je v propojení fyzického a digitálního světa. Proto stavíme prodejny, instalujeme automaty a vyvíjíme software — vše pod jednou střechou.</p>
+      <div class="about-values">
+        <div class="about-value">
+          <strong>Výsledky</strong>
+          <p>Nezajímá nás proces, zajímá nás dopad. Měříme úspěch v reálných číslech.</p>
         </div>
-        <a href="sluzby/kammenne-obchody.html" class="service-link">
-          Více informací
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <!-- Výdejní automaty -->
-      <div class="service-card">
-        <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 6h6M9 10h6M9 14h4"/><rect x="14" y="13" width="3" height="3" rx="0.5"/></svg></div>
-        <h3>Výdejní automaty</h3>
-        <p>
-          Navrhujeme a provozujeme sítě výdejních automatů. Bezobslužný prodej 24/7
-          s minimálními náklady a maximálním pokrytím. Ideální pro firmy, školy
-          a veřejná místa.
-        </p>
-        <div class="service-tags">
-          <span class="service-tag">Vending</span>
-          <span class="service-tag">Bezobslužný prodej</span>
-          <span class="service-tag">24/7</span>
+        <div class="about-value">
+          <strong>Férovost</strong>
+          <p>Transparentní podmínky, žádné skryté poplatky. Co řekneme, to platí.</p>
         </div>
-        <a href="sluzby/vydejni-automaty.html" class="service-link">
-          Více informací
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <!-- Weby a aplikace -->
-      <div class="service-card">
-        <div class="service-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M9 8l-2 2 2 2M15 8l2 2-2 2"/></svg></div>
-        <h3>Weby a aplikace</h3>
-        <p>
-          Vzpomínáte na složité domlouvání s webmasterem kvůli změně jedné věty? Weby stavíme tak, abyste si je dokázali sami upravit — kdy chcete, bez čekání a bez zbytečných nákladů.
-        </p>
-        <div class="service-tags">
-          <span class="service-tag">Online editor obsahu</span>
-          <span class="service-tag">Aplikace na míru</span>
-          <span class="service-tag">Software na míru</span>
+        <div class="about-value">
+          <strong>Rychlost</strong>
+          <p>Od nápadu k realizaci v týdnech, ne měsících. Iterujeme a zlepšujeme za pochodu.</p>
         </div>
-        <a href="sluzby/weby-aplikace.html" class="service-link">
-          Více informací
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── O NÁS ──────────────────────────────────────────────────── -->
-<section id="o-nas">
-  <div class="container">
-    <div class="onas-layout">
-      <div>
-        <span class="section-tag">O nás</span>
-        <h2 class="section-title">Podnikáme naplno. Bez kompromisů.</h2>
-        <p style="color:var(--text-muted); line-height:1.75; margin-bottom:1rem;">
-          KSH Partners je česká podnikatelská skupina zaměřená na tři klíčové oblasti:
-          maloobchod, automatizovaný prodej a digitální technologie.
-        </p>
-        <p style="color:var(--text-muted); line-height:1.75;">
-          Stojíme na partnerství čtyř lidí, kteří sdílejí jediný cíl — budovat
-          fungující byznys s dlouhodobou hodnotou. Věříme v přímý přístup,
-          konkrétní výsledky a férové partnerství.
-        </p>
-        <div class="onas-values">
-          <div class="onas-value">
-            <h4>Výsledky</h4>
-            <p>Nezajímají nás plány bez čísel. Měříme, co funguje.</p>
-          </div>
-          <div class="onas-value">
-            <h4>Férovost</h4>
-            <p>Se zákazníky, partnery i navzájem.</p>
-          </div>
-          <div class="onas-value">
-            <h4>Rychlost</h4>
-            <p>Rozhodujeme rychle a neváháme jednat.</p>
-          </div>
-          <div class="onas-value">
-            <h4>Inovace</h4>
-            <p>Hledáme chytřejší způsob, jak dělat věci.</p>
-          </div>
+        <div class="about-value">
+          <strong>Inovace</strong>
+          <p>Hledáme nové cesty. Automatizace, data, AI — používáme to, co funguje.</p>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 
-<!-- ── REFERENCE ──────────────────────────────────────────────── -->
-<section id="reference">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Reference</span>
-      <h2 class="section-title">Co jsme postavili.</h2>
-      <p class="section-sub">
-        Konkrétní projekty, reálné výsledky. Rádi vám ukážeme detaily na osobní schůzce.
-      </p>
-    </div>
-    <div class="ref-grid">
-
-      <!-- KraKrám — konkrétní -->
-      <div class="ref-card">
-        <div class="ref-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
-        <h3>KraKrám</h3>
-        <p>Dvě kamenné prodejny specializovaného sortimentu — Tábor a Jindřichův Hradec. Plný provoz včetně compliance, zásobování a zákaznického servisu od roku 2025.</p>
-        <div class="ref-items">
-          <div class="ref-item">2 pobočky v provozu</div>
-          <div class="ref-item">Plná právní compliance</div>
-          <div class="ref-item">Ručně vyráběné vybavení</div>
-          <div class="ref-item">Každodenní provoz & management</div>
-        </div>
-      </div>
-
-      <!-- Lyžařská škola -->
-      <div class="ref-card">
-        <div class="ref-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17L9 7l5 6 3-4 4 8H3z"/></svg></div>
-        <h3>Rezervační systém — lyžařská škola</h3>
-        <p>Webová aplikace pro správu rezervací lyžařské školy. Výběr termínu, instruktora a dotazník zákazníka. Automatická správa kapacit.</p>
-        <div class="ref-items">
-          <div class="ref-item">Python / Flask + SQLite</div>
-          <div class="ref-item">Online rezervace 24/7</div>
-          <div class="ref-item">Admin panel pro správu</div>
-          <div class="ref-item">Nasazení na Railway</div>
-        </div>
-      </div>
-
-      <!-- Autocamp -->
-      <div class="ref-card">
-        <div class="ref-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-        <h3>Rezervační systém — autocamp</h3>
-        <p>Kompletní rezervační platforma pro kemping — výběr parcely, termínu a vybavení. Správa obsazenosti, admin přehled a reporty tržeb.</p>
-        <div class="ref-items">
-          <div class="ref-item">Výběr parcely a termínu</div>
-          <div class="ref-item">Správa obsazenosti</div>
-          <div class="ref-item">Admin dashboard</div>
-          <div class="ref-item">Reporty a přehled tržeb</div>
-        </div>
-      </div>
-
-      <!-- Webová prezentace -->
-      <div class="ref-card">
-        <div class="ref-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-        <h3>Webová prezentace — specializovaná prodejna</h3>
-        <p>Firemní web s důrazem na právní compliance, cookie consent a SEO. Moderní design, rychlé načítání, nasazení na vlastní doméně.</p>
-        <div class="ref-items">
-          <div class="ref-item">Next.js + Tailwind CSS</div>
-          <div class="ref-item">Právní compliance & cookies</div>
-          <div class="ref-item">SEO optimalizace</div>
-          <div class="ref-item">Nasazení na Vercel</div>
-        </div>
-      </div>
-
-      <!-- E-commerce (zvládneme) -->
-      <div class="ref-card">
-        <div class="ref-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg></div>
-        <h3>E-commerce & online prodej</h3>
-        <p>Online obchod na míru s platební bránou, správou skladu a automatickým zpracováním objednávek. Napojení na kamennou prodejnu nebo čistě online.</p>
-        <div class="ref-items">
-          <div class="ref-item">Platební brána (Stripe / GoPay)</div>
-          <div class="ref-item">Správa objednávek a skladu</div>
-          <div class="ref-item">Zákaznická zóna</div>
-          <div class="ref-item">Reporting a analýza prodejů</div>
-        </div>
-      </div>
-
-      <!-- Mobilní aplikace (zvládneme) -->
-      <div class="ref-card">
-        <div class="ref-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg></div>
-        <h3>Mobilní aplikace</h3>
-        <p>Nativní nebo cross-platform mobilní aplikace pro iOS a Android. Zákaznické věrnostní programy, interní nástroje nebo e-commerce v mobilu.</p>
-        <div class="ref-items">
-          <div class="ref-item">iOS & Android</div>
-          <div class="ref-item">React Native</div>
-          <div class="ref-item">Backend API & push notifikace</div>
-          <div class="ref-item">Publikace do App Store / Google Play</div>
-        </div>
-      </div>
-
-    </div>
+<!-- Post-it Notes -->
+<div class="notes-section" id="reference">
+  <div class="notes-grid">
+    <div class="note n-empty" style="--r:-8deg;--y:12px"></div>
+    <div class="note" style="--r:5deg;--y:-4px" onclick="window.open('https://smenky-ksh.46.225.180.130.sslip.io','_blank')"><span class="note-label">WIP</span><div class="note-title">Směny app</div><div class="note-wip">ve vývoji</div></div>
+    <div class="note n-empty" style="--r:-14deg;--y:8px"></div>
+    <div class="note" style="--r:3deg;--y:-8px"><span class="note-label">WEB</span><div class="note-title">Specializovaná prodejna</div></div>
+    <div class="note n-empty" style="--r:11deg;--y:3px"></div>
+    <div class="note" style="--r:-6deg;--y:6px" onclick="window.open('https://matyaskral-cyber.github.io/navrhy-webu/stavebni-denik/','_blank')"><span class="note-label">WIP</span><div class="note-title">Stavební deník</div><div class="note-wip">ve vývoji</div></div>
+    <div class="note n-empty" style="--r:9deg;--y:-10px"></div>
+    <div class="note" style="--r:-4deg;--y:5px"><span class="note-label">VENDING</span><div class="note-title">Výdejní automaty</div></div>
+    <div class="note n-empty" style="--r:-12deg;--y:-3px"></div>
+    <div class="note n-empty" style="--r:7deg;--y:14px"></div>
+    <div class="note" style="--r:-2deg;--y:-6px"><span class="note-label">APLIKACE</span><div class="note-title">Autocamp systém</div></div>
+    <div class="note n-empty" style="--r:15deg;--y:4px"></div>
+    <div class="note n-empty" style="--r:-9deg;--y:-8px"></div>
+    <div class="note n-empty" style="--r:4deg;--y:10px"></div>
+    <div class="note n-empty" style="--r:-7deg;--y:-5px"></div>
+    <div class="note n-empty" style="--r:12deg;--y:7px"></div>
+    <div class="note n-empty" style="--r:-3deg;--y:-12px"></div>
+    <div class="note n-empty" style="--r:8deg;--y:2px"></div>
   </div>
-</section>
+</div>
 
-<!-- ── AKTUALITY ──────────────────────────────────────────────── -->
-<section id="aktuality">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">Aktuality</span>
-      <h2 class="section-title">Novinky z KSH.</h2>
-      <p class="section-sub">
-        Sledujte, co se u nás děje — nové projekty, postřehy z praxe
-        a zprávy ze tří světů, ve kterých podnikáme.
-      </p>
-    </div>
-    <div class="blog-grid">
-      <div class="blog-card">
-        <div class="blog-thumb t1"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
-        <div class="blog-body">
-          <div class="blog-date">Únor 2026</div>
-          <h3>Jak vybrat správnou lokaci pro kamenný obchod</h3>
-          <p>Místo je základ úspěchu každé prodejny. Sdílíme naše zkušenosti s výběrem lokace a na co si dát pozor.</p>
-          <a href="blog/lokace-kamenneho-obchodu.html" class="blog-link">
-            Číst více
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+<!-- Contact -->
+<section class="contact-section" id="kontakt">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <span class="contact-label">— KONTAKT</span>
+      <h2 class="contact-title">Pojďme si o tom promluvit.</h2>
+      <p class="contact-desc">Máte projekt, nápad nebo chcete spolupracovat? Pracujeme online s firmami po celé České republice. Sídlíme v jižních Čechách, vzdálenost nehraje roli. Ozvěte se — odpovídáme do 24 hodin.</p>
+      <div class="contact-info">
+        <div class="contact-info-item">
+          <span class="ci-label">EMAIL</span>
+          <a href="mailto:info@ksh-partners.cz" class="ci-value">info@ksh-partners.cz</a>
         </div>
-      </div>
-      <div class="blog-card">
-        <div class="blog-thumb t2"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 6h6M9 10h6M9 14h4"/><rect x="14" y="13" width="3" height="3" rx="0.5"/></svg></div>
-        <div class="blog-body">
-          <div class="blog-date">Leden 2026</div>
-          <h3>Výdejní automaty v roce 2026: příležitost, které si málokdo všimne</h3>
-          <p>Vending trh v ČR roste. Proč je teď správný čas vstoupit a co potřebujete k startu?</p>
-          <a href="blog/vydejni-automaty-2026.html" class="blog-link">
-            Číst více
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+        <div class="contact-info-item">
+          <span class="ci-label">TELEFON</span>
+          <a href="tel:+420774982675" class="ci-value">+420 774 982 675</a>
         </div>
-      </div>
-      <div class="blog-card">
-        <div class="blog-thumb t3"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M9 8l-2 2 2 2M15 8l2 2-2 2"/></svg></div>
-        <div class="blog-body">
-          <div class="blog-date">Prosinec 2025</div>
-          <h3>Proč každý podnik potřebuje vlastní digitální systém</h3>
-          <p>Generické software nestačí. Ukážeme, jak vlastní aplikace změnila provoz jednoho z našich projektů.</p>
-          <a href="blog/vlastni-digitalni-system.html" class="blog-link">
-            Číst více
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+        <div class="contact-info-item">
+          <span class="ci-label">SÍDLO</span>
+          <span class="ci-value">Jižní Čechy · celá ČR online</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ── KONTAKT ────────────────────────────────────────────────── -->
-<section id="kontakt">
-  <div class="container">
-    <div class="kontakt-layout">
-      <div>
-        <span class="section-tag">Kontakt</span>
-        <h2 class="section-title">Pojďme si o tom promluvit.</h2>
-        <p style="color:var(--text-muted); line-height:1.75; margin-bottom:.5rem;">
-          Máte projekt, nápad nebo chcete spolupracovat?
-          Pracujeme online s firmami po celé České republice. Sídlíme v jižních Čechách, vzdálenost nehraje roli.
-          Ozvěte se — odpovídáme do 24 hodin.
-        </p>
-        <div class="kontakt-info-items">
-          <div class="kontakt-item">
-            <div class="kontakt-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div>
-              <div class="kontakt-item-label">Email</div>
-              <div class="kontakt-item-val">
-                <a href="mailto:info@ksh-partners.cz">info@ksh-partners.cz</a>
-              </div>
-            </div>
-          </div>
-          <div class="kontakt-item">
-            <div class="kontakt-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .02h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-            <div>
-              <div class="kontakt-item-label">Telefon</div>
-              <div class="kontakt-item-val">
-                <a href="tel:+420774982675">+420 774 982 675</a>
-              </div>
-            </div>
-          </div>
-          <div class="kontakt-item">
-            <div class="kontakt-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div>
-              <div class="kontakt-item-label">Sídlo</div>
-              <div class="kontakt-item-val">Jižní Čechy · celá ČR online</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <form class="contact-form" id="contact-form" action="https://formspree.io/f/mnjgdwal" method="POST">
-        <!-- Honeypot — skryté pole, boti ho vyplní, lidi ne -->
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-        <div class="fld-row-2">
-          <div class="fld">
-            <label>Jméno *</label>
-            <input type="text" name="jmeno" placeholder="Jan Novák" required>
-          </div>
-          <div class="fld">
-            <label>Firma</label>
-            <input type="text" name="firma" placeholder="Vaše firma (volitelné)">
-          </div>
-        </div>
-        <div class="fld">
-          <label>E-mail *</label>
-          <input type="email" name="email" placeholder="jan@firma.cz" required>
-        </div>
-        <div class="fld">
-          <label>Zájem o</label>
-          <select name="oblast">
-            <option value="">— Vyberte oblast —</option>
-            <option>Kamenné obchody</option>
-            <option>Výdejní automaty</option>
-            <option>Web nebo aplikace</option>
-            <option>Spolupráce / jiné</option>
-          </select>
-        </div>
-        <div class="fld">
-          <label>Zpráva *</label>
-          <textarea name="zprava" placeholder="Řekněte nám o vašem projektu nebo dotazu..." required></textarea>
-        </div>
-        <button type="submit" class="btn-submit">
-          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
-          Odeslat zprávu
-        </button>
+    <div class="contact-right">
+      <form onsubmit="event.preventDefault();alert('Zpráva odeslána! (demo)')">
+        <input type="text" placeholder="Jméno" required>
+        <input type="text" placeholder="Firma (nepovinné)">
+        <input type="email" placeholder="E-mail" required>
+        <select>
+          <option value="" disabled selected>Oblast zájmu</option>
+          <option>Kamenný obchod</option>
+          <option>Výdejní automaty</option>
+          <option>Web / Aplikace</option>
+          <option>Jiné</option>
+        </select>
+        <textarea placeholder="Vaše zpráva…" required></textarea>
+        <button type="submit">Odeslat zprávu</button>
       </form>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<!-- Footer -->
 <footer>
-  <div class="container">
-    <div class="footer-inner">
-      <a href="#" class="nav-logo">
-        <img src="logo.png" alt="KSH Partners" class="nav-logo-img" width="160" height="160" loading="lazy">
-      </a>
-      <ul class="footer-links">
-        <li><a href="#sluzby">Co děláme</a></li>
-        <li><a href="#o-nas">O nás</a></li>
-        <li><a href="#reference">Reference</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
-      </ul>
-    </div>
-    <p class="footer-copy" style="margin-bottom:.5rem;">Provozovatel: KSH Partners s.r.o. &nbsp;·&nbsp; IČO: 19985681 &nbsp;·&nbsp; Chudenická 1059/30, 102 00 Praha 10 – Hostivař</p>
-    <p class="footer-copy">© 2026 KSH Partners. Všechna práva vyhrazena. &nbsp;·&nbsp; <a href="gdpr.html" style="color:inherit;opacity:.6;">Ochrana osobních údajů</a> &nbsp;·&nbsp; <a href="obchodni-podminky.html" style="color:inherit;opacity:.6;">Obchodní podmínky</a> &nbsp;·&nbsp; <a href="kde-pusobime.html" style="color:inherit;opacity:.4;">Kde působíme</a></p>
+  <div class="footer-center">
+    Provozovatel: KSH Partners s.r.o. &nbsp;·&nbsp; IČO: 19985681 &nbsp;·&nbsp; Chudenická 1059/30, 102 00 Praha 10 – Hostivař
+  </div>
+  <div class="footer-center">
+    &copy; 2026 KSH Partners. Všechna práva vyhrazena. &nbsp;·&nbsp; <a href="#">Ochrana osobních údajů</a> &nbsp;·&nbsp; <a href="#">Obchodní podmínky</a> &nbsp;·&nbsp; <a href="#">Kde působíme</a>
   </div>
 </footer>
 
-<!-- Toast notifikace -->
-<div class="toast" id="toast">
-  ✅ Zpráva odeslána! Ozveme se do 24 hodin.
+<!-- Admin Panel -->
+<div class="admin-overlay" id="adminOverlay" onclick="toggleAdmin()"></div>
+<div class="admin-panel" id="adminPanel">
+  <h2>Editor obsahu <button onclick="toggleAdmin()">&times;</button></h2>
+  <div class="admin-group">
+    <label>Hero nadpis (použij &lt;em&gt; pro coral)</label>
+    <input id="editHeroTitle" oninput="liveEdit('heroTitle',this.value)">
+  </div>
+  <div class="admin-group">
+    <label>Hero popisek</label>
+    <textarea id="editHeroSub" oninput="liveEdit('heroSub',this.value)"></textarea>
+  </div>
+  <div class="admin-group">
+    <label>Služba 1 — název</label>
+    <input id="editSvc1Title" oninput="liveEdit('svc1Title',this.value)">
+  </div>
+  <div class="admin-group">
+    <label>Služba 1 — popis</label>
+    <textarea id="editSvc1Desc" oninput="liveEdit('svc1Desc',this.value)"></textarea>
+  </div>
+  <div class="admin-group">
+    <label>Služba 2 — název</label>
+    <input id="editSvc2Title" oninput="liveEdit('svc2Title',this.value)">
+  </div>
+  <div class="admin-group">
+    <label>Služba 2 — popis</label>
+    <textarea id="editSvc2Desc" oninput="liveEdit('svc2Desc',this.value)"></textarea>
+  </div>
+  <div class="admin-group">
+    <label>Služba 3 — název</label>
+    <input id="editSvc3Title" oninput="liveEdit('svc3Title',this.value)">
+  </div>
+  <div class="admin-group">
+    <label>Služba 3 — popis</label>
+    <textarea id="editSvc3Desc" oninput="liveEdit('svc3Desc',this.value)"></textarea>
+  </div>
+  <div class="admin-group">
+    <label>O nás text</label>
+    <textarea id="editAboutText" oninput="liveEdit('aboutText',this.value)" style="min-height:120px"></textarea>
+  </div>
+  <div class="admin-group">
+    <label>Číslo 1</label>
+    <input id="editNum1" oninput="liveEdit('num1',this.value)" style="width:30%;display:inline-block;margin-right:4%">
+    <input id="editNumLabel1" oninput="liveEdit('numLabel1',this.value)" style="width:66%;display:inline-block">
+  </div>
+  <div class="admin-group">
+    <label>Číslo 2</label>
+    <input id="editNum2" oninput="liveEdit('num2',this.value)" style="width:30%;display:inline-block;margin-right:4%">
+    <input id="editNumLabel2" oninput="liveEdit('numLabel2',this.value)" style="width:66%;display:inline-block">
+  </div>
+  <div class="admin-group">
+    <label>Číslo 3</label>
+    <input id="editNum3" oninput="liveEdit('num3',this.value)" style="width:30%;display:inline-block;margin-right:4%">
+    <input id="editNumLabel3" oninput="liveEdit('numLabel3',this.value)" style="width:66%;display:inline-block">
+  </div>
+  <div class="admin-group">
+    <label>Číslo 4</label>
+    <input id="editNum4" oninput="liveEdit('num4',this.value)" style="width:30%;display:inline-block;margin-right:4%">
+    <input id="editNumLabel4" oninput="liveEdit('numLabel4',this.value)" style="width:66%;display:inline-block">
+  </div>
+  <button class="admin-save" onclick="saveEdits()">Uložit změny</button>
+  <p style="font-size:.7rem;color:var(--muted);margin-top:.8rem">Změny se ukládají do localStorage prohlížeče.</p>
 </div>
 
-<script src="js/script.js" defer></script>
-<script src="js/chatbot.js" defer></script>
-
-<!-- Cookie consent -->
-<div id="cookie-bar" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:8000;background:rgba(30,16,6,.97);backdrop-filter:blur(10px);border-top:1px solid rgba(255,255,255,.08);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-family:'Inter',sans-serif;">
-  <p style="margin:0;color:rgba(255,255,255,.75);font-size:.85rem;max-width:680px;">
-    Tento web používá pouze technicky nezbytné cookies. Nepoužíváme analytické ani reklamní cookies.
-    <a href="gdpr.html" style="color:#c49078;text-decoration:underline;margin-left:.3rem;">Více informací</a>
-  </p>
-  <button onclick="document.getElementById('cookie-bar').style.display='none';localStorage.setItem('cookies_ok','1')"
-    style="background:linear-gradient(135deg,#c49078,#8b5a3c);border:none;border-radius:8px;color:#fff;padding:.55rem 1.4rem;font-size:.85rem;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;">
-    Rozumím
-  </button>
-</div>
-<script>
-  if (!localStorage.getItem('cookies_ok')) {
-    document.getElementById('cookie-bar').style.display = 'flex';
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script type="module">
+// ─── Mobile: kill GSAP pin-spacers and reset pillars ─────────────
+if (window.innerWidth <= 768) {
+  if (typeof ScrollTrigger !== 'undefined') {
+    ScrollTrigger.getAll().forEach(t => t.kill());
   }
+  document.querySelectorAll('.pin-spacer').forEach(spacer => {
+    const child = spacer.firstElementChild;
+    if (child) {
+      child.removeAttribute('style');
+      spacer.parentNode.insertBefore(child, spacer);
+      spacer.remove();
+    }
+  });
+  const t = document.querySelector('.pillars-track');
+  if (t) t.removeAttribute('style');
+}
+
+// ─── Metallic Paint (WebGL2) ──────────────────────────────────────
+(function initMetallicPaint() {
+  const canvas = document.getElementById('metallicCanvas');
+  if (!canvas) return;
+  const gl = canvas.getContext('webgl2', { antialias: true, alpha: true });
+  if (!gl) return;
+
+  const VS = `#version 300 es
+precision highp float;
+in vec2 a_position;
+out vec2 vP;
+void main(){vP=a_position*.5+.5;gl_Position=vec4(a_position,0.,1.);}`;
+
+  const FS = `#version 300 es
+precision highp float;
+in vec2 vP;out vec4 oC;
+uniform sampler2D u_tex;uniform float u_time,u_ratio,u_imgRatio,u_seed,u_scale,u_refract,u_blur,u_liquid;
+uniform float u_bright,u_contrast,u_angle,u_fresnel,u_sharp,u_wave,u_noise,u_chroma,u_distort,u_contour;
+uniform vec3 u_lightColor,u_darkColor,u_tint;
+vec3 sC,sM;
+vec3 pW(vec3 v){vec3 i=floor(v),f=fract(v),s=sign(fract(v*.5)-.5),h=fract(sM*i+i.yzx),c=f*(f-1.);return s*c*((h*16.-4.)*c-1.);}
+vec3 aF(vec3 b,vec3 c){return pW(b+c.zxy-pW(b.zxy+c.yzx)+pW(b.yzx+c.xyz));}
+vec3 lM(vec3 s,vec3 p){return(p+aF(s,p))*.5;}
+vec2 fA(){vec2 c=vP-.5;c.x*=u_ratio>u_imgRatio?u_ratio/u_imgRatio:1.;c.y*=u_ratio>u_imgRatio?1.:u_imgRatio/u_ratio;return vec2(c.x+.5,.5-c.y);}
+vec2 rot(vec2 p,float r){float c=cos(r),s=sin(r);return vec2(p.x*c+p.y*s,p.y*c-p.x*s);}
+float bM(vec2 c,float t){vec2 l=smoothstep(vec2(0.),vec2(t),c),u=smoothstep(vec2(0.),vec2(t),1.-c);return l.x*l.y*u.x*u.y;}
+float mG(float hi,float lo,float t,float sh,float cv){sh*=(2.-u_sharp);float ci=smoothstep(.15,.85,cv),r=lo;float e1=.08/u_scale;r=mix(r,hi,smoothstep(0.,sh*1.5,t));r=mix(r,lo,smoothstep(e1-sh,e1+sh,t));float e2=e1+.05/u_scale*(1.-ci*.35);r=mix(r,hi,smoothstep(e2-sh,e2+sh,t));float e3=e2+.025/u_scale*(1.-ci*.45);r=mix(r,lo,smoothstep(e3-sh,e3+sh,t));float e4=e1+.1/u_scale;r=mix(r,hi,smoothstep(e4-sh,e4+sh,t));float rm=1.-e4,gT=clamp((t-e4)/rm,0.,1.);r=mix(r,mix(hi,lo,smoothstep(0.,1.,gT)),smoothstep(e4-sh*.5,e4+sh*.5,t));return r;}
+void main(){
+  sC=fract(vec3(.7548,.5698,.4154)*(u_seed+17.31))+.5;sM=fract(sC.zxy-sC.yzx*1.618);
+  vec2 sc=vec2(vP.x*u_ratio,1.-vP.y);float aR=u_angle*3.14159/180.;sc=rot(sc-.5,aR)+.5;sc=clamp(sc,0.,1.);
+  float sl=sc.x-sc.y,an=u_time*.001;vec2 iC=fA();vec4 ts=texture(u_tex,iC);float dp=ts.r,sm=ts.a;
+  vec3 hi=u_lightColor*u_bright,lo=u_darkColor*(2.-u_bright);lo.b+=smoothstep(.6,1.4,sc.x+sc.y)*.08;
+  vec2 fC=sc-.5;float rd=length(fC+vec2(0.,sl*.15));vec2 ag=rot(fC,(.22-sl*.18)*3.14159);float cv=1.-pow(rd*1.65,1.15);cv*=pow(sc.y,.35);
+  float vs=sm;vs*=bM(iC,.01);float fr=pow(1.-cv,u_fresnel)*.3;vs=min(vs+fr*vs,1.);
+  float mT=an*.0625;vec3 wO=vec3(-1.05,1.35,1.55);vec3 wA=aF(vec3(31.,73.,56.),mT+wO)*.22*u_wave;vec3 wB=aF(vec3(24.,64.,42.),mT-wO.yzx)*.22*u_wave;
+  vec2 nC=sc*45.*u_noise;nC+=aF(sC.zxy,an*.17*sC.yzx-sc.yxy*.35).xy*18.*u_wave;
+  vec3 tC=vec3(.00041,.00053,.00076)*mT+wB*nC.x+wA*nC.y;tC=lM(sC,tC);tC=lM(sC+1.618,tC);float tb=sin(tC.x*3.14159)*.5+.5;tb=tb*2.-1.;
+  float nV=pW(vec3(sc*8.+an,an*.5)).x;float eF=smoothstep(0.,.5,dp)*smoothstep(1.,.5,dp);
+  float lD=dp+(1.-dp)*u_liquid*tb;lD+=nV*u_distort*.15*eF;float rB=clamp(1.-cv,0.,1.);
+  float fl=ag.x+sl;fl+=nV*sl*u_distort*eF;fl*=mix(1.,1.-dp*.5,u_contour);fl-=dp*u_contour*.8;
+  float eI=smoothstep(0.,1.,lD)*smoothstep(1.,0.,lD);fl-=tb*sl*1.8*eI;
+  float cA=cv*clamp(pow(sc.y,.12),.25,1.);fl*=.12+(1.05-lD)*cA;fl*=smoothstep(1.,.65,lD);
+  float vA1=smoothstep(.08,.18,sc.y)*smoothstep(.38,.18,sc.y);float vA2=smoothstep(.08,.18,1.-sc.y)*smoothstep(.38,.18,1.-sc.y);
+  fl+=vA1*.16+vA2*.025;fl*=.45+pow(sc.y,2.)*.55;fl*=u_scale;fl-=an;
+  float rO=rB+cv*tb*.025;float vM1=smoothstep(-.12,.18,sc.y)*smoothstep(.48,.08,sc.y);float cM1=smoothstep(.35,.55,cv)*smoothstep(.95,.35,cv);
+  rO+=vM1*cM1*4.5;rO-=sl;float bO=rB*1.25;float vM2=smoothstep(-.02,.35,sc.y)*smoothstep(.75,.08,sc.y);float cM2=smoothstep(.35,.55,cv)*smoothstep(.75,.35,cv);
+  bO+=vM2*cM2*.9;bO-=lD*.18;rO*=u_refract*u_chroma;bO*=u_refract*u_chroma;float sf=u_blur;
+  float rP=fract(fl+rO);float rC=mG(hi.r,lo.r,rP,sf+.018+u_refract*cv*.025,cv);
+  float gP=fract(fl);float gC=mG(hi.g,lo.g,gP,sf+.008/max(.01,1.-sl),cv);
+  float bP=fract(fl-bO);float bC=mG(hi.b,lo.b,bP,sf+.008,cv);
+  vec3 col=vec3(rC,gC,bC);col=(col-.5)*u_contrast+.5;col=clamp(col,0.,1.);
+  col=mix(col,1.-min(vec3(1.),(1.-col)/max(u_tint,vec3(.001))),length(u_tint-1.)*.5);col=clamp(col,0.,1.);
+  oC=vec4(col*vs,vs);
+}`;
+
+  function compileShader(src, type) {
+    const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s);
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) { console.error(gl.getShaderInfoLog(s)); return null; }
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, compileShader(VS, gl.VERTEX_SHADER));
+  gl.attachShader(prog, compileShader(FS, gl.FRAGMENT_SHADER));
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) console.error(gl.getProgramInfoLog(prog));
+
+  const U = {};
+  for (let i = 0; i < gl.getProgramParameter(prog, gl.ACTIVE_UNIFORMS); i++) {
+    const info = gl.getActiveUniform(prog, i);
+    if (info) U[info.name] = gl.getUniformLocation(prog, info.name);
+  }
+
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
+  gl.useProgram(prog);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio, 2);
+    canvas.width = canvas.clientWidth * dpr;
+    canvas.height = canvas.clientHeight * dpr;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.uniform1f(U.u_ratio, canvas.width / canvas.height);
+  }
+  window.addEventListener('resize', resize);
+
+  function hex(h) { const r = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(h); return r ? [parseInt(r[1],16)/255, parseInt(r[2],16)/255, parseInt(r[3],16)/255] : [1,1,1]; }
+
+  function setUniforms() {
+    gl.uniform1f(U.u_seed, 42); gl.uniform1f(U.u_scale, 4); gl.uniform1f(U.u_refract, .01);
+    gl.uniform1f(U.u_blur, .015); gl.uniform1f(U.u_liquid, .51); gl.uniform1f(U.u_bright, 2);
+    gl.uniform1f(U.u_contrast, .5); gl.uniform1f(U.u_angle, 0); gl.uniform1f(U.u_fresnel, 1);
+    gl.uniform1f(U.u_sharp, 1); gl.uniform1f(U.u_wave, 1); gl.uniform1f(U.u_noise, .5);
+    gl.uniform1f(U.u_chroma, 1.4); gl.uniform1f(U.u_distort, 1); gl.uniform1f(U.u_contour, .2);
+    const lc = hex('#FF7F7F'), dc = hex('#000000'), tc = hex('#FFFFFF');
+    gl.uniform3f(U.u_lightColor, lc[0], lc[1], lc[2]);
+    gl.uniform3f(U.u_darkColor, dc[0], dc[1], dc[2]);
+    gl.uniform3f(U.u_tint, tc[0], tc[1], tc[2]);
+  }
+
+  // Process image → depth map via Poisson solver
+  function processImage(img) {
+    const MAX = 800; let w = img.naturalWidth || img.width, h = img.naturalHeight || img.height;
+    if (w > MAX || h > MAX) { const s = MAX / Math.max(w, h); w = Math.round(w * s); h = Math.round(h * s); }
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    const cx = cv.getContext('2d'); cx.drawImage(img, 0, 0, w, h);
+    const id = cx.getImageData(0, 0, w, h), d = id.data, sz = w * h;
+    const alpha = new Float32Array(sz), shape = new Uint8Array(sz), bound = new Uint8Array(sz);
+    for (let i = 0; i < sz; i++) {
+      const x = i * 4, r = d[x], g = d[x+1], b = d[x+2], a = d[x+3];
+      alpha[i] = (r > 250 && g > 250 && b > 250 && a === 255) || a < 5 ? 0 : a / 255;
+      shape[i] = alpha[i] > .1 ? 1 : 0;
+    }
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const i = y * w + x; if (!shape[i]) continue;
+      if (x===0||x===w-1||y===0||y===h-1||!shape[i-1]||!shape[i+1]||!shape[i-w]||!shape[i+w]) bound[i] = 1;
+    }
+    const u = new Float32Array(sz);
+    for (let it = 0; it < 150; it++) for (let y = 1; y < h-1; y++) for (let x = 1; x < w-1; x++) {
+      const i = y*w+x; if (!shape[i]||bound[i]) continue;
+      const s = (shape[i+1]?u[i+1]:0)+(shape[i-1]?u[i-1]:0)+(shape[i+w]?u[i+w]:0)+(shape[i-w]?u[i-w]:0);
+      u[i] = 1.85*((0.01+s)/4)+(1-1.85)*u[i];
+    }
+    let mx = 0; for (let i = 0; i < sz; i++) if (u[i]>mx) mx=u[i]; if(!mx) mx=1;
+    const out = cx.createImageData(w, h);
+    for (let i = 0; i < sz; i++) { const p=i*4,dp=u[i]/mx,g=Math.round(255*(1-dp*dp)); out.data[p]=out.data[p+1]=out.data[p+2]=g; out.data[p+3]=Math.round(alpha[i]*255); }
+    return out;
+  }
+
+  const img = new Image(); img.crossOrigin = 'anonymous';
+  img.onload = () => {
+    const imgData = processImage(img);
+    const tex = gl.createTexture(); gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, imgData.width, imgData.height, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(imgData.data.buffer));
+    gl.uniform1i(U.u_tex, 0);
+    gl.uniform1f(U.u_imgRatio, imgData.width / imgData.height);
+    resize(); setUniforms();
+    let animTime = 0, lastT = performance.now();
+    (function render(t) {
+      requestAnimationFrame(render);
+      animTime += (t - lastT) * .63; lastT = t;
+      gl.uniform1f(U.u_time, animTime);
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    })(performance.now());
+  };
+  img.src = 'logo-small.png';
+})();
+
+// ─── GSAP ScrollTrigger ───────────────────────────────────────────
+if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // 1. Hero: text fades out, logo scales up on scroll
+  const heroTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: .8,
+      pin: false,
+    }
+  });
+  heroTl
+    .to('.hero-text-col', { opacity: 0, y: -60, duration: 1 }, 0)
+    .to('.hero-metallic-canvas', { scale: 1.8, opacity: .3, duration: 1 }, 0)
+    .to('.hero-scroll', { opacity: 0, duration: .3 }, 0)
+    .to('nav', { opacity: 0, pointerEvents: 'none', duration: .5 }, 0);
+
+  // 2. Nav middle/contact visibility handled by separate scroll listener (see below)
+
+  // 3. Numbers: count-up animation
+  document.querySelectorAll('.num').forEach(el => {
+    const target = el.textContent.trim();
+    const numMatch = target.match(/^(\d+)/);
+    if (numMatch) {
+      const end = parseInt(numMatch[1]);
+      const suffix = target.replace(/^\d+/, '');
+      el.textContent = '0' + suffix;
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 85%',
+        once: true,
+        onEnter: () => {
+          gsap.to({ val: 0 }, {
+            val: end, duration: 1.5, ease: 'power2.out',
+            onUpdate: function() { el.textContent = Math.round(this.targets()[0].val) + suffix; }
+          });
+        }
+      });
+    }
+  });
+}
+
+// ─── Pillars Horizontal Scroll (GSAP ScrollTrigger — desktop only) ─
+if (window.innerWidth > 768) {
+  const pillarsTrack = document.querySelector('.pillars-track');
+  const pillarsStickyEl = document.querySelector('.pillars-sticky');
+  if (pillarsTrack && pillarsStickyEl) {
+    gsap.to(pillarsTrack, {
+      x: () => -(pillarsTrack.scrollWidth - window.innerWidth),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: pillarsStickyEl,
+        start: 'top top',
+        end: () => `+=${pillarsTrack.scrollWidth - window.innerWidth}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      }
+    });
+  }
+}
+
+// ─── Refs Horizontal Scroll (GSAP ScrollTrigger) ──────────────────
+const refsTrack2 = document.querySelector('.refs-track');
+const refsContainer2 = document.querySelector('.refs-scroll-container');
+if (refsTrack2 && refsContainer2) {
+  const refsCards = gsap.utils.toArray('.refs-track .ref-card');
+  const refsWidth = refsCards.length * window.innerWidth;
+  gsap.to(refsTrack2, {
+    x: () => -(refsWidth - window.innerWidth),
+    ease: 'none',
+    scrollTrigger: {
+      trigger: refsContainer2,
+      start: 'top top',
+      end: () => `+=${refsWidth - window.innerWidth}`,
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+    }
+  });
+}
+
+// ─── Scroll Reveal ────────────────────────────────────────────────
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target) } })
+}, { threshold: .15, rootMargin: '0px 0px -50px 0px' })
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+
+// ─── Mobile nav close on link click ──────────────────────────────
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+})
+
+// ─── Nav reappear at contact section (via GSAP) ──────────────────
+(function() {
+})();
+
+// ─── Post-it Notes tilt ───────────────────────────────────────────
+document.querySelectorAll('.note').forEach(note => {
+  note.addEventListener('mousemove', e => {
+    const rect = note.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = (e.clientX - cx) / rect.width * 12;
+    const dy = (e.clientY - cy) / rect.height * 8;
+    note.style.transform = `rotate(${dx * 0.3}deg) translateY(-8px) scale(1.04) rotateX(${-dy * 0.5}deg)`;
+  });
+  note.addEventListener('mouseleave', () => {
+    note.style.transform = `rotate(var(--r)) translateY(var(--y))`;
+  });
+});
+
+// ─── Magnetic Pull on nav links ──────────────────────────────────
+document.querySelectorAll('.nav-links a, .nav-cta').forEach(el => {
+  el.addEventListener('mousemove', (e) => {
+    const rect = el.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = (e.clientX - cx) / rect.width * 14;
+    const dy = (e.clientY - cy) / rect.height * 8;
+    el.style.transform = `translate(${dx}px, ${dy}px)`;
+    el.style.transition = 'transform 0.15s ease';
+  });
+  el.addEventListener('mouseleave', () => {
+    el.style.transform = 'translate(0, 0)';
+    el.style.transition = 'transform 0.4s ease';
+  });
+})
+
+// ─── Admin Panel ──────────────────────────────────────────────────
+const EDITABLE = [
+  'heroTitle','heroSub',
+  'svc1Title','svc1Desc','svc2Title','svc2Desc','svc3Title','svc3Desc',
+  'aboutText',
+  'num1','numLabel1','num2','numLabel2','num3','numLabel3','num4','numLabel4',
+]
+
+window.toggleAdmin = toggleAdmin;
+window.liveEdit = liveEdit;
+window.saveEdits = saveEdits;
+
+function toggleAdmin() {
+  const panel = document.getElementById('adminPanel')
+  const overlay = document.getElementById('adminOverlay')
+  const isOpen = panel.classList.contains('open')
+  panel.classList.toggle('open')
+  overlay.classList.toggle('open')
+  if (!isOpen) loadEdits()
+}
+
+function loadEdits() {
+  EDITABLE.forEach(id => {
+    const el = document.getElementById(id)
+    const input = document.getElementById('edit' + id.charAt(0).toUpperCase() + id.slice(1))
+    if (el && input) {
+      input.value = el.innerHTML.replace(/<br\s*\/?>/g, '\n')
+    }
+  })
+}
+
+function liveEdit(id, value) {
+  const el = document.getElementById(id)
+  if (el) el.innerHTML = value.replace(/\n/g, '<br>')
+}
+
+function saveEdits() {
+  const data = {}
+  EDITABLE.forEach(id => {
+    const el = document.getElementById(id)
+    if (el) data[id] = el.innerHTML
+  })
+  localStorage.setItem('ksh_edits', JSON.stringify(data))
+  alert('Uloženo!')
+}
+
+// Restore on load
+(function restoreEdits() {
+  try {
+    const data = JSON.parse(localStorage.getItem('ksh_edits'))
+    if (!data) return
+    Object.entries(data).forEach(([id, html]) => {
+      const el = document.getElementById(id)
+      if (el) el.innerHTML = html
+    })
+  } catch {}
+})()
 </script>
+
+<!-- Nav visibility: scroll listener independent of GSAP -->
+<script>
+(function() {
+  var nav = document.querySelector('nav');
+  var hero = document.querySelector('.hero');
+  var contact = document.querySelector('.contact-section');
+  if (!nav || !hero || !contact) return;
+
+  function getContactTop() {
+    return contact.getBoundingClientRect().top + window.scrollY;
+  }
+
+  function getShowNavFrom() {
+    var notes = document.querySelector('.notes-section');
+    if (notes) return notes.getBoundingClientRect().bottom + window.scrollY;
+    return contact ? contact.getBoundingClientRect().top + window.scrollY : Infinity;
+  }
+
+  function getHeroBottom() {
+    return hero.getBoundingClientRect().bottom + window.scrollY;
+  }
+
+  window.addEventListener('scroll', function() {
+    var scrollY = window.scrollY;
+    var heroBot = getHeroBottom();
+    var vh = window.innerHeight;
+
+    if (scrollY < heroBot - vh) {
+      return;
+    }
+
+    if (scrollY >= getShowNavFrom()) {
+      nav.style.opacity = '1';
+      nav.style.pointerEvents = 'auto';
+    } else {
+      nav.style.opacity = '0';
+      nav.style.pointerEvents = 'none';
+    }
+  }, { passive: true });
+})();
+</script>
+
+<script src="chatbot.js" defer></script>
 </body>
 </html>
