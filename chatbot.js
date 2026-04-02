@@ -183,10 +183,21 @@
   let opened  = false;
 
   /* ── Helpers ─────────────────────────────────────────────────── */
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
   function addMsg(html, role) {
     const d = document.createElement('div');
     d.className = 'msg ' + role;
-    d.innerHTML = html.replace(/\n/g, '<br>');
+    // User messages: escape HTML to prevent XSS. Bot messages: trusted HTML allowed.
+    if (role === 'user') {
+      d.textContent = html;
+    } else {
+      d.innerHTML = html.replace(/\n/g, '<br>');
+    }
     msgs.appendChild(d);
     msgs.scrollTop = msgs.scrollHeight;
     return d;

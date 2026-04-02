@@ -505,51 +505,6 @@ footer{
 .divider{width:100%;height:1px;background:var(--border)}
 
 
-/* ─── Admin Panel ──────────────────────────────────────────────── */
-.admin-toggle{
-  position:fixed;bottom:1.5rem;right:1.5rem;z-index:200;
-  width:44px;height:44px;border-radius:50%;background:var(--surface);
-  border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:all .3s;opacity:.3;
-}
-.admin-toggle:hover{opacity:1;border-color:var(--coral)}
-.admin-toggle svg{width:18px;height:18px;stroke:var(--muted)}
-
-.admin-panel{
-  position:fixed;top:0;right:-480px;bottom:0;width:480px;max-width:90vw;z-index:300;
-  background:var(--surface);border-left:1px solid var(--border);
-  transition:right .4s cubic-bezier(.25,.46,.45,.94);
-  overflow-y:auto;padding:2rem;
-}
-.admin-panel.open{right:0}
-.admin-panel h2{
-  font-family:var(--font-display);font-size:1.3rem;font-weight:600;
-  margin-bottom:1.5rem;display:flex;align-items:center;justify-content:space-between;
-}
-.admin-panel h2 button{background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.5rem}
-.admin-group{margin-bottom:2rem}
-.admin-group label{
-  display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;
-  color:var(--coral);margin-bottom:.4rem;font-weight:500;
-}
-.admin-group input,.admin-group textarea{
-  width:100%;background:var(--surface);border:1px solid var(--border);
-  color:var(--text);padding:.7rem 1rem;font-family:var(--font-body);
-  font-size:.85rem;border-radius:6px;outline:none;
-}
-.admin-group textarea{min-height:80px;resize:vertical}
-.admin-save{
-  padding:.7rem 2rem;background:var(--coral);color:var(--bg);border:none;
-  font-family:var(--font-display);font-size:.8rem;font-weight:600;
-  border-radius:100px;cursor:pointer;transition:transform .2s;
-}
-.admin-save:hover{transform:scale(1.03)}
-.admin-overlay{
-  position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:299;
-  opacity:0;pointer-events:none;transition:opacity .3s;
-}
-.admin-overlay.open{opacity:1;pointer-events:all}
-
 /* ─── Mobile Pillars Reset (must be last to win specificity) ───── */
 @media(max-width:768px){
   .pillars-scroll-container,
@@ -747,70 +702,6 @@ footer{
     &copy; 2026 KSH Partners. Všechna práva vyhrazena. &nbsp;·&nbsp; <a href="#">Ochrana osobních údajů</a> &nbsp;·&nbsp; <a href="#">Obchodní podmínky</a> &nbsp;·&nbsp; <a href="#">Kde působíme</a>
   </div>
 </footer>
-
-<!-- Admin Panel -->
-<div class="admin-overlay" id="adminOverlay" onclick="toggleAdmin()"></div>
-<div class="admin-panel" id="adminPanel">
-  <h2>Editor obsahu <button onclick="toggleAdmin()">&times;</button></h2>
-  <div class="admin-group">
-    <label>Hero nadpis (použij &lt;em&gt; pro coral)</label>
-    <input id="editHeroTitle" oninput="liveEdit('heroTitle',this.value)">
-  </div>
-  <div class="admin-group">
-    <label>Hero popisek</label>
-    <textarea id="editHeroSub" oninput="liveEdit('heroSub',this.value)"></textarea>
-  </div>
-  <div class="admin-group">
-    <label>Služba 1 — název</label>
-    <input id="editSvc1Title" oninput="liveEdit('svc1Title',this.value)">
-  </div>
-  <div class="admin-group">
-    <label>Služba 1 — popis</label>
-    <textarea id="editSvc1Desc" oninput="liveEdit('svc1Desc',this.value)"></textarea>
-  </div>
-  <div class="admin-group">
-    <label>Služba 2 — název</label>
-    <input id="editSvc2Title" oninput="liveEdit('svc2Title',this.value)">
-  </div>
-  <div class="admin-group">
-    <label>Služba 2 — popis</label>
-    <textarea id="editSvc2Desc" oninput="liveEdit('svc2Desc',this.value)"></textarea>
-  </div>
-  <div class="admin-group">
-    <label>Služba 3 — název</label>
-    <input id="editSvc3Title" oninput="liveEdit('svc3Title',this.value)">
-  </div>
-  <div class="admin-group">
-    <label>Služba 3 — popis</label>
-    <textarea id="editSvc3Desc" oninput="liveEdit('svc3Desc',this.value)"></textarea>
-  </div>
-  <div class="admin-group">
-    <label>O nás text</label>
-    <textarea id="editAboutText" oninput="liveEdit('aboutText',this.value)" style="min-height:120px"></textarea>
-  </div>
-  <div class="admin-group">
-    <label>Číslo 1</label>
-    <input id="editNum1" oninput="liveEdit('num1',this.value)" style="width:30%;display:inline-block;margin-right:4%">
-    <input id="editNumLabel1" oninput="liveEdit('numLabel1',this.value)" style="width:66%;display:inline-block">
-  </div>
-  <div class="admin-group">
-    <label>Číslo 2</label>
-    <input id="editNum2" oninput="liveEdit('num2',this.value)" style="width:30%;display:inline-block;margin-right:4%">
-    <input id="editNumLabel2" oninput="liveEdit('numLabel2',this.value)" style="width:66%;display:inline-block">
-  </div>
-  <div class="admin-group">
-    <label>Číslo 3</label>
-    <input id="editNum3" oninput="liveEdit('num3',this.value)" style="width:30%;display:inline-block;margin-right:4%">
-    <input id="editNumLabel3" oninput="liveEdit('numLabel3',this.value)" style="width:66%;display:inline-block">
-  </div>
-  <div class="admin-group">
-    <label>Číslo 4</label>
-    <input id="editNum4" oninput="liveEdit('num4',this.value)" style="width:30%;display:inline-block;margin-right:4%">
-    <input id="editNumLabel4" oninput="liveEdit('numLabel4',this.value)" style="width:66%;display:inline-block">
-  </div>
-  <button class="admin-save" onclick="saveEdits()">Uložit změny</button>
-  <p style="font-size:.7rem;color:var(--muted);margin-top:.8rem">Změny se ukládají do localStorage prohlížeče.</p>
-</div>
 
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
@@ -1123,63 +1014,6 @@ document.querySelectorAll('.nav-links a, .nav-cta').forEach(el => {
   });
 })
 
-// ─── Admin Panel ──────────────────────────────────────────────────
-const EDITABLE = [
-  'heroTitle','heroSub',
-  'svc1Title','svc1Desc','svc2Title','svc2Desc','svc3Title','svc3Desc',
-  'aboutText',
-  'num1','numLabel1','num2','numLabel2','num3','numLabel3','num4','numLabel4',
-]
-
-window.toggleAdmin = toggleAdmin;
-window.liveEdit = liveEdit;
-window.saveEdits = saveEdits;
-
-function toggleAdmin() {
-  const panel = document.getElementById('adminPanel')
-  const overlay = document.getElementById('adminOverlay')
-  const isOpen = panel.classList.contains('open')
-  panel.classList.toggle('open')
-  overlay.classList.toggle('open')
-  if (!isOpen) loadEdits()
-}
-
-function loadEdits() {
-  EDITABLE.forEach(id => {
-    const el = document.getElementById(id)
-    const input = document.getElementById('edit' + id.charAt(0).toUpperCase() + id.slice(1))
-    if (el && input) {
-      input.value = el.innerHTML.replace(/<br\s*\/?>/g, '\n')
-    }
-  })
-}
-
-function liveEdit(id, value) {
-  const el = document.getElementById(id)
-  if (el) el.innerHTML = value.replace(/\n/g, '<br>')
-}
-
-function saveEdits() {
-  const data = {}
-  EDITABLE.forEach(id => {
-    const el = document.getElementById(id)
-    if (el) data[id] = el.innerHTML
-  })
-  localStorage.setItem('ksh_edits', JSON.stringify(data))
-  alert('Uloženo!')
-}
-
-// Restore on load
-(function restoreEdits() {
-  try {
-    const data = JSON.parse(localStorage.getItem('ksh_edits'))
-    if (!data) return
-    Object.entries(data).forEach(([id, html]) => {
-      const el = document.getElementById(id)
-      if (el) el.innerHTML = html
-    })
-  } catch {}
-})()
 </script>
 
 <!-- Nav visibility: scroll listener independent of GSAP -->
