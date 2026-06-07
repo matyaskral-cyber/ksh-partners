@@ -403,8 +403,25 @@ nav.nav-hidden{opacity:0;pointer-events:none;transition:opacity .3s ease}
 /* ─── Post-it Notes Wall ──────────────────────────────────────── */
 .notes-section{
   min-height:100vh;background:#0a0a0a;
-  display:flex;align-items:center;justify-content:center;padding:80px 40px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(2.5rem,5vw,4.5rem);padding:80px 40px;
 }
+/* ─── Reference heading (scroll-reveal) ─── */
+.notes-head{max-width:1100px;width:100%;text-align:center}
+.nh-eyebrow{display:inline-flex;align-items:center;gap:11px;font-family:var(--font-body);font-size:.7rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--coral);
+  opacity:0;transform:translateY(12px);transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.nh-eyebrow::before{content:'';width:0;height:1px;background:var(--coral);transition:width .8s cubic-bezier(.16,1,.3,1) .1s}
+.nh-title{font-family:var(--font-display);font-weight:700;font-size:clamp(2.8rem,8vw,6.5rem);line-height:.92;letter-spacing:-.03em;color:#fff;margin:.55rem 0 0}
+.nh-line{display:block;overflow:hidden;padding:0 .04em}
+.nh-line>span{display:inline-block;transform:translateY(115%);transition:transform .9s cubic-bezier(.16,1,.3,1)}
+.nh-line:nth-child(2)>span{color:var(--coral)}
+.nh-sub{font-family:var(--font-body);font-weight:300;font-size:clamp(.95rem,1.6vw,1.15rem);color:var(--muted);max-width:34ch;margin:1.3rem auto 0;
+  opacity:0;transform:translateY(14px);transition:opacity .8s ease .4s,transform .8s cubic-bezier(.16,1,.3,1) .4s}
+.notes-head.in-view .nh-eyebrow{opacity:1;transform:none}
+.notes-head.in-view .nh-eyebrow::before{width:40px}
+.notes-head.in-view .nh-line>span{transform:none}
+.notes-head.in-view .nh-line:nth-child(1)>span{transition-delay:.12s}
+.notes-head.in-view .nh-line:nth-child(2)>span{transition-delay:.24s}
+.notes-head.in-view .nh-sub{opacity:1;transform:none}
 .notes-grid{
   display:flex;flex-wrap:wrap;gap:18px;
   max-width:1100px;width:100%;justify-content:center;align-items:center;
@@ -452,6 +469,33 @@ nav.nav-hidden{opacity:0;pointer-events:none;transition:opacity .3s ease}
   font-weight:700;color:rgba(255,255,255,.9);line-height:1.25;
 }
 .note-wip{font-size:10px;color:rgba(255,255,255,.45);letter-spacing:.08em;margin-top:6px}
+
+/* ─── Note fold reveal (papírek se přeloží přes úhlopříčku, pod ním web) ─── */
+.note.has-reveal{background:transparent!important;box-shadow:none!important;overflow:visible;perspective:560px}
+.note.has-reveal::after{display:none}
+.note-reveal{position:absolute;inset:0;z-index:1;border-radius:2px;overflow:hidden;background:#1c1c1e;
+  box-shadow:0 5px 14px rgba(0,0,0,.45),0 1px 3px rgba(0,0,0,.35)}
+.note-reveal .np-shot{width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.note-reveal .np-styled{width:100%;height:100%;background:radial-gradient(circle at 35% 68%,#2c2c2e,#161617)}
+.note-reveal .np-cap{position:absolute;left:0;right:0;bottom:0;padding:18px 12px 9px;display:flex;flex-direction:column;gap:1px;background:linear-gradient(transparent,rgba(0,0,0,.92))}
+.note-reveal .np-title{font-family:var(--font-display);font-weight:600;font-size:11px;color:#fff;line-height:1.15}
+.note-reveal .np-go{font-family:var(--font-body);font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--coral)}
+.fold-shadow{position:absolute;inset:0;z-index:1;clip-path:polygon(0 0,100% 100%,0 100%);opacity:0;
+  background:linear-gradient(315deg,rgba(0,0,0,.5),rgba(0,0,0,.15) 38%,transparent 60%);transition:opacity .5s ease}
+.fold{position:absolute;inset:0;background:var(--coral);background-image:linear-gradient(135deg,rgba(255,255,255,.1) 0%,transparent 45%,rgba(0,0,0,.05) 100%)}
+.fold-static{z-index:2}
+.fold-flap{z-index:3;clip-path:polygon(0 0,100% 100%,0 100%);transform-origin:50% 50%;backface-visibility:visible;
+  transition:transform .65s cubic-bezier(.45,0,.15,1),filter .5s ease}
+.fold-flap::after{content:'';position:absolute;inset:0;opacity:0;transition:opacity .5s ease;
+  background:linear-gradient(315deg,rgba(0,0,0,.34),rgba(0,0,0,.12) 45%,rgba(255,255,255,.06) 100%)}
+.note-text{position:absolute;inset:0;z-index:4;padding:18px 16px 20px;display:flex;flex-direction:column;justify-content:space-between;pointer-events:none;transition:opacity .25s ease}
+.note.has-reveal:hover{z-index:60}
+.note.has-reveal:hover .fold-static{clip-path:polygon(0 0,100% 0,100% 100%)}
+.note.has-reveal:hover .fold-flap{transform:rotate3d(1,1,0,173deg);filter:drop-shadow(-6px 8px 10px rgba(0,0,0,.45))}
+.note.has-reveal:hover .fold-flap::after{opacity:1}
+.note.has-reveal:hover .fold-shadow{opacity:1}
+.note.has-reveal:hover .note-text{opacity:0}
+@media (hover:none){.note-reveal,.fold-flap::after,.fold-shadow{display:none}.fold-flap{transform:none}}
 
 /* ─── Contact ──────────────────────────────────────────────────── */
 .contact-section{
@@ -631,18 +675,21 @@ footer{
 
 <!-- Post-it Notes -->
 <div class="notes-section" id="reference">
+  <div class="notes-head">
+    <h2 class="nh-title"><span class="nh-line"><span>Naše</span></span><span class="nh-line"><span>práce</span></span></h2>
+  </div>
   <div class="notes-grid">
     <div class="note n-empty" style="--r:-8deg;--y:12px"></div>
-    <div class="note" style="--r:5deg;--y:-4px" onclick="window.open('https://smenky-ksh.46.225.180.130.sslip.io','_blank','noopener,noreferrer')"><span class="note-label">WIP</span><div class="note-title">Směny app</div><div class="note-wip">ve vývoji</div></div>
-    <div class="note n-empty" style="--r:-14deg;--y:8px"></div>
-    <div class="note" style="--r:3deg;--y:-8px" onclick="window.open('https://www.krakram.com','_blank','noopener,noreferrer')"><span class="note-label">WEB</span><div class="note-title">Specializovaná prodejna PML</div></div>
-    <div class="note" style="--r:11deg;--y:3px" onclick="window.open('https://revize-tabor.cz','_blank','noopener,noreferrer')"><span class="note-label">WEB</span><div class="note-title">Revize Tábor</div></div>
-    <div class="note" style="--r:-6deg;--y:6px" onclick="window.open('https://matyaskral-cyber.github.io/navrhy-webu/stavebni-denik/','_blank','noopener,noreferrer')"><span class="note-label">WIP</span><div class="note-title">Stavební deník</div><div class="note-wip">ve vývoji</div></div>
+    <div class="note" style="--r:5deg;--y:-4px" data-prev="img" data-img="previews/smenky.png" data-title="Směny app" data-url="smenky-ksh.46.225.180.130.sslip.io" onclick="window.open('https://smenky-ksh.46.225.180.130.sslip.io','_blank','noopener,noreferrer')"><span class="note-label">WIP</span><div class="note-title">Směny app</div><div class="note-wip">ve vývoji</div></div>
+    <div class="note" style="--r:-14deg;--y:8px" data-prev="img" data-img="previews/hoteldyje.png" data-title="Hotel Dyje" data-url="hoteldyje.cz" onclick="window.open('https://hoteldyje.cz','_blank','noopener,noreferrer')"><span class="note-label">WEB</span><div class="note-title">Hotel Dyje</div></div>
+    <div class="note" style="--r:3deg;--y:-8px" data-prev="styled" data-brand="KraKram" data-accent="#3fae9d" data-sub="Specializovaná prodejna · 18+" data-title="Specializovaná prodejna PML" data-url="krakram.com" onclick="window.open('https://www.krakram.com','_blank','noopener,noreferrer')"><span class="note-label">WEB</span><div class="note-title">Specializovaná prodejna PML</div></div>
+    <div class="note" style="--r:11deg;--y:3px" data-prev="img" data-img="previews/revize.png" data-title="Revize Tábor" data-url="revize-tabor.cz" onclick="window.open('https://revize-tabor.cz','_blank','noopener,noreferrer')"><span class="note-label">WEB</span><div class="note-title">Revize Tábor</div></div>
+    <div class="note" style="--r:-6deg;--y:6px" data-prev="img" data-img="previews/denik.png" data-title="Stavební deník" data-url="stavebni-denik" onclick="window.open('https://matyaskral-cyber.github.io/navrhy-webu/stavebni-denik/','_blank','noopener,noreferrer')"><span class="note-label">WIP</span><div class="note-title">Stavební deník</div><div class="note-wip">ve vývoji</div></div>
     <div class="note n-empty" style="--r:9deg;--y:-10px"></div>
-    <div class="note" style="--r:-4deg;--y:5px"><span class="note-label">VENDING</span><div class="note-title">Výdejní automaty</div></div>
+    <div class="note" style="--r:-4deg;--y:5px" data-prev="styled" data-brand="Výdejní automaty" data-accent="#F07070" data-sub="Připravujeme" data-title="Výdejní automaty" data-url="koncept" data-go="Brzy"><span class="note-label">VENDING</span><div class="note-title">Výdejní automaty</div></div>
     <div class="note n-empty" style="--r:-12deg;--y:-3px"></div>
     <div class="note n-empty" style="--r:7deg;--y:14px"></div>
-    <div class="note" style="--r:-2deg;--y:-6px"><span class="note-label">APLIKACE</span><div class="note-title">Autocamp systém</div></div>
+    <div class="note" style="--r:-2deg;--y:-6px" data-prev="styled" data-brand="Autocamp" data-accent="#F07070" data-sub="Připravujeme" data-title="Autocamp systém" data-url="koncept" data-go="Brzy"><span class="note-label">APLIKACE</span><div class="note-title">Autocamp systém</div></div>
     <div class="note n-empty" style="--r:15deg;--y:4px"></div>
     <div class="note n-empty" style="--r:-9deg;--y:-8px"></div>
     <div class="note n-empty" style="--r:4deg;--y:10px"></div>
@@ -1058,6 +1105,63 @@ document.querySelectorAll('.nav-links a, .nav-cta').forEach(el => {
       nav.style.pointerEvents = 'none';
     }
   }, { passive: true });
+})();
+</script>
+
+<!-- Note peel reveal (standalone, independent of module) -->
+<script>
+(function(){
+  function init(){
+    var notes = document.querySelectorAll('.note[data-prev]');
+    if (!notes.length) return;
+    var esc = function(s){ var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; };
+    function revealHTML(n){
+      var body, cap;
+      if (n.dataset.prev === 'img'){
+        body = '<img class="np-shot" src="'+ esc(n.dataset.img) +'" alt="'+ esc(n.dataset.title) +'">';
+        cap = '<span class="np-title">'+ esc(n.dataset.title) +'</span><span class="np-go">'+ esc(n.dataset.go || 'Navštívit →') +'</span>';
+      } else {
+        body = '<div class="np-styled"></div>';
+        cap = '<span class="np-title" style="color:'+ esc(n.dataset.accent || '#fff') +'">'+ esc(n.dataset.brand || n.dataset.title) +'</span><span class="np-go">'+ esc(n.dataset.sub || n.dataset.go || '') +'</span>';
+      }
+      return body + '<div class="np-cap">'+ cap +'</div>';
+    }
+    notes.forEach(function(n){
+      if (n.classList.contains('has-reveal')) return;
+      var labelEl = n.querySelector('.note-label');
+      var titleEl = n.querySelector('.note-title');
+      var wipEl = n.querySelector('.note-wip');
+      var label = labelEl ? labelEl.textContent : '';
+      var title = titleEl ? titleEl.textContent : (n.dataset.title || '');
+      var wip = wipEl ? wipEl.textContent : '';
+      var rev = document.createElement('div'); rev.className = 'note-reveal'; rev.innerHTML = revealHTML(n);
+      var sh = document.createElement('div'); sh.className = 'fold-shadow';
+      var st = document.createElement('div'); st.className = 'fold fold-static';
+      var fl = document.createElement('div'); fl.className = 'fold fold-flap';
+      var tx = document.createElement('div'); tx.className = 'note-text';
+      tx.innerHTML = '<span class="note-label">'+ esc(label) +'</span><div class="note-title">'+ esc(title) +'</div>'+ (wip ? '<div class="note-wip">'+ esc(wip) +'</div>' : '');
+      n.innerHTML = '';
+      n.appendChild(rev); n.appendChild(sh); n.appendChild(st); n.appendChild(fl); n.appendChild(tx);
+      n.classList.add('has-reveal');
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+// Reference heading scroll-reveal
+(function(){
+  function init(){
+    var head = document.querySelector('.notes-head');
+    if (!head) return;
+    if (!('IntersectionObserver' in window)){ head.classList.add('in-view'); return; }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting){ head.classList.add('in-view'); io.disconnect(); } });
+    }, { threshold: 0.4 });
+    io.observe(head);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
 </script>
 
