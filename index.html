@@ -70,10 +70,8 @@ a{color:inherit}
 .mb-drop a:last-child{border-bottom:0}
 .mb-drop a b{font-weight:400;font-size:1.2rem;opacity:.5}
 .mb-drop a:active,.mb-drop a:hover{background:var(--ink);color:var(--paper)}
-.mb-svatek{opacity:.7;white-space:nowrap}
-.mb-svatek b{font-weight:400}
 .clk-svatek{font-size:1.25rem;margin-top:4px;padding-top:6px;border-top:1.5px dashed var(--chip)}
-.clk-svatek:empty,.mb-svatek:empty{display:none}
+.clk-svatek:empty{display:none}
 .mb-cta{background:var(--ink);color:var(--paper);text-decoration:none;padding:.05em .6em;box-shadow:3px 3px 0 rgba(30,30,30,.3);transition:transform .25s var(--pop),box-shadow .25s var(--pop)}
 .mb-cta:hover{transform:translate(-1px,-2px);box-shadow:4px 5px 0 rgba(30,30,30,.3)}
 
@@ -381,7 +379,6 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
 
 /* ───── Responsive ───── */
 @media (max-width:1180px){
-  .mb-svatek{display:none}
   .w-ai{--x:63%}
   .w-digital{--x:40%}
   .mon-row{grid-template-columns:150px 1fr 1fr 70px}
@@ -421,8 +418,6 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
   footer{padding:1.6rem 16px 100px}
 }
 @media (max-width:620px){
-  #mbClock{display:none}
-  .mb-svatek{display:none}
   .menubar{padding:0 16px;font-size:1.35rem}
   .mb-right{gap:.7em}
   .shell{padding:10px 16px 0}
@@ -491,8 +486,6 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
     <a href="#reference">Reference</a>
   </nav>
   <div class="mb-right">
-    <span class="mb-svatek" id="mbSvatek" title="Dnes má svátek"></span>
-    <span id="mbClock" aria-hidden="true">--:--</span>
     <button class="mb-menu" id="mbMenu" type="button" aria-expanded="false" aria-controls="mbDrop">Menu</button>
     <a href="#kontakt" class="mb-cta">Kontakt</a>
   </div>
@@ -1036,11 +1029,11 @@ const PAPER=hexToABGR('#f6f3f0',255), CHIP=hexToABGR('#cfc8c3',255);
 
 /* ─── Hodiny ─── */
 safe(()=>{
-  const d=document.getElementById('clkDate'),t=document.getElementById('clkTime'),m=document.getElementById('mbClock');
+  const d=document.getElementById('clkDate'),t=document.getElementById('clkTime');
   const fd=new Intl.DateTimeFormat('cs-CZ',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
   const pad=n=>String(n).padStart(2,'0');
   function tick(){const n=new Date();const s=fd.format(n);d.textContent=s.charAt(0).toUpperCase()+s.slice(1);
-    t.textContent=pad(n.getHours())+':'+pad(n.getMinutes())+':'+pad(n.getSeconds())+'.';m.textContent=pad(n.getHours())+':'+pad(n.getMinutes())}
+    t.textContent=pad(n.getHours())+':'+pad(n.getMinutes())+':'+pad(n.getSeconds())+'.'}
   tick();setInterval(tick,1000);
 });
 
@@ -1062,11 +1055,10 @@ safe(()=>{
   ].map(m=>m.split('|'));
   // dny bez jména: slaví se státní nebo církevní svátek
   const NO_NAME=new Set(['0-0','4-0','4-7','9-27','10-1','11-24']);
-  const mb=document.getElementById('mbSvatek'),ck=document.getElementById('clkSvatek');let last='';
+  const ck=document.getElementById('clkSvatek');let last='';
   function upd(){const n=new Date(),k=n.getMonth()+'-'+(n.getDate()-1);if(k===last)return;last=k;
     const who=M[n.getMonth()][n.getDate()-1];if(!who)return;
-    if(NO_NAME.has(k)){mb.textContent=who;ck.textContent='dnes: '+who;return}
-    mb.textContent='svátek: ';const b=document.createElement('b');b.textContent=who;mb.appendChild(b);ck.textContent='svátek má '+who}
+    ck.textContent=NO_NAME.has(k)?'dnes: '+who:'svátek má '+who}
   upd();setInterval(upd,60000);
 });
 
