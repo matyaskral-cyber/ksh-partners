@@ -70,6 +70,10 @@ a{color:inherit}
 .mb-drop a:last-child{border-bottom:0}
 .mb-drop a b{font-weight:400;font-size:1.2rem;opacity:.5}
 .mb-drop a:active,.mb-drop a:hover{background:var(--ink);color:var(--paper)}
+.mb-svatek{opacity:.7;white-space:nowrap}
+.mb-svatek b{font-weight:400}
+.clk-svatek{font-size:1.25rem;margin-top:4px;padding-top:6px;border-top:1.5px dashed var(--chip)}
+.clk-svatek:empty,.mb-svatek:empty{display:none}
 .mb-cta{background:var(--ink);color:var(--paper);text-decoration:none;padding:.05em .6em;box-shadow:3px 3px 0 rgba(30,30,30,.3);transition:transform .25s var(--pop),box-shadow .25s var(--pop)}
 .mb-cta:hover{transform:translate(-1px,-2px);box-shadow:4px 5px 0 rgba(30,30,30,.3)}
 
@@ -103,7 +107,7 @@ a{color:inherit}
 .w-vending{--x:19.5%;--y:19%;width:250px;z-index:3}
 .w-digital{--x:43%;--y:4%;width:390px;z-index:3}
 .w-main{--x:25%;--y:31%;width:min(760px,52%);z-index:5}
-.w-ai{--x:61%;--y:20%;width:270px;z-index:6}
+.w-ai{--x:61%;--y:calc(2% + 142px);width:270px;z-index:8} /* lehce přes spodek hodin */
 .w-clock{left:auto;right:1.4%;--y:2%;width:310px;z-index:7}
 .w-glider{left:auto;right:1.4%;top:auto;bottom:3%;width:170px;z-index:7}
 .w-info{--x:1.2%;top:auto;bottom:3%;width:min(300px,22%);z-index:7}
@@ -377,6 +381,7 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
 
 /* ───── Responsive ───── */
 @media (max-width:1180px){
+  .mb-svatek{display:none}
   .w-ai{--x:63%}
   .w-digital{--x:40%}
   .mon-row{grid-template-columns:150px 1fr 1fr 70px}
@@ -417,6 +422,7 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
 }
 @media (max-width:620px){
   #mbClock{display:none}
+  .mb-svatek{display:none}
   .menubar{padding:0 16px;font-size:1.35rem}
   .mb-right{gap:.7em}
   .shell{padding:10px 16px 0}
@@ -485,6 +491,7 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
     <a href="#reference">Reference</a>
   </nav>
   <div class="mb-right">
+    <span class="mb-svatek" id="mbSvatek" title="Dnes má svátek"></span>
     <span id="mbClock" aria-hidden="true">--:--</span>
     <button class="mb-menu" id="mbMenu" type="button" aria-expanded="false" aria-controls="mbDrop">Menu</button>
     <a href="#kontakt" class="mb-cta">Kontakt</a>
@@ -566,7 +573,7 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
 
     <div class="win w-clock" aria-hidden="true">
       <div class="win-bar"><span>Hodiny 1.1</span><b>◷</b></div>
-      <div class="win-body"><div id="clkDate">—</div><div id="clkTime">--:--:--</div></div>
+      <div class="win-body"><div id="clkDate">—</div><div id="clkTime">--:--:--</div><div class="clk-svatek" id="clkSvatek"></div></div>
     </div>
 
     <div class="win w-glider" aria-hidden="true">
@@ -1035,6 +1042,32 @@ safe(()=>{
   function tick(){const n=new Date();const s=fd.format(n);d.textContent=s.charAt(0).toUpperCase()+s.slice(1);
     t.textContent=pad(n.getHours())+':'+pad(n.getMinutes())+':'+pad(n.getSeconds())+'.';m.textContent=pad(n.getHours())+':'+pad(n.getMinutes())}
   tick();setInterval(tick,1000);
+});
+
+/* ─── Kdo má dnes svátek (český kalendář) ─── */
+safe(()=>{
+  const M=[
+    'Nový rok|Karina|Radmila|Diana|Dalimil|Tři králové|Vilma|Čestmír|Vladan|Břetislav|Bohdana|Pravoslav|Edita|Radovan|Alice|Ctirad|Drahoslav|Vladislav|Doubravka|Ilona|Běla|Slavomír|Zdeněk|Milena|Miloš|Zora|Ingrid|Otýlie|Zdislava|Robin|Marika',
+    'Hynek|Nela|Blažej|Jarmila|Dobromila|Vanda|Veronika|Milada|Apolena|Mojmír|Božena|Slavěna|Věnceslav|Valentýn|Jiřina|Ljuba|Miloslava|Gizela|Patrik|Oldřich|Lenka|Petr|Svatopluk|Matěj|Liliana|Dorota|Alexandr|Lumír|Horymír',
+    'Bedřich|Anežka|Kamil|Stela|Kazimír|Miroslav|Tomáš|Gabriela|Františka|Viktorie|Anděla|Řehoř|Růžena|Rút a Matylda|Ida|Elena a Herbert|Vlastimil|Eduard|Josef|Světlana|Radek|Leona|Ivona|Gabriel|Marián|Emanuel|Dita|Soňa|Taťána|Arnošt|Kvido',
+    'Hugo|Erika|Richard|Ivana|Miroslava|Vendula|Heřman a Hermína|Ema|Dušan|Darja|Izabela|Julius|Aleš|Vincenc|Anastázie|Irena|Rudolf|Valérie|Rostislav|Marcela|Alexandra|Evženie|Vojtěch|Jiří|Marek|Oto|Jaroslav|Vlastislav|Robert|Blahoslav',
+    'Svátek práce|Zikmund|Alexej|Květoslav|Klaudie|Radoslav|Stanislav|Den vítězství|Ctibor|Blažena|Svatava|Pankrác|Servác|Bonifác|Žofie|Přemysl|Aneta|Nataša|Ivo|Zbyšek|Monika|Emil|Vladimír|Jana|Viola|Filip|Valdemar|Vilém|Maxmilián|Ferdinand|Kamila',
+    'Laura|Jarmil|Tamara|Dalibor|Dobroslav|Norbert|Iveta a Slavoj|Medard|Stanislava|Gita|Bruno|Antonie|Antonín|Roland|Vít|Zbyněk|Adolf|Milan|Leoš|Květa|Alois|Pavla|Zdeňka|Jan|Ivan|Adriana|Ladislav|Lubomír|Petr a Pavel|Šárka',
+    'Jaroslava|Patricie|Radomír|Prokop|Cyril a Metoděj|Mistr Jan Hus|Bohuslava|Nora|Drahoslava|Libuše a Amálie|Olga|Bořek|Markéta|Karolína|Jindřich|Luboš|Martina|Drahomíra|Čeněk|Ilja|Vítězslav|Magdaléna|Libor|Kristýna|Jakub|Anna|Věroslav|Viktor|Marta|Bořivoj|Ignác',
+    'Oskar|Gustav|Miluše|Dominik|Kristián|Oldřiška|Lada|Soběslav|Roman|Vavřinec|Zuzana|Klára|Alena|Alan|Hana|Jáchym|Petra|Helena|Ludvík|Bernard|Johana|Bohuslav|Sandra|Bartoloměj|Radim|Luděk|Otakar|Augustýn|Evelína|Vladěna|Pavlína',
+    'Linda a Samuel|Adéla|Bronislav|Jindřiška|Boris|Boleslav|Regína|Mariana|Daniela|Irma|Denisa|Marie|Lubor|Radka|Jolana|Ludmila|Naděžda|Kryštof|Zita|Oleg|Matouš|Darina|Berta|Jaromír|Zlata|Andrea|Jonáš|Václav|Michal|Jeroným',
+    'Igor|Olivie a Oliver|Bohumil|František|Eliška|Hanuš|Justýna|Věra|Štefan a Sára|Marina|Andrej|Marcel|Renáta|Agáta|Tereza|Havel|Hedvika|Lukáš|Michaela|Vendelín|Brigita|Sabina|Teodor|Nina|Beáta|Erik|Šarlota a Zoe|Den vzniku Československa|Silvie|Tadeáš|Štěpánka',
+    'Felix|Památka zesnulých|Hubert|Karel|Miriam|Liběna|Saskie|Bohumír|Bohdan|Evžen|Martin|Benedikt|Tibor|Sáva|Leopold|Otmar|Mahulena|Romana|Alžběta|Nikola|Albert|Cecílie|Klement|Emílie|Kateřina|Artur|Xenie|René|Zina|Ondřej',
+    'Iva|Blanka|Svatoslav|Barbora|Jitka|Mikuláš|Ambrož a Benjamín|Květoslava|Vratislav|Julie|Dana|Simona|Lucie|Lýdie|Radana a Radan|Albína|Daniel|Miloslav|Ester|Dagmar|Natálie|Šimon|Vlasta|Adam a Eva|Boží hod vánoční|Štěpán|Žaneta|Bohumila|Judita|David|Silvestr'
+  ].map(m=>m.split('|'));
+  // dny bez jména: slaví se státní nebo církevní svátek
+  const NO_NAME=new Set(['0-0','4-0','4-7','9-27','10-1','11-24']);
+  const mb=document.getElementById('mbSvatek'),ck=document.getElementById('clkSvatek');let last='';
+  function upd(){const n=new Date(),k=n.getMonth()+'-'+(n.getDate()-1);if(k===last)return;last=k;
+    const who=M[n.getMonth()][n.getDate()-1];if(!who)return;
+    if(NO_NAME.has(k)){mb.textContent=who;ck.textContent='dnes: '+who;return}
+    mb.textContent='svátek: ';const b=document.createElement('b');b.textContent=who;mb.appendChild(b);ck.textContent='svátek má '+who}
+  upd();setInterval(upd,60000);
 });
 
 /* ─── Glider (Game of Life, toroid 6×6) ─── */
