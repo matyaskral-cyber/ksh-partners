@@ -485,6 +485,7 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
     <a href="#sluzby">Služby</a>
     <a href="#o-nas">O nás</a>
     <a href="#reference">Reference</a>
+    <a href="#newsletter">AI týden</a>
   </nav>
   <div class="mb-right">
     <button class="mb-menu" id="mbMenu" type="button" aria-expanded="false" aria-controls="mbDrop">Menu</button>
@@ -497,7 +498,8 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
     <a href="#sluzby"><span>Služby</span><b>01</b></a>
     <a href="#o-nas"><span>O nás</span><b>02</b></a>
     <a href="#reference"><span>Reference</span><b>03</b></a>
-    <a href="#kontakt"><span>Kontakt</span><b>04</b></a>
+    <a href="#newsletter"><span>AI týden</span><b>04</b></a>
+    <a href="#kontakt"><span>Kontakt</span><b>05</b></a>
   </nav>
 </div>
 
@@ -830,6 +832,112 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
   </div>
 </section>
 
+<!-- ═════ NEWSLETTER: AI týden ═════ -->
+<section class="nl" id="newsletter" aria-labelledby="nl-title">
+<style>
+/* Newsletter AI týden: vše scoped pod #newsletter, barvy a fonty z :root webu (s fallbacky) */
+#newsletter{
+  --nl-ink:var(--ink,#1e1e1e);--nl-paper:var(--paper,#f6f3f0);--nl-win:var(--win,#e4dfdb);--nl-chip:var(--chip,#cfc8c3);--nl-bg:var(--bg,#ef8f8a);
+  --nl-px:var(--px,'VT323',ui-monospace,monospace);--nl-gr:var(--gr,'Inter Tight',system-ui,sans-serif);
+  padding:clamp(6rem,12vw,11rem) clamp(16px,4vw,64px);border-top:1.5px solid var(--nl-ink);color:var(--nl-ink)}
+#newsletter .nl-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(2.5rem,6vw,6rem);align-items:start}
+#newsletter .nl-lbl{font-family:var(--nl-px);font-size:1.45rem;line-height:1.1;text-transform:lowercase;color:var(--nl-ink)}
+#newsletter h2{font-family:var(--nl-gr);font-weight:600;letter-spacing:-.05em;line-height:.9;font-size:clamp(2.8rem,6vw,6rem);margin:1.2rem 0 1.4rem;color:var(--nl-ink)}
+#newsletter .nl-lead{max-width:40ch;font-family:var(--nl-gr);font-weight:600;font-size:clamp(1.15rem,1.5vw,1.4rem);line-height:1.4;color:var(--nl-ink)}
+#newsletter .nl-text{max-width:44ch;margin-top:.9rem;font-family:var(--nl-gr);font-weight:500;font-size:clamp(1.05rem,1.35vw,1.2rem);line-height:1.5;color:var(--nl-ink)}
+#newsletter .nl-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:1.6rem}
+#newsletter .nl-chips span{background:var(--nl-ink);color:var(--nl-paper);font-family:var(--nl-px);font-size:1.4rem;line-height:1.3;padding:0 .4em}
+#newsletter .nl-chips span::before{content:"✢";margin-right:.2em}
+/* okno s formulářem: stejný „window" rámeček jako .win na webu */
+#newsletter .nl-win{position:relative;background:var(--nl-win);border:1.5px solid var(--nl-ink);
+  box-shadow:0 0 0 3px var(--nl-win),0 0 0 4.5px var(--nl-ink),6px 7px 0 4.5px rgba(30,30,30,.18)}
+#newsletter .nl-bar{display:flex;justify-content:space-between;align-items:center;gap:1rem;height:30px;padding:0 10px;background:var(--nl-ink);color:var(--nl-win);font-family:var(--nl-px);font-size:1.35rem;line-height:1;user-select:none}
+#newsletter .nl-bar b{font-weight:400}
+#newsletter form,#newsletter .nl-done{padding:clamp(16px,2vw,26px);display:grid;gap:16px;background:var(--nl-win)}
+#newsletter label.nl-f{display:grid;gap:6px;font-family:var(--nl-px);font-size:1.45rem;line-height:1;color:var(--nl-ink)}
+#newsletter label.nl-f em{font-style:normal}
+#newsletter label.nl-f>span{white-space:nowrap}
+#newsletter input[type=email],#newsletter input[type=text]{
+  width:100%;font-family:var(--nl-gr);font-weight:600;font-size:1.15rem;line-height:1.3;color:var(--nl-ink);
+  background:var(--nl-paper);border:1.5px solid var(--nl-ink);border-radius:0;padding:10px 12px;
+  box-shadow:inset 2px 2px 0 rgba(30,30,30,.12);outline:none;-webkit-appearance:none;appearance:none;cursor:text;
+  transition:box-shadow .2s,background-color .2s}
+#newsletter input::placeholder{color:#5a4a48;opacity:1;font-weight:500}
+#newsletter input[type=email]:focus,#newsletter input[type=text]:focus{background:#fff;box-shadow:inset 2px 2px 0 rgba(30,30,30,.12),0 0 0 3px var(--nl-bg)}
+#newsletter input:user-invalid{border-style:dashed;box-shadow:inset 0 0 0 1.5px #b3261e}
+#newsletter .nl-two{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:end}
+#newsletter .nl-consent{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;padding:12px;background:var(--nl-paper);border:1.5px dashed var(--nl-ink);
+  font-family:var(--nl-gr);font-weight:500;font-size:1rem;line-height:1.45;color:var(--nl-ink)}
+#newsletter .nl-consent input{width:22px;height:22px;margin-top:1px;accent-color:var(--nl-ink)}
+#newsletter .nl-consent strong{font-weight:600}
+#newsletter .nl-row{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+#newsletter .nl-row small{font-family:var(--nl-px);font-size:1.35rem;line-height:1.1;color:var(--nl-ink)}
+#newsletter .nl-btn{font-family:var(--nl-px);font-size:1.7rem;line-height:1;background:var(--nl-ink);color:var(--nl-paper);border:1.5px solid var(--nl-ink);border-radius:0;padding:.45em 1em .4em;
+  box-shadow:4px 4px 0 rgba(30,30,30,.3);transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s cubic-bezier(.34,1.56,.64,1)}
+#newsletter .nl-btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(30,30,30,.3)}
+#newsletter .nl-btn:active{transform:translate(3px,3px);box-shadow:0 0 0 rgba(30,30,30,.3)}
+#newsletter .nl-btn[disabled]{opacity:1;background:#3a3a3a;transform:none}
+#newsletter .nl-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+#newsletter .nl-done[hidden],#newsletter form[hidden]{display:none}
+#newsletter .nl-done:focus{outline:none}
+#newsletter .nl-done .nl-big{justify-self:start;background:var(--nl-ink);color:var(--nl-paper);font-family:var(--nl-px);font-size:3.2rem;line-height:.95;padding:.06em .14em 0}
+#newsletter .nl-done p{font-family:var(--nl-gr);font-weight:600;font-size:1.2rem;line-height:1.45;max-width:40ch}
+#newsletter .nl-done p+p{font-weight:500;font-size:1.05rem}
+@media (max-width:980px){#newsletter .nl-grid{grid-template-columns:1fr}}
+@media (max-width:620px){#newsletter{padding:5rem 16px}#newsletter .nl-two{grid-template-columns:1fr}#newsletter h2{font-size:clamp(2.6rem,12.5vw,3.6rem)}#newsletter .nl-btn{width:100%}}
+</style>
+  <div class="nl-grid">
+    <div>
+      <span class="nl-lbl">[ newsletter · každý pátek 9:00 ]</span>
+      <h2 id="nl-title">AI týden do&nbsp;mailu.</h2>
+      <p class="nl-lead">Každý pátek ráno shrnutí toho nejdůležitějšího z&nbsp;AI. Krátce, česky, zdarma.</p>
+      <p class="nl-text">AI se mění rychleji, než se dá stíhat. Tak to stíháme za vás. Co vyšlo, o&nbsp;čem se mluví a&nbsp;co z&nbsp;toho plyne pro praxi. Bez hype, jen to, co funguje.</p>
+      <div class="nl-chips" aria-hidden="true"><span>pátek 9:00</span><span>česky</span><span>zdarma</span><span>bez spamu</span></div>
+    </div>
+    <div class="nl-win">
+      <div class="nl-bar"><span>ai_tyden.exe</span><b>✉</b></div>
+      <form id="nlForm" action="https://formsubmit.co/1matyas.kral1@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Nový odběratel AI newsletteru">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="true">
+        <input type="hidden" name="_next" id="nlNext" value="https://ksh-partners.cz/?newsletter=dekujeme#newsletter">
+        <input type="hidden" name="zdroj" value="ksh-partners.cz · newsletter">
+        <div class="nl-hp" aria-hidden="true"><label>Nevyplňujte<input type="text" name="_honey" tabindex="-1" autocomplete="off"></label></div>
+        <div class="nl-two">
+          <label class="nl-f"><span>e-mail *</span><input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="vas@email.cz"></label>
+          <label class="nl-f"><span>jméno <em>(nepovinné)</em></span><input type="text" name="jmeno" autocomplete="given-name" placeholder="Jak vám říkat"></label>
+        </div>
+        <label class="nl-consent"><input type="checkbox" name="souhlas" value="ano" required>
+          <span>Souhlasím se zasíláním týdenního <strong>AI newsletteru od KSH Partners</strong>. Odhlásit se můžu kdykoli, stačí odpovědět <strong>ODHLÁSIT</strong>.</span></label>
+        <div class="nl-row"><small>* povinné · jeden mail týdně</small><button type="submit" class="nl-btn">Přihlásit se k odběru ↵</button></div>
+      </form>
+      <div class="nl-done" id="nlDone" hidden role="status" tabindex="-1">
+        <span class="nl-big">HOTOVO</span>
+        <p>Díky, máme vás. První AI týden vám přijde v&nbsp;pátek v&nbsp;9:00.</p>
+        <p>Nevidíte ho? Mrkněte do spamu nebo do záložky Promoakce a&nbsp;přesuňte nás do doručené pošty.</p>
+      </div>
+    </div>
+  </div>
+<script>
+(function(){
+  var f=document.getElementById('nlForm'),done=document.getElementById('nlDone'),nx=document.getElementById('nlNext');
+  if(!f)return;
+  // návrat stejnou adresou, ze které se odesílalo (www / bez www); lokálně (file://) necháme výchozí
+  if(/^https?:$/.test(location.protocol))nx.value=location.origin+location.pathname+'?newsletter=dekujeme#newsletter';
+  // poděkování po návratu z FormSubmit
+  var q=new URLSearchParams(location.search);
+  if(q.get('newsletter')==='dekujeme'){
+    f.hidden=true;done.hidden=false;
+    try{history.replaceState(null,'',location.pathname+'#newsletter')}catch(e){}
+    setTimeout(function(){document.getElementById('newsletter').scrollIntoView({block:'start'});done.focus({preventScroll:true})},60);
+  }
+  f.addEventListener('submit',function(){var b=f.querySelector('.nl-btn');b.disabled=true;b.textContent='Odesílám…'});
+  // když se uživatel vrátí tlačítkem Zpět, tlačítko zase povolíme
+  addEventListener('pageshow',function(){var b=f.querySelector('.nl-btn');b.disabled=false;b.textContent='Přihlásit se k odběru ↵'});
+})();
+</script>
+</section>
+
 <!-- ═════ KONTAKT ═════ -->
 <section class="contact" id="kontakt">
   <div class="ct-grid">
@@ -898,6 +1006,7 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
     <li>Telefonní číslo (pokud ho uvedete)</li>
     <li>Název firmy (pokud ho uvedete)</li>
     <li>Obsah vaší zprávy</li>
+    <li>E-mail a případně jméno, pokud se přihlásíte k odběru newsletteru AI týden</li>
   </ul>
 
   <h2>3. Účel a právní základ zpracování</h2>
@@ -907,6 +1016,7 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
       <tr><td>Odpověď na poptávku / dotaz</td><td>Oprávněný zájem (čl. 6/1/f)</td><td>12 měsíců</td></tr>
       <tr><td>Uzavření a plnění smlouvy</td><td>Plnění smlouvy (čl. 6/1/b)</td><td>Po dobu smluvního vztahu + 3 roky</td></tr>
       <tr><td>Daňové a účetní povinnosti</td><td>Právní povinnost (čl. 6/1/c)</td><td>10 let (zákon o účetnictví)</td></tr>
+      <tr><td>Zasílání newsletteru AI týden</td><td>Souhlas (čl. 6/1/a)</td><td>Do odhlášení</td></tr>
     </tbody>
   </table>
 
@@ -914,6 +1024,7 @@ section[id],.pillars{scroll-margin-top:calc(46px + 24px + env(safe-area-inset-to
   <p>Vaše údaje neprodáváme ani nepředáváme třetím stranám za účelem marketingu. Můžeme je sdílet pouze s:</p>
   <ul>
     <li><strong>Formspree Inc.</strong> — zpracovatel kontaktních formulářů (USA, standardní smluvní doložky EU)</li>
+    <li><strong>FormSubmit (formsubmit.co)</strong> — zpracovatel formuláře pro přihlášení k newsletteru</li>
   </ul>
 
   <h2>5. Cookies</h2>
@@ -1369,7 +1480,7 @@ safe(()=>{
 safe(()=>{
   const links=[...document.querySelectorAll('.mb-links a')];
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'});
-  ['sluzby','o-nas','reference','kontakt'].forEach(id=>{const el=document.getElementById(id);if(el)io.observe(el)});
+  ['sluzby','o-nas','reference','newsletter','kontakt'].forEach(id=>{const el=document.getElementById(id);if(el)io.observe(el)});
 });
 
 /* ─── Dokumenty GDPR / OP ─── */
